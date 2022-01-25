@@ -1,0 +1,13 @@
+RewriteEngine on
+
+RewriteRule ^(index|contact|registration|login|search|logout|profile)$ $1.php [NC,L]
+
+RewriteRule ^post/(\d+)$ post.php?p_id=$1 [NC,L]
+
+RewriteRule ^category/(\d+)$ category.php?category=$1 [NC,L]
+
+RewriteRule ^author/([^/]*)$ author_posts.php?author=$1 
+
+RewriteRule ^forgot/([^/]*)$ forgot.php?forgot=$1 
+
+
