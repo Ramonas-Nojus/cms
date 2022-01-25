@@ -1,0 +1,11 @@
+RewriteEngine on
+
+RewriteRule ^(index|profile|comments|categories|users|posts)$ $1.php [NC,L]
+
+RewriteRule ^(add_user)$ users.php?source=add_user [NC,L]
+
+RewriteRule ^(add_post)$ posts.php?source=add_post [NC,L]
+
+
+
+
