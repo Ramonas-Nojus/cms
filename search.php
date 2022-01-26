@@ -23,7 +23,8 @@
             if(isset($_POST['submit'])){
                 
             $search = $_POST['search'];
-                
+
+            echo "<h1>Search results for <<<b>$search</b>>></h1>";
                 
             $query = "SELECT * FROM posts WHERE post_tags LIKE '%$search%' ";
             $search_query = mysqli_query($connection, $query);
@@ -51,10 +52,7 @@
 
         ?>
 
-          <h1 class="page-header">
-                    Page Heading
-                    <small>Secondary Text</small>
-                </h1>
+        
 
                 <!-- First Blog Post -->
                 <h2>
