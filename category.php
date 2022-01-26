@@ -19,11 +19,12 @@
                <?php
 
 
-    if(isset($_GET['category'])){
+    if(isset($_GET['cat_id'])){
         
-      $post_category_id  = $_GET['category'];
+      $post_category_id  = $_GET['cat_id'];
+      $category = $_GET['category'];
 
-
+      echo "<h1>All posts with <<<b>$category</b>>>> categorie</h1>";
 
 
 if(isset($_SESSION['username']) && is_admin($_SESSION['username'])){
@@ -90,10 +91,7 @@ if(isset($_SESSION['username']) && is_admin($_SESSION['username'])){
         
         ?>
         
-          <h1 class="page-header">
-                 <?php  ?>
-                   
-                </h1>
+
 
                 <!-- First Blog Post -->
                 <h2>

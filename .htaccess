@@ -4,7 +4,7 @@ RewriteRule ^(index|contact|registration|login|search|logout|profile)$ $1.php [N
 
 RewriteRule ^post/(\d+)$ post.php?p_id=$1 [NC,L]
 
-RewriteRule ^category/(\d+)$ category.php?category=$1 [NC,L]
+RewriteRule ^category/([^/]*)/(\d+)/?$ category.php?category=$1&cat_id=$2 
 
 RewriteRule ^author/([^/]*)$ author_posts.php?author=$1 
 
