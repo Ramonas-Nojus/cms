@@ -21,6 +21,8 @@
     if(isset($_GET['author'])){
 
     $the_post_author = $_GET['author'];
+
+    echo "<h1>All post by <b>$the_post_author</b></h1>";
     
     }
 
@@ -38,12 +40,6 @@
         $post_content = $row['post_content'];
         
         ?>
-        
-          <h1 class="page-header">
-                    Page Heading
-                    <small>Secondary Text</small>
-                </h1>
-
                 <!-- First Blog Post -->
                 <h2>
                     <a href="#"><?php echo $post_title ?></a>
