@@ -56,18 +56,12 @@ require './vendor/autoload.php';
                     $mail->CharSet = 'UTF-8';
 
 
-                    $mail->setFrom('edwin@codingfaculty.com', 'Edwin Diaz');
+                    $mail->setFrom('edwin@codingfaculty.com', 'Nojus Ramonas');
                     $mail->addAddress($email);
 
                     $mail->Subject = 'This is a test email';
 
-                    $mail->Body = '<p>Please click to reset your password
-
-                    <a href="http://localhost/cms/reset.php?email='.$email.'&token='.$token.' ">http://localhost:888/cms/reset.php?email='.$email.'&token='.$token.'</a>
-
-
-
-                    </p>';
+                    $mail->Body = '<p>Please click <a href="http://localhost/cms/reset.php?email='.$email.'&token='.$token.' ">here</a> to reset your password</p>';
 
 
                     if($mail->send()){
