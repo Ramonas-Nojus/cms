@@ -30,8 +30,8 @@
 
 
             <h1 class="page-header">
-                Welcome to admin
-                <small>Author</small>
+                Welcome to categories
+                <small><?php echo $_SESSION['username'] ?></small>
             </h1>
 
 
