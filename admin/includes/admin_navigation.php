@@ -100,7 +100,9 @@ if(isset($_SESSION['username'])) {
                     <li>
                         <a href="/cms/admin/profile"><i class="fa fa-fw fa-dashboard"></i> Profile</a>
                     </li>
-                    
+                    <li>
+                        <a href="/cms/admin/my_posts"><i class="fa fa-fw fa-file"></i> My posts</a>
+                    </li>
                     
                     
                 </ul>
