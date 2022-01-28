@@ -292,7 +292,7 @@ if(isset($_GET['unapprove'])){
 }
 
 
-function is_admin($username) {
+function is_admin() {
 
     // global $connection; 
 
@@ -303,7 +303,7 @@ function is_admin($username) {
     // $row = mysqli_fetch_array($result);
 
 
-    if($_SESSION    ['user_role'] == 'admin'){
+    if($_SESSION['user_role'] == 'admin'){
 
         return true;
 
