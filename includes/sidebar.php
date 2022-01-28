@@ -55,7 +55,7 @@
 
         <?php if(isset($_SESSION['user_role'])): ?>
 
-             <h4>Welcome, <?php echo $_SESSION['firstname'] ?></h4>
+             <h4>Welcome, <?php echo $_SESSION['username'] ?></h4>
 
              <a href="/cms/includes/logout.php" class="btn btn-primary">Logout</a>
 
