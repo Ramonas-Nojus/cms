@@ -6,6 +6,9 @@ RewriteRule ^(add_user)$ users.php?source=add_user [NC,L]
 
 RewriteRule ^(add_post)$ posts.php?source=add_post [NC,L]
 
+# RewriteRule ^posts/edit_post/(\d+)/?$ post.php?source=edit_post&p_id=$1 [NC,L]
+RewriteRule ^posts/([^/]*)/(\d+)/?$ posts.php?source=$1&p_id=$2 
+
 
 
 
