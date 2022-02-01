@@ -44,20 +44,20 @@ function isLoggedIn(){
 }
 
 
-function LogedInUsersId(){
-    if(isLoggedIn()){
-        $username = $_SESSION['username'];
-        $result = query("SELECT * FROM users WHERE username = '{$username}' " );
-        $user = mysqli_fetch_array($result);
-        return mysqli_num_rows($result) >= 1 ? $user['user_id'] : false;
+// function LogedInUsersId(){
+//     if(isLoggedIn()){
+//         $username = $_SESSION['username'];
+//         $result = query("SELECT * FROM users WHERE username = '{$username}' " );
+//         $user = mysqli_fetch_array($result);
+//         return mysqli_num_rows($result) >= 1 ? $user['user_id'] : false;
         
         
-    } 
+//     } 
 
-}
+// }
 
 function UserLikedPost($post_id = ''){
-    $result = query("SELECT * FROM likes WHERE user_id = ". LogedInUsersId() ." AND post_id = '$post_id' ");
+    $result = query("SELECT * FROM likes WHERE user_id = ".$_SESSION['user_id']." AND post_id = '$post_id' ");
     return mysqli_num_rows($result) >= 1 ? true : false;
 }
 

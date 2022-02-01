@@ -55,7 +55,14 @@
 
         <?php if(isset($_SESSION['user_role'])): ?>
 
-             <h4>Welcome, <?php echo $_SESSION['username'] ?></h4>
+             <h4>Welcome, <?php
+                
+                $query = "SELECT username FROM users WHERE user_id = ".$_SESSION['user_id'];
+                $user_query = mysqli_query($connection,$query);
+                $row = mysqli_fetch_array($user_query);
+                $username = $row['username'];
+
+                echo $username; ?></h4>
 
              <a href="/cms/includes/logout.php" class="btn btn-primary">Logout</a>
 

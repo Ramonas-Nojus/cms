@@ -79,6 +79,7 @@ if(isset($_POST['edit_user'])) {
           $query .="user_firstname  = '{$user_firstname}', ";
           $query .="user_lastname = '{$user_lastname}' ";
           $query .= "WHERE user_id = '{$user_id}' ";
+         
        
             $edit_user_query = mysqli_query($connection,$query);
             
@@ -215,6 +216,8 @@ if(isset($_POST['edit_user'])) {
               } else{   
                   
                     $query = "UPDATE users SET username = '$username' WHERE user_id = $user_id ";
+                    $query2 = "UPDATE comments SET comment_author = '$username' WHERE author_id = $user_id ";
+                    $comment_query = mysqli_query($connection,$query2);  
                     $username_query = mysqli_query($connection,$query);      
             }
           } ?> 
