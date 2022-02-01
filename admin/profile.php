@@ -145,7 +145,7 @@ if(isset($_POST['edit_user'])) {
 
                     $query = "UPDATE users SET user_image = '{$user_image}' WHERE user_id = '{$user_id}' ";
                     $image_query = mysqli_query($connection,$query);
-                        redirect("profile.php");
+                        redirect("profile");
                 } }
             ?>
 
@@ -244,7 +244,7 @@ if(isset($_POST['edit_user'])) {
                
                  $query = "UPDATE users SET user_email = '$email' WHERE user_id = $user_id ";
                  $username_query = mysqli_query($connection,$query);  
-                 redirect('profile.php');   
+                 redirect('profile');   
          }
         }
          
@@ -274,7 +274,7 @@ if(isset($_POST['edit_user'])) {
 
             $query = "UPDATE users SET user_password = '$password' WHERE user_id = $user_id ";
             $password_query = mysqli_query($connection,$query);  
-            redirect('profile.php');   
+            redirect('profile');   
 
             
          }
