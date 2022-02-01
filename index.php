@@ -50,12 +50,12 @@
          if(isset($_SESSION['user_role']) && $_SESSION['user_role'] == 'admin' ) {
 
 
-        $post_query_count = "SELECT * FROM posts";
+        $post_query_count = "SELECT * FROM posts ORDER BY post_id DESC";
 
 
          } else {
 
-         $post_query_count = "SELECT * FROM posts WHERE post_status = 'published'";
+         $post_query_count = "SELECT * FROM posts WHERE post_status = 'published' ORDER BY post_id DESC";
 
          }   
 
@@ -78,7 +78,7 @@
 
 
                 
-        $query = "SELECT * FROM posts LIMIT $page_1, $per_page";
+        $query = "SELECT * FROM posts ORDER BY post_id DESC LIMIT $page_1, $per_page ";
         $select_all_posts_query = mysqli_query($connection,$query);
 
         while($row = mysqli_fetch_assoc($select_all_posts_query)) {

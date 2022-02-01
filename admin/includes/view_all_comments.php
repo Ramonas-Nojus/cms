@@ -105,9 +105,9 @@ confirmQuery($update_to_delete);
   <?php 
     
     if(is_admin()){
-    $query = "SELECT * FROM comments";
+    $query = "SELECT * FROM comments ORDER BY comment_id DESC";
     } else {
-        $query = "SELECT * FROM comments WHERE comment_author = '{$_SESSION['username']}' ";
+        $query = "SELECT * FROM comments  WHERE comment_author = '{$_SESSION['username']}' ORDER BY comment_id DESC ";
     }
 
     $select_comments = mysqli_query($connection,$query);

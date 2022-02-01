@@ -82,7 +82,7 @@
         <?php 
 
 
-    $query = "SELECT * FROM categories";
+    $query = "SELECT * FROM categories ORDER BY cat_id DESC";
     $select_categories = mysqli_query($connection,$query);  
 
     while($row = mysqli_fetch_assoc($select_categories)) {
