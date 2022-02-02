@@ -36,9 +36,13 @@
                 
             $search = $_POST['user_search'];
 
+            if(empty($search)){
+                echo "<h1> NO RESULT</h1>";
+            } else {
+
             echo "<h1>Search results for <<<b>$search</b>>></h1>";
                 
-            $query = "SELECT * FROM users WHERE username LIKE '%$search%' ";
+            $query = "SELECT * FROM users WHERE username LIKE '%$search%' OR user_firstname LIKE '%$search%' OR user_lastname LIKE '%$search%'  OR user_full_name LIKE '%$search%' ";
             $search_query = mysqli_query($connection, $query);
 
             if(!$search_query) {
@@ -102,7 +106,7 @@
 
             }
 
-
+        }
             
             }
 
