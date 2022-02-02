@@ -160,7 +160,7 @@ confirmQuery($update_to_delete);
         $post_id = $row['post_id'];
         $post_title = $row['post_title'];
             
-            echo "<td><a href='../post.php?p_id=$post_id'>$post_title</a></td>";
+            echo "<td><a href='/cms/post/$post_id'>$post_title</a></td>";
         
         
         }
