@@ -26,7 +26,7 @@
                         </li>
 
                         <li>
-                            <a href="/cms/includes/logout">Logout</a>
+                            <a href="/cms/includes/logout.php">Logout</a>
                         </li>
 
 
