@@ -378,8 +378,8 @@ function register_user($username, $email, $password){
         $password = password_hash( $password, PASSWORD_BCRYPT, array('cost' => 12));
             
             
-        $query = "INSERT INTO users (username, user_email, user_password, user_role, user_image) ";
-        $query .= "VALUES('{$username}','{$email}', '{$password}', 'subscriber', 'person-placeholder.jpg')";
+        $query = "INSERT INTO users (username, user_email, user_password, user_role, user_image, date) ";
+        $query .= "VALUES('{$username}','{$email}', '{$password}', 'subscriber', 'person-placeholder.jpg', 'now()')";
         $register_user_query = mysqli_query($connection, $query);
 
         confirmQuery($register_user_query);
