@@ -72,7 +72,7 @@
                 <!-- users -->
                 <div class="media">
          
-        <a class="pull-left" href="#">
+        <a class="pull-left" href="user_profile/<?php echo $username; ?>">
             <img class="media-object profilie_image" width="150px" border-radius="50%" src="/cms/images/<?php if(empty($user_image)){ echo "person-placeholder.jpg"; } else { echo $user_image; }
             ?>" alt="">
         </a>
@@ -82,7 +82,7 @@
             </h3>
             </br>
             </br>
-            <a class="btn btn-primary" href="#">see More <span class="glyphicon glyphicon-chevron-right"></span></a>
+            <a class="btn btn-primary" href="user_profile/<?php echo $username; ?>">see More <span class="glyphicon glyphicon-chevron-right"></span></a>
             
          
 
