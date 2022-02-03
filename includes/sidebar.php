@@ -50,7 +50,7 @@
 
                 <div class="well">
                     <h4>Users Search</h4>
-                    <form action="users_search" method="post">
+                    <form action="/cms/users_search" method="post">
                     <div class="input-group">
                         <input name="user_search" type="text" class="form-control">
                         <span class="input-group-btn">
