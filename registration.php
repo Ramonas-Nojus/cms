@@ -26,15 +26,35 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
     $username = trim($_POST['username']);
     $email    = trim($_POST['email']);
     $password = trim($_POST['password']);
+    $firstname = trim($_POST['firstname']);
+    $lastname = trim($_POST['lastname']);
+
 
 
     $error = [
 
         'username'=> '',
         'email'=>'',
-        'password'=>''
+        'password'=>'',
+        'firstname'=>'',
+        'lastname'=>''
 
     ];
+
+
+    if($firstname ==''){
+
+        $error['firstname'] = 'firstname cannot be empty';
+
+
+    }
+
+    if($lastname ==''){
+
+        $error['lastname'] = 'lastname cannot be empty';
+
+
+    }
 
 
     if(strlen($username) < 4){
@@ -135,6 +155,23 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
                 <div class="form-wrap">
                 <h1>Register</h1>
                     <form role="form" action="registration.php" method="post" id="login-form" autocomplete="off">
+
+
+                    <div class="form-group">
+                            <label for="firstname" class="sr-only">Firstname</label>
+                            <input type="firstname" name="firstname" id="firstname" class="form-control" placeholder="Firstname" autocomplete="on" value="<?php echo isset($firstname) ? $firstname : '' ?>" >
+
+                             <p><?php echo isset($error['firstname']) ? $error['firstname'] : '' ?></p>
+              
+                        </div>
+
+                        <div class="form-group">
+                            <label for="lastname" class="sr-only">Lastname</label>
+                            <input type="lastname" name="lastname" id="lastname" class="form-control" placeholder="Lastname" autocomplete="on" value="<?php echo isset($lastname) ? $lastname : '' ?>" >
+
+                             <p><?php echo isset($error['lastname']) ? $error['lastname'] : '' ?></p>
+              
+                        </div>
                        
 
                         <div class="form-group">
