@@ -120,7 +120,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
 
     if(empty($error)){
 
-        register_user($username, $email, $password);
+        register_user($firstname, $lastname, $username, $email, $password);
 
         $data['message'] = $username;
 

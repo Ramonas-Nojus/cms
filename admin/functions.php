@@ -367,19 +367,22 @@ function email_exists($email){
 }
 
 
-function register_user($username, $email, $password){
+function register_user($firstname, $lastname, $username, $email, $password){
 
     global $connection;
 
+        $firstname = mysqli_real_escape_string($connection, $firstname);
+        $lastname = mysqli_real_escape_string($connection, $lastname);
         $username = mysqli_real_escape_string($connection, $username);
         $email    = mysqli_real_escape_string($connection, $email);
         $password = mysqli_real_escape_string($connection, $password);
 
         $password = password_hash( $password, PASSWORD_BCRYPT, array('cost' => 12));
             
+        $user_full_name = $firstname." ".$lastname;
             
-        $query = "INSERT INTO users (username, user_email, user_password, user_role, user_image, date) ";
-        $query .= "VALUES('{$username}','{$email}', '{$password}', 'subscriber', 'person-placeholder.jpg', now() )";
+        $query = "INSERT INTO users (username,user_firstname ,user_lastname ,user_full_name , user_email, user_password, user_role, user_image, date) ";
+        $query .= "VALUES('{$username}', '{$firstname}' ,'{$lastname}','{$user_full_name}' ,'{$email}', '{$password}', 'subscriber', 'person-placeholder.jpg', now() )";
         $register_user_query = mysqli_query($connection, $query);
 
         confirmQuery($register_user_query);
