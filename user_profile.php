@@ -31,9 +31,13 @@
     object-fit: cover;
 }
 
-
+.add_friend {
+    margin-left: 35%;
+    margin-top: 5px;
 
 }
+
+
 
 
 </style>
@@ -52,6 +56,7 @@
     while($row = mysqli_fetch_array($select_user_profile_query)) {
     
         $db_username = $row['username'];
+        $db_user_id = $row['user_id'];
         $user_password= $row['user_password'];
         $user_firstname = $row['user_firstname'];
         $user_lastname = $row['user_lastname'];
@@ -91,7 +96,13 @@
         <!-- Navigation -->
  
         
-        
+        <?php 
+
+                if(isset($_POST['add_friend'])){
+                    $friends_id = $_POST['add_friend'];
+                }
+
+?>
     
 
 <div id="page-wrapper">
@@ -117,9 +128,11 @@
                 } else { echo $db_user_image; }
                 
                 ?>">
-           
-               
-              
+           <form action="" method="post">
+                <button class="add_friend btn btn-primary" type="submit" name="add_friend" value="<?php echo $db_user_id; ?>">
+                    <!-- <input class="add_friend btn btn-primary" type="submit" name="add_friend" value="Add friend"> -->add friend
+                </button>
+                </form>
                 </div>
      
 
