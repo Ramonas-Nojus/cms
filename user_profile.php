@@ -143,13 +143,13 @@
       <div class="form-group ">
           
          <label for="username">Username:</label>
-         <?php echo $username; ?>
+         <?php echo $db_username; ?>
          
       </div>
       
       <div class="form-group ">
-         <label for="email">Email</label>
-         <?php echo $user_firstname; ?>
+         <label for="email">Email:</label>
+         <?php echo $user_email; ?>
 
       </div>
 
@@ -173,7 +173,7 @@
 
 </div>
 
-<h2><?php echo $username."'s"; ?> activity</h2>
+<h2><?php echo $db_username."'s"; ?> activity</h2>
 
             </div>
             
@@ -193,7 +193,7 @@
 <?php 
 
 
-$query = "SELECT * FROM posts WHERE post_user = '{$username}' ";
+$query = "SELECT * FROM posts WHERE post_user = '{$db_username}' ";
     $select_all_posts_query = mysqli_query($connection,$query);
 
     if(mysqli_num_rows($select_all_posts_query) > 0){
