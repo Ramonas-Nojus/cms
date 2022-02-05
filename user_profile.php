@@ -32,11 +32,18 @@
 }
 
 .add_friend {
-    margin-left: 35%;
+    object-fit: cover;
     margin-top: 5px;
+   
 
 }
 
+.center {
+    display: flex;
+  justify-content: center;
+  align-items: center;
+  
+}
 
 
 
@@ -96,13 +103,7 @@
         <!-- Navigation -->
  
         
-        <?php 
-
-                if(isset($_POST['add_friend'])){
-                    $friends_id = $_POST['add_friend'];
-                }
-
-?>
+        
     
 
 <div id="page-wrapper">
@@ -128,14 +129,60 @@
                 } else { echo $db_user_image; }
                 
                 ?>">
+
+                <?php  
+
+                if(isset($_POST['add_friend'])){
+                    $friends_id = $_POST['add_friend'];
+
+
+                    $user_id = $_SESSION['user_id'];
+                    $username = $_SESSION['username'];
+
+                    $query = "INSERT INTO requests(from_id, to_id, from_username, to_username) VALUES('{$user_id}' ,'{$friends_id}' ,'{$username}' ,'{$db_username}')";
+                    $add_friend_request_query = mysqli_query($connection, $query);    
+                }
+
+
+                $user_id = $_SESSION['user_id'];
+                
+                $query = "SELECT * FROM requests WHERE from_id = '{$user_id}' AND to_username = '$username' ";
+                $get_request_query = mysqli_query($connection, $query);   
+
+                $row = mysqli_fetch_array($get_request_query);
+
+
+              
+                 
+                
+                if(mysqli_num_rows($get_request_query) > 0){
+                   
+                    ?>
+                    <form action="" method="post">
+                        <div class="center">
+                            <button class="add_friend btn btn-primary">friend request sent</button>
+                        </div>
+                    </form>
+                </div>
+                <?php } else { ?>
+                
            <form action="" method="post">
+               <div class="center">
                 <button class="add_friend btn btn-primary" type="submit" name="add_friend" value="<?php echo $db_user_id; ?>">
-                    <!-- <input class="add_friend btn btn-primary" type="submit" name="add_friend" value="Add friend"> -->add friend
+                   add friend
                 </button>
+                </div>
                 </form>
                 </div>
      
+<?php 
 
+   
+                }
+   
+      
+
+?>
      
     
       <div class="form-group input">
