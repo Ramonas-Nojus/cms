@@ -107,7 +107,7 @@ if(isset($_POST['accept_request']) ){
     $add_friend_query = query("INSERT INTO friends(friend1_id,friend2_id,friend1_username,friend2_username) VALUES('{$from_id}','{$to_id}','{$from_username}', '{$to_username}')");
     $delete_request = query("DELETE FROM requests WHERE id = $id");
     redirect("notifications.php");
-
+    
 }  }
 
  } ?>
