@@ -109,7 +109,7 @@ if(isset($_POST['accept_request']) ){
     redirect("notifications.php");
     
 
-} echo "You are now friend with ". $from_username;  }
+}  }
 
  } ?>
             
