@@ -42,6 +42,9 @@
 
 
 
+
+
+
 <div id="page-wrapper">
 
 <div class="container-fluid">
@@ -67,9 +70,14 @@
            while($row = mysqli_fetch_array($get_request_query)){
                $to_username = $row['to_username'];
                $from_username = $row['from_username'];
+               $from_id = $row['from_id'];
+               $to_id = $row['to_id'];
+               $request_id = $row['id'];
 
                ?> 
                
+
+            <form action="notifications.php" method="post">
                <div class="frind_request">
                <?php 
                    
@@ -84,12 +92,24 @@
                    <img src="/cms/images/<?php echo $user_image; ?>">
                    </div>
                    <a href="/cms/user_profile/<?php echo $from_username; ?>"><?php  echo $from_username; ?></a> wants to be your friend</br>
-                   <button class="b btn btn-primary">accept</button> <button class="b btn btn-danger">delete</button>
+                   <button class="b btn btn-primary" name="accept_request" value="<?php echo $request_id; ?>">accept</button> <button class="b btn btn-danger" name="decline_request">delete</button>
                </div>
+               </form>
+
+
                
-               <?php    //    echo $from_username." wants to be your friend";
-             }
-         ?>
+<?php 
+
+if(isset($_POST['accept_request']) ){
+    if($_POST['accept_request'] == $request_id ){
+    // friend1 is who sent request friend2 who get it
+   echo $_POST['accept_request'];
+    $add_friend_query = query("INSERT INTO friends(friend1_id,friend2_id,friend1_username,friend2_username) VALUES('{$from_id}','{$to_id}','{$from_username}', '{$to_username}')");
+    
+
+} }
+
+ } ?>
             
     
             
