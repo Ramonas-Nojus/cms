@@ -140,7 +140,8 @@
                     $username = $_SESSION['username'];
 
                     $query = "INSERT INTO requests(from_id, to_id, from_username, to_username) VALUES('{$user_id}' ,'{$friends_id}' ,'{$username}' ,'{$db_username}')";
-                    $add_friend_request_query = mysqli_query($connection, $query);    
+                    $add_friend_request_query = mysqli_query($connection, $query);  
+                    redirect("/cms/user_profile/$db_username");  
                 }
 
 
