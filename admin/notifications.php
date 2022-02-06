@@ -103,11 +103,13 @@
 if(isset($_POST['accept_request']) ){
     if($_POST['accept_request'] == $request_id ){
     // friend1 is who sent request friend2 who get it
-   echo $_POST['accept_request'];
+   $id = $_POST['accept_request'];
     $add_friend_query = query("INSERT INTO friends(friend1_id,friend2_id,friend1_username,friend2_username) VALUES('{$from_id}','{$to_id}','{$from_username}', '{$to_username}')");
+    $delete_request = query("DELETE FROM requests WHERE id = $id");
+    redirect("notifications.php");
     
 
-} }
+} echo "You are now friend with ". $from_username;  }
 
  } ?>
             
