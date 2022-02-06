@@ -113,7 +113,7 @@ if(isset($_SESSION['username'])) {
                     <li>
                         <a href="/cms/admin/my_posts"><i class="fa fa-fw fa-file"></i> My posts</a>
                         <li>
-                        <a href="/cms/admin/my_posts"><i class="fa fa-fw fa-bell"></i> Notifications</a>
+                        <a href="/cms/admin/notifications.php"><i class="fa fa-fw fa-bell"></i> Notifications</a>
                     </li>
                     </li>
                     
