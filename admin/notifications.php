@@ -92,7 +92,7 @@
                    <img src="/cms/images/<?php echo $user_image; ?>">
                    </div>
                    <a href="/cms/user_profile/<?php echo $from_username; ?>"><?php  echo $from_username; ?></a> wants to be your friend</br>
-                   <button class="b btn btn-primary" name="accept_request" value="<?php echo $request_id; ?>">accept</button> <button class="b btn btn-danger" name="decline_request">delete</button>
+                   <button class="b btn btn-primary" name="accept_request" value="<?php echo $request_id; ?>">accept</button> <button class="b btn btn-danger" name="decline_request" value="<?php echo $request_id; ?>">delete</button>
                </div>
                </form>
 
@@ -107,7 +107,17 @@ if(isset($_POST['accept_request']) ){
     $add_friend_query = query("INSERT INTO friends(friend1_id,friend2_id,friend1_username,friend2_username) VALUES('{$from_id}','{$to_id}','{$from_username}', '{$to_username}')");
     $delete_request = query("DELETE FROM requests WHERE id = $id");
     redirect("notifications.php");
-    
+
+
+}  }
+
+
+if(isset($_POST['decline_request']) ){
+    if($_POST['decline_request'] == $request_id ){
+    $id = $_POST['decline_request'];
+    $delete_request = query("DELETE FROM requests WHERE id = $id");
+    redirect("notifications.php");
+
 
 }  }
 
