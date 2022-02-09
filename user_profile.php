@@ -128,7 +128,7 @@
                     echo "person-placeholder.jpg";
                 } else { echo $db_user_image; }
                 
-                ?>">
+                ?>"> 
 
                 <?php  
 
@@ -152,11 +152,30 @@
 
                 $row = mysqli_fetch_array($get_request_query);
 
+                $signed_in_user = $_SESSION['username'];  //users username who is signed in right now
+                                                    //db_username users username whose profile this is 
 
-              
-                 
-                
-                if(mysqli_num_rows($get_request_query) > 0){
+                $select_friends_query = query("SELECT * FROM friends WHERE friend1_username = '$db_username' AND friend2_username = '$signed_in_user' OR friend2_username = '$db_username' AND friend1_username = '$signed_in_user'");
+
+
+                $slect_specific_request_query = query("SELECT * FROM requests WHERE from_username = '$db_username' AND to_username = '$signed_in_user' ");
+
+                if(isLoggedIn()){
+
+                 if($db_username == $_SESSION['username']){ ?>
+
+                <form action="/cms/admin/profile" method="post">
+                        <div class="center">
+                            <button class="add_friend btn btn-primary">Profile</button>
+                        </div>
+                    </form>
+                    </div>
+
+                 <?php 
+
+                 } else if(mysqli_num_rows($get_request_query) > 0){
+
+                    
                    
                     ?>
                     <form action="" method="post">
@@ -164,8 +183,39 @@
                             <button class="add_friend btn btn-primary">friend request sent</button>
                         </div>
                     </form>
+                    </div>
+                
+                <?php }
+                
+                
+                
+
+                 else if(mysqli_num_rows($select_friends_query) > 0){
+                    ?> 
+                    
+               <div class="center">
+                <button type="button" class="add_friend btn btn-outline-success">
+                   already friends
+                </button>
                 </div>
-                <?php } else { ?>
+                </div>
+                    <?php } else if(mysqli_num_rows($slect_specific_request_query) > 0){ ?> 
+                    
+                        <form action="/cms/admin/notifications.php" method="post">
+               <div class="center">
+                <button class="add_friend btn btn-primary" type="submit"  ?>
+                  see request
+                </button>
+                </div>
+                </form>
+                </div>
+                    
+                    <?php 
+
+                    }
+                
+                
+                else { ?>
                 
            <form action="" method="post">
                <div class="center">
@@ -175,17 +225,30 @@
                 </div>
                 </form>
                 </div>
+                
      
 <?php 
 
    
+                } } else { ?>  
+                    <form action="/cms/login" method="post">
+               <div class="center">
+                <button class="add_friend btn btn-primary" type="submit"?>
+                   you need to log in to add friends
+                </button>
+                </div>
+                </form>
+                </div>
+                <?php
                 }
    
-      
+                ?>
 
-?>
+
+
+
      
-    
+
       <div class="form-group input">
          <label for="firstname">Firstname:</label>
          <?php echo $user_firstname; ?>

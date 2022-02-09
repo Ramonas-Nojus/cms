@@ -61,10 +61,88 @@
             
 
 
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Username</th>
+                        <th>Firstname</th>
+                        <th>Lastname</th>
+                        <th>Email</th>
+                   
+        
+                    </tr>
+                </thead>
+                
+                      <tbody>
+                      
 
-            
+  <?php 
     
-            
+    $username = $_SESSION['username'];
+
+    $query = "SELECT * FROM friends WHERE friend2_username = '$username' ";
+    $select_users = mysqli_query($connection,$query);  
+    while($row = mysqli_fetch_assoc($select_users)) {
+        $user_id             = $row['id'];
+        $friend              = $row['friend1_username'];
+        $friend_id           = $row['friend1_id'];
+                
+        $get_users_info = query("SELECT * FROM users WHERE username = '$friend' ");
+        $row = mysqli_fetch_array($get_users_info);
+        
+        $user_firstname = $row['user_firstname'];
+        $user_lastname = $row['user_lastname'];
+        $user_email = $row['user_email'];
+                
+        echo "<tr>";
+        
+        echo "<td>$friend_id </td>";
+        echo "<td><a href='/cms/user_profile/$friend'>$friend</a></td>";
+        echo "<td>$user_firstname</td>";
+        echo "<td>$user_lastname</td>";
+        echo "<td>$user_email</td>";        
+        echo "</tr>";
+   
+    }
+    $query = "SELECT * FROM friends WHERE friend1_username = '$username' ";
+    $select_users = mysqli_query($connection,$query);  
+    while($row = mysqli_fetch_assoc($select_users)) {
+        $user_id             = $row['id'];
+        $friend              = $row['friend2_username'];
+        $friend_id           = $row['friend2_id'];
+
+        $get_users_info = query("SELECT * FROM users WHERE username = '$friend' ");
+        $row = mysqli_fetch_array($get_users_info);
+        
+        $user_firstname = $row['user_firstname'];
+        $user_lastname = $row['user_lastname'];
+        $user_email = $row['user_email'];
+                
+        echo "<tr>";
+        
+        echo "<td>$friend_id </td>";
+        echo "<td><a href='/cms/user_profile/$friend'>$friend</a></td>";
+        echo "<td>$user_firstname</td>";
+        echo "<td>$user_lastname</td>";
+        echo "<td>$user_email</td>";        
+        echo "</tr>";
+   
+    }
+
+
+   
+
+
+
+
+      ?>
+
+
+   
+            </tbody>
+            </table>
+   
 
             </div>
         </div>
