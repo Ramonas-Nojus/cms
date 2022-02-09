@@ -92,8 +92,9 @@
                    <img src="/cms/images/<?php echo $user_image; ?>">
                    </div>
                    <a href="/cms/user_profile/<?php echo $from_username; ?>"><?php  echo $from_username; ?></a> wants to be your friend</br>
-                   <button class="b btn btn-primary" name="accept_request" value="<?php echo $request_id; ?>">accept</button> <button class="b btn btn-danger" name="decline_request">delete</button>
-               </div>
+
+                  <button class="b btn btn-primary" name="accept_request" value="<?php echo $request_id; ?>">accept</button> <button class="b btn btn-danger" name="decline_request" value="<?php echo $request_id; ?>">delete</button>
+              </div>
                </form>
 
 

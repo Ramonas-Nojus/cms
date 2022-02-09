@@ -125,7 +125,7 @@ if(isset($_POST['edit_user'])) {
                 <small><?php echo $_SESSION['username'] ?></small>
             </h1>
             
-             <form action="profile.php" method="post" enctype="multipart/form-data">    
+             <form action="profile" method="post" enctype="multipart/form-data">    
      
 
                 
