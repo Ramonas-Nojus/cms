@@ -82,8 +82,8 @@
         <div class="col-lg-12">
 
   <h1 class="page-header">
-                Welcome To Chat
-                <small><?php echo $_SESSION['username'] ?></small>
+                Chat with
+                <small><?php echo $_GET['username'] ?></small>
             </h1>
             
             <?php if(isset($_GET['username'])){
@@ -159,7 +159,7 @@ setInterval(function(){
 
 
 
- 
+
 
 
 
