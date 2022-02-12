@@ -61,23 +61,7 @@
             
 
 
-            <table class="table table-bordered table-hover">
-                <thead>
-                    <tr>
-                        <th>Id</th>
-                        <th>Username</th>
-                        <th>Firstname</th>
-                        <th>Lastname</th>
-                        <th>Email</th>
-                   
-        
-                    </tr>
-                </thead>
-                
-                      <tbody>
-                      
-
-  <?php 
+            <?php 
     
     $username = $_SESSION['username'];
 
@@ -87,24 +71,40 @@
         $user_id             = $row['id'];
         $friend              = $row['friend1_username'];
         $friend_id           = $row['friend1_id'];
-                
+
         $get_users_info = query("SELECT * FROM users WHERE username = '$friend' ");
         $row = mysqli_fetch_array($get_users_info);
         
         $user_firstname = $row['user_firstname'];
         $user_lastname = $row['user_lastname'];
         $user_email = $row['user_email'];
-                
-        echo "<tr>";
+        $user_image = $row['user_image'];
+
+        ?> 
         
-        echo "<td>$friend_id </td>";
-        echo "<td><a href='/cms/user_profile/$friend'>$friend</a></td>";
-        echo "<td>$user_firstname</td>";
-        echo "<td>$user_lastname</td>";
-        echo "<td>$user_email</td>";        
-        echo "</tr>";
+        
+        <div class="media">
+         
+         <a class="pull-left" href="/cms/user_profile/<?php echo $friend;?>">
+             <img class="media-object profilie_image" width="150px" border-radius="50%" src="/cms/images/<?php if(empty($user_image)){ echo "person-placeholder.jpg"; } else { echo $user_image; }
+             ?>" alt="">
+         </a>
+         <div class="media-body">
+             <h4 class="media-heading"><?php echo $friend; ?>
+                <small><?php echo "</br>".$user_firstname." ".$user_lastname; ?></small>
+             </h4>
+             <a class="btn btn-primary" href="/cms/user_profile/<?php echo $friend; ?>">See Profile</span></a>
+             <a class="btn btn-primary" href="/cms/admin/chat.php?username=<?php echo $friend; ?>">Send Message<span class="glyphicon glyphicon-chevron-right"></span></a>
+             
+          
+ 
+         </div>
+     </div>
+        
+        <?php
+                
    
-    }
+    } 
     $query = "SELECT * FROM friends WHERE friend1_username = '$username' ";
     $select_users = mysqli_query($connection,$query);  
     while($row = mysqli_fetch_assoc($select_users)) {
@@ -118,15 +118,32 @@
         $user_firstname = $row['user_firstname'];
         $user_lastname = $row['user_lastname'];
         $user_email = $row['user_email'];
-                
-        echo "<tr>";
+        $user_image = $row['user_image'];
+
+        ?> 
         
-        echo "<td>$friend_id </td>";
-        echo "<td><a href='/cms/user_profile/$friend'>$friend</a></td>";
-        echo "<td>$user_firstname</td>";
-        echo "<td>$user_lastname</td>";
-        echo "<td>$user_email</td>";        
-        echo "</tr>";
+        
+        <div class="media">
+         
+         <a class="pull-left" href="/cms/user_profile/<?php echo $friend; ?>">
+             <img class="media-object profilie_image" width="150px" border-radius="50%" src="/cms/images/<?php if(empty($user_image)){ echo "person-placeholder.jpg"; } else { echo $user_image; }
+             ?>" alt="">
+         </a>
+         <div class="media-body">
+             <h4 class="media-heading"><?php echo $friend;   ?>
+                <small><?php echo "</br>".$user_firstname." ".$user_lastname; ?></small>
+             </h4>
+             <a class="btn btn-primary" href="/cms/user_profile/<?php echo $friend; ?>">See Profile</span></a>
+             <a class="btn btn-primary" href="/cms/admin/chat.php?username=<?php echo $friend; ?>">Send Message<span class="glyphicon glyphicon-chevron-right"></span></a>
+             
+          
+ 
+         </div>
+     </div>
+        
+        <?php
+                
+
    
     }
 
@@ -139,9 +156,8 @@
       ?>
 
 
-   
-            </tbody>
-            </table>
+
+
    
 
             </div>
