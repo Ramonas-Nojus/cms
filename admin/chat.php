@@ -92,10 +92,6 @@
                 redirect("/cms/admin/friends.php");
             } ?>
 
-
-
-
-
             <div class="chat-window" id="output">
                 
         </div>
@@ -111,13 +107,8 @@
         if(isset($_POST['send_message'])){
                 $message = $_POST['message'];
                
-
             $sending_message_to_db_query = query("INSERT INTO chat(message_content,from_username,to_username,from_id,to_id) VALUES('{$message}','{$session_username}','{$friends_username}','{$session_id}', '{$friends_id}')");
-
-
         }
-
-
 
 
 ?>
@@ -142,25 +133,15 @@
     </div>
     <!-- /.container-fluid -->
 
-</div>
-
-     
+</div> 
         <!-- /#page-wrapper -->
         
     <?php include "includes/admin_footer.php" ?>
 
 <script>
 
-
 setInterval(function(){
       $('#output').load('chat_messages.php?username=<?php echo $friends_username; ?>');
  },1);
-
-
-
-
-
-
-
 
 </script>
