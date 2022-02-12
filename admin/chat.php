@@ -82,8 +82,8 @@
         <div class="col-lg-12">
 
   <h1 class="page-header">
-                Welcome To Chat
-                <small><?php echo $_SESSION['username'] ?></small>
+                Chat with
+                <small><?php echo $_GET['username'] ?></small>
             </h1>
             
             <?php if(isset($_GET['username'])){
@@ -91,10 +91,6 @@
             } else {
                 redirect("/cms/admin/friends.php");
             } ?>
-
-
-
-
 
             <div class="chat-window" id="output">
                 
@@ -111,13 +107,8 @@
         if(isset($_POST['send_message'])){
                 $message = $_POST['message'];
                
-
             $sending_message_to_db_query = query("INSERT INTO chat(message_content,from_username,to_username,from_id,to_id) VALUES('{$message}','{$session_username}','{$friends_username}','{$session_id}', '{$friends_id}')");
-
-
         }
-
-
 
 
 ?>
@@ -142,20 +133,15 @@
     </div>
     <!-- /.container-fluid -->
 
-</div>
-
-     
+</div> 
         <!-- /#page-wrapper -->
         
     <?php include "includes/admin_footer.php" ?>
 
 <script>
 
-
 setInterval(function(){
       $('#output').load('chat_messages.php?username=<?php echo $friends_username; ?>');
  },1);
-
-
 
 </script>
