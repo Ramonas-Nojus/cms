@@ -113,16 +113,15 @@
 
 ?>
 
-            <div>
+    <div>
             <form action="/cms/admin/chat.php?username=<?php echo  $friends_username; ?>" method="post">
-            
-            <div class="">
-                  <button type="submit" class="btn btn-default del-btn btn-primary" name="send_message">Send</button>
-            </div>
-                <div class="form-group input">
-                  <input type="text" placeholder="Your Text Here" class="form-control" name="message" id="inText">
-                </div>
-                
+    <div class="">
+            <button type="submit" class="btn btn-default del-btn btn-primary" name="send_message">Send</button>
+    </div>
+        <div class="form-group input">
+            <input type="text" placeholder="Your Text Here" class="form-control" name="message" id="inText">
+        </div>
+        
             
         </form>
 
@@ -133,7 +132,7 @@
     </div>
     <!-- /.container-fluid -->
 
-</div> 
+</div>   
         <!-- /#page-wrapper -->
         
     <?php include "includes/admin_footer.php" ?>
