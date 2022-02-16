@@ -254,7 +254,7 @@
    
                 ?>
                 <center class="report">
-                <a href="/cms/report_user.php" >Report</a>
+                <a href="/cms/report_user.php?username=<?php echo $db_username; ?>" >Report</a>
                 </center>
 
 
