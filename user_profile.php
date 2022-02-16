@@ -45,6 +45,16 @@
   
 }
 
+.report{
+    
+    margin-top: 45px;
+}
+
+.report a {
+    color: hotpink;
+    /* text-decoration: none; */
+}
+
 
 
 </style>
@@ -243,7 +253,9 @@
                 }
    
                 ?>
-
+                <center class="report">
+                <a href="/cms/report_user.php" >Report</a>
+                </center>
 
 
 
