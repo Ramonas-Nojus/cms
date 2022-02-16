@@ -58,17 +58,29 @@ header("location: /cms/");
 
 
         .user1_text { 
-            
-            text-align: right;
+            margin: 20px;
+            margin-right: 10px;
             font-size: 20px;
-            
-
+            width: max-content;
+            padding: 10px;
+            color: white;
+            background: #2b62ed;
+            border-radius: 10px;
         }
         .user2_text {
             margin: 20px;
-            text-align: left;
             font-size: 20px;
-            
+            border: 3px;
+            width: max-content;
+            padding: 10px;
+            background: #b0b0b0;
+            border-radius: 10px;
+        }
+
+        .form {
+            width: auto;
+            display: flex;
+            justify-content: right;
         }
 
 
@@ -98,9 +110,9 @@ header("location: /cms/");
                     <?php 
                     
                     if($from_username == $session_username){
-                        echo "<p class='user1_text'>$db_message</p>";
+                        echo "<div class='form'><p class='user1_text'>$db_message</p></div>";
                     } else {
-                        echo "<p class='user2_text'>$db_message</p>";
+                        echo "<div class=''><p class='user2_text'>$db_message</p></div>";
                     }
                     
                     ?></p>
