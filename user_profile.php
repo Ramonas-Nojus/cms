@@ -142,6 +142,8 @@
 
                 <?php  
 
+if(isLoggedIn()){
+
                 if(isset($_POST['add_friend'])){
                     $friends_id = $_POST['add_friend'];
 
@@ -170,7 +172,7 @@
 
                 $slect_specific_request_query = query("SELECT * FROM requests WHERE from_username = '$db_username' AND to_username = '$signed_in_user' ");
 
-                if(isLoggedIn()){
+                
 
                  if($db_username == $_SESSION['username']){ ?>
 
@@ -254,7 +256,7 @@
    
                 ?>
                 <center class="report">
-                <a href="/cms/report_user.php?username=<?php echo $db_username; ?>" >Report</a>
+                <a href="/cms/report_user.php?username=<?php echo $username; ?>" >Report</a>
                 </center>
 
 
