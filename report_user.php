@@ -82,6 +82,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
             }
         
             $add_report_query = query("INSERT INTO  reports(user_id,username,reported_user,reported_user_id,reason,comment) VALUES('{$user_id}','{$username}','{$reported_user}','{$reported_user_id}','{$reason}','{$comment}') ");
+            redirect('/cms/');
         }
         }
 
