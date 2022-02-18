@@ -142,12 +142,14 @@
 
                 <?php  
 
-                if(isset($_POST['add_friend'])){
-                    $friends_id = $_POST['add_friend'];
-
+                if(isLoggedIn()){
 
                     $user_id = $_SESSION['user_id'];
                     $username = $_SESSION['username'];
+
+
+                if(isset($_POST['add_friend'])){
+                    $friends_id = $_POST['add_friend'];
 
                     $query = "INSERT INTO requests(from_id, to_id, from_username, to_username) VALUES('{$user_id}' ,'{$friends_id}' ,'{$username}' ,'{$db_username}')";
                     $add_friend_request_query = mysqli_query($connection, $query);  
@@ -155,7 +157,7 @@
                 }
 
 
-                $user_id = $_SESSION['user_id'];
+                
                 
                 $query = "SELECT * FROM requests WHERE from_id = '{$user_id}' AND to_username = '$username' ";
                 $get_request_query = mysqli_query($connection, $query);   
@@ -170,7 +172,7 @@
 
                 $slect_specific_request_query = query("SELECT * FROM requests WHERE from_username = '$db_username' AND to_username = '$signed_in_user' ");
 
-                if(isLoggedIn()){
+                
 
                  if($db_username == $_SESSION['username']){ ?>
 
