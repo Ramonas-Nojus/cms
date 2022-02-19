@@ -206,6 +206,14 @@ header("location: /cms/");
 
 ?>
 
+
+
+
+
+
+
+
+
     <div>
             <form action="/cms/admin/chat.php?username=<?php echo  $friends_username; ?>" method="post">
     <div class="">
