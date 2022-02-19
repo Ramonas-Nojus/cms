@@ -112,7 +112,7 @@ header("location: /cms/");
     display: block;
     margin-left: auto;
     margin-right: 0px;
-    width: 300px;
+    width: 20%;
     object-fit: cover;
 }
 
@@ -133,7 +133,7 @@ header("location: /cms/");
 
         .input {
             margin-top: -33px;
-             width: 80%;
+            width: 80%;
 
         }
 
@@ -206,13 +206,13 @@ header("location: /cms/");
 
 ?>
 
-    <div>
+    <div class="form-group">
             <form action="/cms/admin/chat.php?username=<?php echo  $friends_username; ?>" method="post">
     <div class="">
-            <button type="submit" class="btn btn-default del-btn btn-primary" name="send_message">Send</button>
+            <button type="submit" class="btn  del-btn btn-primary" name="send_message">Send</button>
     </div>
         <div class="form-group input">
-            <input type="text" placeholder="Your Text Here" class="form-control" name="message" id="inText">
+            <input type="text" placeholder="Your Text Here" class="form-control" name="message">
         </div>
         
             
