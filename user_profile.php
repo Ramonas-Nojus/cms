@@ -144,6 +144,7 @@
 
 if(isLoggedIn()){
 
+    
 
                     $user_id = $_SESSION['user_id'];
                     $the_username = $_SESSION['username'];
@@ -176,6 +177,17 @@ if(isLoggedIn()){
             
 
                 
+                if($user_role == 'banned'){ ?>
+
+                    <form action="" method="post">
+                        <div class="center">
+                            <button class="add_friend btn btn-danger">This user was banned</button>
+                        </div>
+                    </form>
+                    </div>
+
+                <?php 
+                } else {
 
                  if($db_username == $_SESSION['username']){ ?>
 
@@ -247,7 +259,7 @@ if(isLoggedIn()){
 <?php 
 
    
-                } }   else { ?>  
+                } }  }  else { ?>  
                     <form action="/cms/login" method="post">
                <div class="center">
                 <button class="add_friend btn btn-primary" type="submit"?>
@@ -261,11 +273,12 @@ if(isLoggedIn()){
                 }
    
                 ?>
+
+                <?php if($_SESSION['username'] == $username ||  $user_role == 'banned'){} else{ ?>
                 <center class="report">
                 <a href="/cms/report_user.php?username=<?php echo $username; ?>" >Report</a>
                 </center>
-
-
+                    <?php } ?>
 
      
 
