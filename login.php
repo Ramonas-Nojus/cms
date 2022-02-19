@@ -2,32 +2,7 @@
 <?php  include "includes/header.php"; ?>
 
 
-<?php
 
-		checkIfUserIsLoggedInAndRedirect('/cms/profile');
-
-
-		if(ifItIsMethod('post')){
-
-			if(isset($_POST['username']) && isset($_POST['password'])){
-
-				login_user($_POST['username'], $_POST['password']);
-
-
-			}else {
-
-
-				redirect('/cms/login');
-			}
-
-		}
-
-
-
-
-
-
-?>
 
 
 
@@ -52,6 +27,35 @@
 							<h2 class="text-center">Login</h2>
 							<div class="panel-body">
 
+
+
+
+<?php
+
+		checkIfUserIsLoggedInAndRedirect('/cms/profile');
+
+
+		if(ifItIsMethod('post')){
+
+			if(isset($_POST['username']) && isset($_POST['password'])){
+
+				login_user($_POST['username'], $_POST['password']);
+
+
+			}else {
+
+
+				redirect('/cms/login');
+			}
+
+		}
+
+
+
+        
+        
+    
+?>
 
 								<form id="login-form" role="form" autocomplete="off" class="form" method="post">
 

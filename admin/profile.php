@@ -52,6 +52,12 @@
         $db_user_image = $row['user_image'];
         $user_role= $row['user_role'];
 
+        
+if($user_role == 'banned'){
+    redirect('/cms/includes/logout.php');
+} 
+
+
     
     
     
@@ -190,8 +196,9 @@ if(isset($_POST['edit_user'])) {
 
        <div class="form-group ">
          <label for="lastname">Lastname</label>
-          <input type="text" value="<?php echo $user_lastname; ?>" class="form-control" name="user_lastname">
+          <input type="text" value="<?php echo $user_lastname;  ?>" class="form-control" name="user_lastname">
       </div>
+    
      
 <!--
       <div class="form-group">

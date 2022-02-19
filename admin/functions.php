@@ -426,6 +426,10 @@ function register_user($firstname, $lastname, $username, $email, $password){
          $db_user_image = $row['user_image'];
 
 
+         if($db_user_role == "banned"){
+             echo "This account was banned";
+         } else {
+
          if (password_verify($password,$db_user_password)) {
 
              $_SESSION['username'] = $db_username;
@@ -450,11 +454,12 @@ function register_user($firstname, $lastname, $username, $email, $password){
 
          }
 
-
+        }
 
      }
 
      return true;
+    
 
  }
 

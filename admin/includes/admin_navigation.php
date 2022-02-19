@@ -35,8 +35,6 @@ if(isset($_SESSION['username'])) {
 }
 
 
-
-
 ?>
                                     
                     
@@ -105,6 +103,9 @@ if(isset($_SESSION['username'])) {
                                 <a href="/cms/admin/add_user">Add User</a>
                             </li>
                         </ul>
+                    </li>
+                    <li class="">
+                        <a href="/cms/admin/reports_table.php"><i class="glyphicon glyphicon-minus-sign"></i> Reports</a>
                     </li>
                     <?php } ?>
                     <li>
