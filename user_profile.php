@@ -142,7 +142,11 @@
 
                 <?php  
 
-                if(isLoggedIn()){
+if(isLoggedIn()){
+
+                if(isset($_POST['add_friend'])){
+                    $friends_id = $_POST['add_friend'];
+
 
                     $user_id = $_SESSION['user_id'];
                     $username = $_SESSION['username'];
@@ -256,7 +260,7 @@
    
                 ?>
                 <center class="report">
-                <a href="/cms/report_user.php?username=<?php echo $db_username; ?>" >Report</a>
+                <a href="/cms/report_user.php?username=<?php echo $username; ?>" >Report</a>
                 </center>
 
 
