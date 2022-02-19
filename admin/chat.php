@@ -206,19 +206,7 @@ header("location: /cms/");
 
 ?>
 
-<<<<<<< HEAD
     <div class="form-group">
-=======
-
-
-
-
-
-
-
-
-    <div>
->>>>>>> fix
             <form action="/cms/admin/chat.php?username=<?php echo  $friends_username; ?>" method="post">
     <div class="">
             <button type="submit" class="btn  del-btn btn-primary" name="send_message">Send</button>
