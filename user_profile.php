@@ -34,8 +34,11 @@
 .add_friend {
     object-fit: cover;
     margin-top: 5px;
-   
+}
 
+.remove_friend {
+    object-fit: cover;
+    margin-top: 30px;
 }
 
 .center {
@@ -45,14 +48,13 @@
   
 }
 
-.report{
-    
-    margin-top: 45px;
-}
 
-.report a {
+.report_a {
     color: hotpink;
     /* text-decoration: none; */
+}
+.report  {
+    margin-top: 45px;
 }
 
 
@@ -158,6 +160,13 @@ if(isLoggedIn()){
                     redirect("/cms/user_profile/$db_username");  
                 }
 
+                if(isset($_POST['remove_friend'])){
+                     $friends_id = $_POST['remove_friend'];
+
+                    $remove_friend_query = query("DELETE FROM friends WHERE friend1_id = $friends_id AND friend2_id =  $user_id OR  friend2_id = $friends_id AND friend1_id =  $user_id");
+                    redirect("/cms/user_profile/$db_username");  
+                }
+
 
                 
                 
@@ -205,11 +214,11 @@ if(isLoggedIn()){
                     
                    
                     ?>
-                    <form action="" method="post">
+                    
                         <div class="center">
                             <button class="add_friend btn btn-primary">friend request sent</button>
                         </div>
-                    </form>
+                    
                     </div>
                 
                 <?php }
@@ -226,6 +235,13 @@ if(isLoggedIn()){
                 </button>
                 </div>
                 </div>
+                <form action="" method="post">
+                <div class="center">
+                <button type="submit" name="remove_friend" class="remove_friend btn btn-danger" value="<?php echo $db_user_id; ?>">
+                   Remove Friend
+                </button>
+                </div>
+                </form>
                     <?php } else if(mysqli_num_rows($slect_specific_request_query) > 0){ ?> 
                     
                         <form action="/cms/admin/notifications.php" method="post">
@@ -275,8 +291,8 @@ if(isLoggedIn()){
                 ?>
 
                 <?php if($_SESSION['username'] == $username ||  $user_role == 'banned'){} else{ ?>
-                <center class="report">
-                <a href="/cms/report_user.php?username=<?php echo $username; ?>" >Report</a>
+                <center class=" <?php if(mysqli_num_rows($select_friends_query) > 0){ echo ""; } else{ echo "report"; } ?>">
+                <a class="report_a" href="/cms/report_user.php?username=<?php echo $username; ?>" >Report</a>
                 </center>
                     <?php } ?>
 
