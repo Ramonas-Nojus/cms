@@ -146,13 +146,13 @@ if(isLoggedIn()){
 
 
                     $user_id = $_SESSION['user_id'];
-                    $username = $_SESSION['username'];
+                    $the_username = $_SESSION['username'];
 
 
                 if(isset($_POST['add_friend'])){
                     $friends_id = $_POST['add_friend'];
 
-                    $query = "INSERT INTO requests(from_id, to_id, from_username, to_username) VALUES('{$user_id}' ,'{$friends_id}' ,'{$username}' ,'{$db_username}')";
+                    $query = "INSERT INTO requests(from_id, to_id, from_username, to_username) VALUES('{$user_id}' ,'{$friends_id}' ,'{$the_username}' ,'{$db_username}')";
                     $add_friend_request_query = mysqli_query($connection, $query);  
                     redirect("/cms/user_profile/$db_username");  
                 }
