@@ -142,7 +142,7 @@ if(isset($_GET['ban'])) {
 
 
 
-    header("Location: reports_table.php");
+    header("Location: reports_table");
     
     
 }   
@@ -162,7 +162,7 @@ if(isset($_GET['reject'])){
     if(!$change_to_sub_query){
         die("ERROR". mysqli_error($connection));
     }
-    header("Location: reports_table.php");
+    header("Location: reports_table");
     
     
     

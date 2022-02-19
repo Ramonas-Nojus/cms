@@ -105,7 +105,7 @@ if(isset($_SESSION['username'])) {
                         </ul>
                     </li>
                     <li class="">
-                        <a href="/cms/admin/reports_table.php"><i class="glyphicon glyphicon-minus-sign"></i> Reports</a>
+                        <a href="/cms/admin/reports_table"><i class="glyphicon glyphicon-minus-sign"></i> Reports</a>
                     </li>
                     <?php } ?>
                     <li>
@@ -114,10 +114,10 @@ if(isset($_SESSION['username'])) {
                     <li>
                         <a href="/cms/admin/my_posts"><i class="fa fa-fw fa-file"></i> My posts</a>
                     <li>
-                        <a href="/cms/admin/notifications.php"><i class="fa fa-fw fa-bell"></i> Notifications</a>
+                        <a href="/cms/admin/notifications"><i class="fa fa-fw fa-bell"></i> Notifications</a>
                     </li>
                     <li>
-                        <a href="/cms/admin/friends.php"><i class="fa fa-fw fa-user"></i> My friends</a>
+                        <a href="/cms/admin/friends"><i class="fa fa-fw fa-user"></i> My friends</a>
                     </li>
                     
                     

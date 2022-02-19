@@ -290,11 +290,15 @@ if(isLoggedIn()){
    
                 ?>
 
-                <?php if($_SESSION['username'] == $username ||  $user_role == 'banned'){} else{ ?>
+                <?php
+                
+                if(isLoggedIn()){
+                
+                if($_SESSION['username'] == $username ||  $user_role == 'banned'){} else{ ?>
                 <center class=" <?php if(mysqli_num_rows($select_friends_query) > 0){ echo ""; } else{ echo "report"; } ?>">
-                <a class="report_a" href="/cms/report_user.php?username=<?php echo $username; ?>" >Report</a>
+                <a class="report_a" href="/cms/report/<?php echo $username; ?>" >Report</a>
                 </center>
-                    <?php } ?>
+                    <?php } } ?>
 
      
 
