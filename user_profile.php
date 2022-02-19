@@ -144,9 +144,6 @@
 
 if(isLoggedIn()){
 
-                if(isset($_POST['add_friend'])){
-                    $friends_id = $_POST['add_friend'];
-
 
                     $user_id = $_SESSION['user_id'];
                     $username = $_SESSION['username'];
@@ -163,18 +160,20 @@ if(isLoggedIn()){
 
                 
                 
-                $query = "SELECT * FROM requests WHERE from_id = '{$user_id}' AND to_username = '$username' ";
+                $query = "SELECT * FROM requests WHERE from_id = '{$user_id}' AND to_username = '$db_username' ";
                 $get_request_query = mysqli_query($connection, $query);   
 
                 $row = mysqli_fetch_array($get_request_query);
 
-                $signed_in_user = $_SESSION['username'];  //users username who is signed in right now
-                                                    //db_username users username whose profile this is 
+                $signed_in_user = $_SESSION['username'];    //users username who is signed in right now
+                                                            //db_username users username whose profile this is 
 
                 $select_friends_query = query("SELECT * FROM friends WHERE friend1_username = '$db_username' AND friend2_username = '$signed_in_user' OR friend2_username = '$db_username' AND friend1_username = '$signed_in_user'");
 
 
                 $slect_specific_request_query = query("SELECT * FROM requests WHERE from_username = '$db_username' AND to_username = '$signed_in_user' ");
+
+            
 
                 
 
@@ -241,12 +240,14 @@ if(isLoggedIn()){
                 </div>
                 </form>
                 </div>
+                    
+
                 
      
 <?php 
 
    
-                } } else { ?>  
+                } }   else { ?>  
                     <form action="/cms/login" method="post">
                <div class="center">
                 <button class="add_friend btn btn-primary" type="submit"?>
@@ -255,6 +256,7 @@ if(isLoggedIn()){
                 </div>
                 </form>
                 </div>
+                
                 <?php
                 }
    
