@@ -106,7 +106,7 @@
 
         
      
-        echo "<td><a href='reports_table.php?user_id=$reported_user_id&r_id=$report_id'>Ban</a></td>";
+        echo "<td><a href='reports_table.php?ban=$reported_user_id&r_id=$report_id'>Ban</a></td>";
         echo "<td><a href='reports_table.php?reject=$report_id'>Reject report</a></td>";
         echo "</tr>";
     }
@@ -118,9 +118,9 @@
             
 <?php
 
-if(isset($_GET['user_id'])) {
+if(isset($_GET['ban'])) {
     
-    $the_user_id = escape($_GET['user_id']);
+    $the_user_id = escape($_GET['ban']);
     $the_report_id = escape($_GET['r_id']);
     
     $query = "UPDATE users SET user_role = 'banned' WHERE user_id = $the_user_id ";
