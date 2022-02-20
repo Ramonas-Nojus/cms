@@ -139,8 +139,7 @@ if(isset($_GET['ban'])) {
     $delete_users_request_to = query("DELETE FROM requests WHERE to_id = '$the_user_id' ");
     $delete_users_report = query("DELETE FROM reports WHERE user_id = '$the_user_id' ");
 
-
-
+    deleteLikes();
 
     header("Location: reports_table");
     
