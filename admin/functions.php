@@ -2,6 +2,8 @@
 
 
 
+
+
 function redirect($location){
 
 
@@ -28,6 +30,19 @@ function query($query){
 
     return mysqli_query($connection,$query);
 }
+
+function deleteLikes(){
+    $selectin_all_likes = query("SELECT * FROM likes");
+    while($row = mysqli_fetch_array($selectin_all_likes)){
+        echo $post_id = $row['post_id'];
+
+        $selecting_post = query("SELECT * FROM posts WHERE post_id = '$post_id' ");
+        if(mysqli_num_rows($selecting_post)==0){
+            $delete_likes =  "DELETE FROM likes WHERE post_id = '$post_id' ";
+        }
+    }
+}
+
 
 function isLoggedIn(){
 
