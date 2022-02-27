@@ -7,7 +7,7 @@ class Db {
     private $dbName = "cms";
 
     public function connection(){
-        $dsn = "mysql:host=".$this->host.";dbName=".$this->dbName;
+        $dsn = "mysql:host=".$this->host.";dbname=".$this->dbName;
         $pdo = new PDO($dsn, $this->user, $this->password);
         return $pdo;
     }
