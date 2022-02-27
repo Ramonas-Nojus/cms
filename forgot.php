@@ -150,7 +150,7 @@ require './vendor/autoload.php';
                                 <h2>Please check your email</h2>
 
 
-                            <?php endIf; ?>
+                            <?php endif; ?>
 
 
                         </div>
