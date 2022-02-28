@@ -1,5 +1,6 @@
 <?php  include "includes/db.php"; ?>
  <?php  include "includes/header.php"; ?>
+ <?php include "includes/class.autoload.php"; ?>
 
 
     <!-- Navigation -->
@@ -26,35 +27,47 @@
 
             echo "<h1>Search results for <<<b>$search</b>>></h1>";
                 
-            $query = "SELECT * FROM posts WHERE post_tags LIKE '%$search%' OR post_title LIKE '%$search%' ";
-            $search_query = mysqli_query($connection, $query);
+    //         $query = "SELECT * FROM posts WHERE post_tags LIKE '%$search%' OR post_title LIKE '%$search%' ";
+    //         $search_query = mysqli_query($connection, $query);
 
-            if(!$search_query) {
+    //         if(!$search_query) {
 
-                die("QUERY FAILED" . mysqli_error($connection));
+    //             die("QUERY FAILED" . mysqli_error($connection));
 
-            }
+    //         }
 
-            $count = mysqli_num_rows($search_query);
+    //         $count = mysqli_num_rows($search_query);
 
-            if($count == 0) {
+    //         if($count == 0) {
 
+    //             echo "<h1> NO RESULT</h1>";
+
+    //         } else {
+
+    // while($row = mysqli_fetch_assoc($search_query)) {
+    //     $post_title = $row['post_title'];
+    //     $post_author = $row['post_author'];
+    //     $post_date = $row['post_date'];
+    //     $post_image = $row['post_image'];
+    //     $post_content = $row['post_content'];
+            $searchPost = new SearchPosts($search);
+            $posts = $searchPost->getSearch();
+
+            if(empty($posts)){
                 echo "<h1> NO RESULT</h1>";
-
             } else {
+           
+            foreach($posts as $row){
 
-    while($row = mysqli_fetch_assoc($search_query)) {
-        $post_title = $row['post_title'];
-        $post_author = $row['post_author'];
-        $post_date = $row['post_date'];
-        $post_image = $row['post_image'];
-        $post_content = $row['post_content'];
+                $post_title = $row['post_title'];
+                $post_author = $row['post_user'];
+                $post_date = $row['post_date'];
+                $post_image = $row['post_image'];
+                $post_content = $row['post_content'];
+            
 
         ?>
-
-        
-
-                <!-- First Blog Post -->
+              <!-- First Blog Post -->
                 <h2>
                     <a href="#"><?php echo $post_title ?></a>
                 </h2>
@@ -71,15 +84,9 @@
                 <hr>
 
 
-   <?php }
-
-
+   <?php        }
             }
-
-
-            
             }
-
 
 ?>
 
