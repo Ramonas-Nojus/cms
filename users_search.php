@@ -1,5 +1,6 @@
 <?php  include "includes/db.php"; ?>
  <?php  include "includes/header.php"; ?>
+ <?php include "includes/class.autoload.php"; ?>
 
 
     <!-- Navigation -->
@@ -30,8 +31,6 @@
                
                <?php
 
-             
-
             if(isset($_POST['submit'])){
                 
             $search = $_POST['user_search'];
@@ -41,34 +40,22 @@
             } else {
 
             echo "<h1>Search results for <<<b>$search</b>>></h1>";
-                
-            $query = "SELECT * FROM users WHERE username LIKE '%$search%' OR user_firstname LIKE '%$search%' OR user_lastname LIKE '%$search%'  OR user_full_name LIKE '%$search%' ";
-            $search_query = mysqli_query($connection, $query);
 
-            if(!$search_query) {
+            $searchUsers = new UsersSearch($search);
+            $users = $searchUsers->getUsers();
 
-                die("QUERY FAILED" . mysqli_error($connection));
-
-            }
-
-            $count = mysqli_num_rows($search_query);
-
-            if($count == 0) {
-
+            if(empty($users)){
                 echo "<h1> NO RESULT</h1>";
-
             } else {
+            foreach($users as $row){
 
-    while($row = mysqli_fetch_assoc($search_query)) {
-        $user_id = $row['user_id'];
-        $username = $row['username'];
-        $user_image = $row['user_image'];
-        $user_fisrstname = $row['user_firstname'];
-        $user_lastname = $row['user_lastname'];
+                $user_id = $row['user_id'];
+                $username = $row['username'];
+                $user_image = $row['user_image'];
+                $user_fisrstname = $row['user_firstname'];
+                $user_lastname = $row['user_lastname'];
+            
         ?>
-
-        
-
                 <!-- users -->
                 <div class="media">
          
@@ -83,33 +70,14 @@
             </br>
             </br>
             <a class="btn btn-primary" href="user_profile/<?php echo $username; ?>">see More <span class="glyphicon glyphicon-chevron-right"></span></a>
-            
-         
 
         </div>
     </div>
-                <!-- <p class="lead">
-                    by <a href="#"><?php //echo $username ?></a>
-                </p>
-                <p><span class="glyphicon glyphicon-time"></span> <?php //echo $post_date ?></p>
-                <hr>
-                <img class="img-responsive" src="/cms/images/<?php //if($post_image == ""){ echo "y9DpT.jpg"; } else{echo $post_image;}?>" alt="">
-                <hr>
-                <p><?php //echo $post_content ?></p>
-                <a class="btn btn-primary" href="#">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
 
-                <hr> -->
-
-
-   <?php }
-
-
+   <?php        }
             }
-
-            }
-            
-            }
-
+        }
+    }
 
 ?>
 
