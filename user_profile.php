@@ -1,5 +1,6 @@
 <?php  include "includes/db.php"; ?>
  <?php  include "includes/header.php"; ?>
+ <?php include "includes/class.autoload.php"; ?>
 
 
     <!-- Navigation -->
@@ -62,37 +63,7 @@
 </style>
 
 
-<?php
 
-   if(isset($_GET['username'])) {
-    
-    $username = $_GET['username'];
-    
-    $query = "SELECT * FROM users WHERE username = '{$username}' ";
-    
-    $select_user_profile_query = mysqli_query($connection, $query);
-    
-    while($row = mysqli_fetch_array($select_user_profile_query)) {
-    
-        $db_username = $row['username'];
-        $db_user_id = $row['user_id'];
-        $user_password= $row['user_password'];
-        $user_firstname = $row['user_firstname'];
-        $user_lastname = $row['user_lastname'];
-        $user_email = $row['user_email'];
-        $db_user_image = $row['user_image'];
-        $user_role= $row['user_role'];
-        $user_date= $row['date'];
-
-    
-    
-    
-    }
-    
-
-}
-  
-    ?>
     
 
 
@@ -127,7 +98,50 @@
         <div class="col-lg-12">
 
 
-     
+        <?php
+
+if(isset($_GET['username'])) {
+ 
+ $username = $_GET['username'];
+ 
+//  $query = "SELECT * FROM users WHERE username = '{$username}' ";
+ 
+//  $select_user_profile_query = mysqli_query($connection, $query);
+ 
+//  while($row = mysqli_fetch_array($select_user_profile_query)) {
+ 
+//      $db_username = $row['username'];
+//      $db_user_id = $row['user_id'];
+//      $user_password= $row['user_password'];
+//      $user_firstname = $row['user_firstname'];
+//      $user_lastname = $row['user_lastname'];
+//      $user_email = $row['user_email'];
+//      $db_user_image = $row['user_image'];
+//      $user_role= $row['user_role'];
+//      $user_date= $row['date'];
+
+        $getUser = new GetUser($username);
+        $user = $getUser->user();
+ 
+        foreach($user as $row){
+         $db_username = $row['username'];
+         $db_user_id = $row['user_id'];
+         $user_password= $row['user_password'];
+         $user_firstname = $row['user_firstname'];
+         $user_lastname = $row['user_lastname'];
+         $user_email = $row['user_email'];
+         $db_user_image = $row['user_image'];
+         $user_role= $row['user_role'];
+         $user_date= $row['date'];
+        }
+ 
+ 
+ }
+ 
+
+
+
+ ?>
 
                 
             <div class="form-group img">
