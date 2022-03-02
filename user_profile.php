@@ -383,24 +383,26 @@ if(isLoggedIn()){
 
 <?php 
 
+            $getUsersPosts = new GetUsersPosts($db_username);
+            $usersPosts = $getUsersPosts->usersPosts();
 
-$query = "SELECT * FROM posts WHERE post_user = '{$db_username}' ";
-    $select_all_posts_query = mysqli_query($connection,$query);
+            if(empty($usersPosts)){
+                echo "<h2>NO ACTIVITY</h2>";
+            } else {
 
-    if(mysqli_num_rows($select_all_posts_query) > 0){
-
-while($row = mysqli_fetch_assoc($select_all_posts_query)) {
-        $the_post_id = $row['post_id'];
-        $post_title = $row['post_title'];
-        $post_author = $row['post_user'];
-        $post_date = $row['post_date'];
-        $post_image = $row['post_image'];
-        $post_content = $row['post_content'];
+            foreach($usersPosts as $row){
+                $the_post_id = $row['post_id'];
+                $post_title = $row['post_title'];
+                $post_author = $row['post_user'];
+                $post_date = $row['post_date'];
+                $post_image = $row['post_image'];
+                $post_content = $row['post_content'];            
+            
         
         ?>
                 <!-- First Blog Post -->
                 <h2>
-                    <a href="#"><?php echo $post_title ?></a>
+                    <a href="/cms/post/<?php echo $the_post_id ?>"><?php echo $post_title ?></a>
                 </h2>
                 <p class="lead">
                     Post by <?php echo $post_author ?>
@@ -414,7 +416,7 @@ while($row = mysqli_fetch_assoc($select_all_posts_query)) {
 
                 <hr>
                 
-   <?php }} else { echo "<h2>No activity</h2>"; } ?>
+   <?php } } ?>
 
 </div>
 
