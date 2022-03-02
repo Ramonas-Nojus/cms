@@ -1,4 +1,4 @@
-
+<?php include "../includes/class.autoload.php"; ?>
 <?php
    
 
@@ -14,23 +14,14 @@
             $post_tags         = escape($_POST['post_tags']);
             $post_content      = escape($_POST['post_content']);
             $post_date         = escape(date('d-m-y'));
+            $username          = $_SESSION['username'];
+            $user_id           = $_SESSION['user_id']; 
 
-       
-        move_uploaded_file($post_image_temp, "../images/$post_image" );
-       
-       
-      $query = "INSERT INTO posts(post_category_id, post_title, post_user, post_user_id, post_date,post_image,post_content,post_tags,post_status) ";
-             
-      $query .= "VALUES({$post_category_id},'{$post_title}','{$_SESSION['username']}','{$_SESSION['user_id']}' , now(),'{$post_image}','{$post_content}','{$post_tags}', 'published') "; 
-             
-      $create_post_query = mysqli_query($connection, $query);  
-          
-      confirmQuery($create_post_query);
+            $setPost = new SetPost($post_title,$post_category_id,$post_image,$post_image_temp,$post_tags,$post_content,$post_date,$username,$user_id);
+            $addPost = $setPost->addPost();
 
-      $the_post_id = mysqli_insert_id($connection);
-
-
-      echo "<p class='bg-success'>Post Created. <a href='../post/{$the_post_id}'>View Post </a>"; if(is_admin()){ " or <a href='posts.php'>Edit More Posts</a></p>"; };
+             $the_post_id = mysqli_insert_id($connection );
+             echo "<p class='bg-success'>Post Created. <a href='../post/{$the_post_id}'>View Post </a>"; if(is_admin()){ " or <a href='posts.php'>Edit More Posts</a></p>"; };
        
 
 

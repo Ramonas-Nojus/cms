@@ -1,3 +1,6 @@
+<?php include "../includes/class.autoload.php"; ?>
+
+
 <?php
 
 
@@ -158,21 +161,20 @@ confirmQuery($update_to_delete_status);
 
   <?php 
     
-    $query = "SELECT * FROM posts ORDER BY post_id DESC ";
-    $select_posts = mysqli_query($connection,$query);  
-
-    while($row = mysqli_fetch_assoc($select_posts )) {
-        $post_id            = $row['post_id'];
-        $post_author        = $row['post_author'];
-        $post_user          = $row['post_user'];
-        $post_title         = $row['post_title'];
-        $post_category_id   = $row['post_category_id'];
-        $post_status        = $row['post_status'];
-        $post_image         = $row['post_image'];
-        $post_tags          = $row['post_tags'];
-        $post_comment_count = $row['post_comment_count'];
-        $post_date          = $row['post_date'];
-        $post_views_count   = $row['post_views_count'];
+    $newObj = new GetPosts();
+    $post = $newObj->posts();
+    foreach($post as $row){
+            $post_id            = $row['post_id'];
+            $post_category_id   = $row['post_category_id'];
+            $post_title         = $row['post_title'];
+            $post_author        = $row['post_user'];
+            $post_author_id     = $row['post_user_id'];
+            $post_date          = $row['post_date'];
+            $post_image         = $row['post_image'];
+            $post_content       = $row['post_content'];
+            $post_status        = $row['post_status'];
+            $post_views_count   = $row['post_views_count'];
+            $post_tags          = $row['post_tags'];
         
         echo "<tr>";
         
