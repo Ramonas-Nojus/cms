@@ -28,7 +28,7 @@
 
       echo "<h1>All posts with <<<b>$category</b>>>> categorie</h1>";
 
-      $postsByCat = new GetPostsByCat($post_category_id);
+      $postsByCat = new GetPosts();
 
 
 if(isset($_SESSION['username']) && is_admin($_SESSION['username'])){
@@ -38,7 +38,7 @@ if(isset($_SESSION['username']) && is_admin($_SESSION['username'])){
 
 
     //   $stmt1 = mysqli_prepare($connection, "SELECT post_id, post_title, post_user, post_date, post_image, post_content FROM posts WHERE post_category_id = ?");
-    $adminPostsByCat = $postsByCat->adminPostsByCat();
+    $adminPostsByCat = $postsByCat->adminPostsByCat($post_category_id);
     foreach($adminPostsByCat as $row){
         $post_id = $row['post_id'];
         $post_title = $row['post_title'];
@@ -75,7 +75,7 @@ if(isset($_SESSION['username']) && is_admin($_SESSION['username'])){
         //  $stmt2 = mysqli_prepare($connection, "SELECT post_id, post_title, post_user, post_date, post_image, post_content FROM posts WHERE post_category_id = ? AND post_status = ? ");
 
         //  $published = 'published';
-        $PostsByCat = $postsByCat->PostsByCat();
+        $PostsByCat = $postsByCat->PostsByCat($post_category_id);
         foreach($PostsByCat as $row){
             $post_id = $row['post_id'];
             $post_title = $row['post_title'];

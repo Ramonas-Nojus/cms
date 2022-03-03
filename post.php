@@ -259,20 +259,35 @@ if(isset($_POST['unliked'])){
                  <?php 
 
 
-            $query = "SELECT * FROM comments WHERE comment_post_id = {$the_post_id} ";
-            $query .= "AND comment_status = 'approved' ";
-            $query .= "ORDER BY comment_id DESC ";
-            $select_comment_query = mysqli_query($connection, $query);
-            if(!$select_comment_query) {
+            // $query = "SELECT * FROM comments WHERE comment_post_id = {$the_post_id} ";
+            // $query .= "AND comment_status = 'approved' ";
+            // $query .= "ORDER BY comment_id DESC ";
+            // $select_comment_query = mysqli_query($connection, $query);
+            // if(!$select_comment_query) {
+
+            //     die('Query Failed' . mysqli_error($connection));
+            //  }
+            // while ($row = mysqli_fetch_array($select_comment_query)) {
+            // $comment_date = $row['comment_date']; 
+            // $comment_content = $row['comment_content'];
+            // $comment_author = $row['comment_author'];
+            // $author_id = $row['author_id'];
+            $the_post_id = $_GET['p_id'];
+
+
+            $getComments = new GetCommentsForPost($the_post_id);
+            $comments = $getComments->getCommets();
+
+            if(!$comments) {
 
                 die('Query Failed' . mysqli_error($connection));
-             }
-            while ($row = mysqli_fetch_array($select_comment_query)) {
-            $comment_date = $row['comment_date']; 
-            $comment_content = $row['comment_content'];
-            $comment_author = $row['comment_author'];
-            $author_id = $row['author_id'];
-                
+             } else {
+
+            foreach($comments as $row){
+                $comment_date = $row['comment_date']; 
+                $comment_content = $row['comment_content'];
+                $comment_author = $row['comment_author'];
+                $author_id = $row['author_id'];
                 ?>
                 
                 
@@ -280,17 +295,20 @@ if(isset($_POST['unliked'])){
                 <div class="media">
 
             <?php
-                $query = "SELECT user_image, username FROM users WHERE user_id = '$author_id' ";
-                $image_select = mysqli_query($connection,$query);
-                $row = mysqli_fetch_array($image_select);
-            ?>
-                     
+                // $query = "SELECT user_image, username FROM users WHERE user_id = '$author_id' ";
+                // $image_select = mysqli_query($connection,$query);
+                // $row = mysqli_fetch_array($image_select);
+                foreach($getComments->authorImage($author_id) as $row) { ?>
+
                     <a class="pull-left" href="#">
                         <img class="media-object profilie_image" width="50px" border-radius="50%" src="/cms/images/<?php if(empty($row['user_image'])){ echo "person-placeholder.jpg"; } else { echo $row['user_image']; }
                         ?>" alt="">
                     </a>
+                <?php } ?>
+                     
+                    
                     <div class="media-body">
-                        <h4 class="media-heading"><?php echo $row['username'];   ?>
+                        <h4 class="media-heading"><?php echo $comment_author;   ?>
                             <small><?php echo $comment_date;   ?></small>
                         </h4>
                         
@@ -302,7 +320,7 @@ if(isset($_POST['unliked'])){
                 
   
 
-           <?php } }    else {
+           <?php } }  }  else {
 
 
             header("Location: /cms/");

@@ -383,8 +383,8 @@ if(isLoggedIn()){
 
 <?php 
 
-            $getUsersPosts = new GetUsersPosts($db_username);
-            $usersPosts = $getUsersPosts->usersPosts();
+            $getPosts = new GetPosts();
+            $usersPosts = $getPosts->usersPosts($db_username);
 
             if(empty($usersPosts)){
                 echo "<h2>NO ACTIVITY</h2>";
