@@ -1,5 +1,6 @@
 <?php  include "includes/db.php"; ?>
  <?php  include "includes/header.php"; ?>
+ <?php  include "includes/class.autoload.php"; ?>
 
     <!-- Navigation -->
     
@@ -217,19 +218,8 @@ if(isset($_POST['unliked'])){
 
         if (!empty($comment_author) && !empty($comment_email) && !empty($comment_content)) {
 
-
-            $query = "INSERT INTO comments (comment_post_id, comment_author, comment_email, comment_content, comment_status,comment_date,author_id)";
-
-            $query .= "VALUES ($the_post_id ,'{$comment_author}', '{$comment_email}', '{$comment_content }', 'approved',now(),$comment_author_id)";
-
-            $create_comment_query = mysqli_query($connection, $query);
-
-            if (!$create_comment_query) {
-                die('QUERY FAILED' . mysqli_error($connection));
-
-
-            }
-
+            $setComment = new SetComments($the_post_id, $comment_author,$comment_author_id,$comment_email,$comment_content);
+            $setComment->addComments();
 
         }
 
