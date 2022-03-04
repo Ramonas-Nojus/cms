@@ -41,8 +41,8 @@
 
             echo "<h1>Search results for <<<b>$search</b>>></h1>";
 
-            $searchUsers = new UsersSearch($search);
-            $users = $searchUsers->getUsers();
+            $searchUsers = new Users($search);
+            $users = $searchUsers->searchUsers($search);
 
             if(empty($users)){
                 echo "<h1> NO RESULT</h1>";

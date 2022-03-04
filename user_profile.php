@@ -100,28 +100,13 @@
 
         <?php
 
-if(isset($_GET['username'])) {
+    if(isset($_GET['username'])) {
  
- $username = $_GET['username'];
- 
-//  $query = "SELECT * FROM users WHERE username = '{$username}' ";
- 
-//  $select_user_profile_query = mysqli_query($connection, $query);
- 
-//  while($row = mysqli_fetch_array($select_user_profile_query)) {
- 
-//      $db_username = $row['username'];
-//      $db_user_id = $row['user_id'];
-//      $user_password= $row['user_password'];
-//      $user_firstname = $row['user_firstname'];
-//      $user_lastname = $row['user_lastname'];
-//      $user_email = $row['user_email'];
-//      $db_user_image = $row['user_image'];
-//      $user_role= $row['user_role'];
-//      $user_date= $row['date'];
+        $username = $_GET['username'];
 
-        $getUser = new GetUser($username);
-        $user = $getUser->user();
+
+        $getUser = new Users();
+        $user = $getUser->getUser($username);
  
         foreach($user as $row){
          $db_username = $row['username'];
@@ -131,8 +116,8 @@ if(isset($_GET['username'])) {
          $user_lastname = $row['user_lastname'];
          $user_email = $row['user_email'];
          $db_user_image = $row['user_image'];
-         $user_role= $row['user_role'];
-         $user_date= $row['date'];
+         $user_role = $row['user_role'];
+         $user_date = $row['date'];
         }
  
  
@@ -158,7 +143,7 @@ if(isset($_GET['username'])) {
 
                 <?php  
 
-if(isLoggedIn()){
+    if(isLoggedIn()){
 
     
 
@@ -383,7 +368,7 @@ if(isLoggedIn()){
 
 <?php 
 
-            $getPosts = new GetPosts();
+            $getPosts = new Posts();
             $usersPosts = $getPosts->usersPosts($db_username);
 
             if(empty($usersPosts)){

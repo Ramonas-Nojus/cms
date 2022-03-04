@@ -218,8 +218,8 @@ if(isset($_POST['unliked'])){
 
         if (!empty($comment_author) && !empty($comment_email) && !empty($comment_content)) {
 
-            $setComment = new SetComments($the_post_id, $comment_author,$comment_author_id,$comment_email,$comment_content);
-            $setComment->addComments();
+            $setComment = new Comments();
+            $setComment->setComments($the_post_id, $comment_author,$comment_author_id,$comment_email,$comment_content);
 
         }
 
@@ -258,25 +258,11 @@ if(isset($_POST['unliked'])){
                 
                  <?php 
 
-
-            // $query = "SELECT * FROM comments WHERE comment_post_id = {$the_post_id} ";
-            // $query .= "AND comment_status = 'approved' ";
-            // $query .= "ORDER BY comment_id DESC ";
-            // $select_comment_query = mysqli_query($connection, $query);
-            // if(!$select_comment_query) {
-
-            //     die('Query Failed' . mysqli_error($connection));
-            //  }
-            // while ($row = mysqli_fetch_array($select_comment_query)) {
-            // $comment_date = $row['comment_date']; 
-            // $comment_content = $row['comment_content'];
-            // $comment_author = $row['comment_author'];
-            // $author_id = $row['author_id'];
             $the_post_id = $_GET['p_id'];
 
 
-            $getComments = new GetCommentsForPost($the_post_id);
-            $comments = $getComments->getCommets();
+            $getComments = new Comments();
+            $comments = $getComments->getCommets($the_post_id);
 
             if(!$comments) {
 
@@ -295,9 +281,7 @@ if(isset($_POST['unliked'])){
                 <div class="media">
 
             <?php
-                // $query = "SELECT user_image, username FROM users WHERE user_id = '$author_id' ";
-                // $image_select = mysqli_query($connection,$query);
-                // $row = mysqli_fetch_array($image_select);
+    
                 foreach($getComments->authorImage($author_id) as $row) { ?>
 
                     <a class="pull-left" href="#">
