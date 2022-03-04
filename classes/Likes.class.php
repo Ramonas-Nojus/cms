@@ -7,15 +7,12 @@ class Likes extends Db {
         $sql = "SELECT likes FROM posts WHERE post_id = ?";
         $stmt = $this->connection()->prepare($sql);
         $stmt->execute([$post_id]);
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
     public function setLikes($post_id,$user_id){
        
-        foreach($this->getLikes($post_id) as $likes){
-            $likes = $likes['likes'];
-        }
-        $sql = "UPDATE posts SET likes = $likes + 1 WHERE post_id = ?";
+        $sql = "UPDATE posts SET likes = likes + 1 WHERE post_id = ?";
         $stmt = $this->connection()->prepare($sql);
         $stmt->execute([$post_id]);
         $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -23,15 +20,11 @@ class Likes extends Db {
         $sql = "INSERT INTO likes(user_id,post_id) VALUES(?,?)";
         $stmt = $this->connection()->prepare($sql);
         $stmt->execute([$user_id,$post_id]);
-        $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function unlike($post_id,$user_id){
        
-        foreach( $this->getLikes($post_id) as $likes){
-            $likes = $likes['likes'];
-        }
-        $sql = "UPDATE posts SET likes = $likes - 1 WHERE post_id = ?";
+        $sql = "UPDATE posts SET likes = likes - 1 WHERE post_id = ?";
         $stmt = $this->connection()->prepare($sql);
         $stmt->execute([$post_id]);
         $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -39,7 +32,6 @@ class Likes extends Db {
         $sql = "DELETE FROM likes WHERE post_id = ? AND user_id = ?";
         $stmt = $this->connection()->prepare($sql);
         $stmt->execute([$post_id, $user_id]);
-        $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
 }

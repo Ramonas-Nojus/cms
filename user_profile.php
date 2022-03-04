@@ -368,7 +368,7 @@
 
 <?php 
 
-            $getPosts = new Posts();
+            $getPosts = new test\Posts();
             $usersPosts = $getPosts->usersPosts($db_username);
 
             if(empty($usersPosts)){

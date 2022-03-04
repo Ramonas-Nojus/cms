@@ -76,7 +76,7 @@
 
         $count  = ceil($count /$per_page);
         
-        $newObj = new Posts();
+        $newObj = new test\Posts();
         $post = $newObj->getPosts();
         foreach($post as $x){
                 $post_id = $x['post_id'];

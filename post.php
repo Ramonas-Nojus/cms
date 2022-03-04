@@ -26,7 +26,6 @@ if(isset($_POST['unliked'])){
 
 } 
 
-
 ?>
 
     <style>
@@ -168,14 +167,12 @@ if(isset($_POST['unliked'])){
 
                             <?php 
                             
-                            $Likes = new Likes();
-                            $getLikes = $Likes->getLikes($the_post_id);
+                        $Likes = new Likes();
+                        $likes = $Likes->getLikes($the_post_id)['likes'];
                             
-                            foreach($getLikes as $row){
-                                $likes = $row['likes'];
-                                echo "</br><p class='pull-right'>Likes: $likes </p>";
-                            }
-                            ?>
+                        echo "</br><p class='pull-right'>Likes: $likes </p>";
+                            
+                        ?>
 
                             
                         </div>

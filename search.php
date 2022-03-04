@@ -27,7 +27,7 @@
 
             echo "<h1>Search results for <<<b>$search</b>>></h1>";
                 
-            $searchPost = new Posts();
+            $searchPost = new test\Posts();
             $posts = $searchPost->getSearch($search);
 
             if(empty($posts)){
