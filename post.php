@@ -6,32 +6,24 @@
     
     <?php  include "includes/navigation.php"; ?>
 
-<?php if(isset($_POST['liked'])){
+<?php 
+
+$Likes = new Likes();
+
+if(isset($_POST['liked'])){
     $post_id = $_POST['post_id'];
     $user_id = $_POST['user_id'];
 
-    $query = "SELECT * FROM posts WHERE post_id = $post_id"; 
-    $postResultQuery = mysqli_query($connection,$query);
-    $post = mysqli_fetch_array($postResultQuery);
-    $likes = $post['likes'];
-
-    mysqli_query($connection, "UPDATE posts SET likes=$likes+1 WHERE post_id = $post_id");
-    mysqli_query($connection, "INSERT INTO likes(user_id,post_id) VALUES($user_id,$post_id)");
-
+    
+    $Likes->setLikes($post_id,$user_id);
 } 
 
 if(isset($_POST['unliked'])){
     $post_id = $_POST['post_id'];
     $user_id = $_POST['user_id'];
 
-    $query = "SELECT * FROM posts WHERE post_id = $post_id"; 
-    $postResultQuery = mysqli_query($connection,$query);
-    $post = mysqli_fetch_array($postResultQuery);
-    $likes = $post['likes'];
+    $Likes->unlike($post_id,$user_id);
 
-    mysqli_query($connection, "UPDATE posts SET likes=$likes-1 WHERE post_id = $post_id");
-    mysqli_query($connection, "DELETE FROM likes WHERE post_id = $post_id AND user_id = $user_id");
- 
 } 
 
 
@@ -67,13 +59,6 @@ if(isset($_POST['unliked'])){
     
        $the_post_id = $_GET['p_id'];
 
-        // $update_statement = mysqli_prepare($connection, "UPDATE posts SET post_views_count = post_views_count + 1 WHERE post_id = ?");
-
-        // mysqli_stmt_bind_param($update_statement, "i", $the_post_id);
-
-        // mysqli_stmt_execute($update_statement);
-
-        // mysqli_stmt_bind_result($stmt1, $post_id, $post_title, $post_author, $post_date, $post_image, $post_content);
         $update_statement = mysqli_prepare($connection, "UPDATE posts SET post_views_count = post_views_count + 1 WHERE post_id = ?");
         mysqli_stmt_bind_param($update_statement, "i", $the_post_id);
         mysqli_stmt_execute($update_statement);
@@ -162,7 +147,6 @@ if(isset($_POST['unliked'])){
                 
 <?php } ?>
 
-
                 <?php   
 // if(UserLikedPost($the_post_id)){ echo "<h1>HAHAHAHA</h1>"; }
 
@@ -184,17 +168,13 @@ if(isset($_POST['unliked'])){
 
                             <?php 
                             
-                            $stmt = mysqli_prepare($connection, "SELECT likes FROM posts WHERE post_id = ?");
-
-                            mysqli_stmt_bind_param($stmt, "i", $the_post_id);
-                            mysqli_stmt_execute($stmt);
-                            mysqli_stmt_bind_result($stmt, $likes);
-
-                            while(mysqli_stmt_fetch($stmt)){
-                                echo "</br><p class='pull-right'>Likes: $likes</p>";
+                            $Likes = new Likes();
+                            $getLikes = $Likes->getLikes($the_post_id);
+                            
+                            foreach($getLikes as $row){
+                                $likes = $row['likes'];
+                                echo "</br><p class='pull-right'>Likes: $likes </p>";
                             }
-                            
-                            
                             ?>
 
                             
