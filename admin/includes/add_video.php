@@ -43,11 +43,11 @@
       </div>
     <div class="form-group">
          <label for="post_image">Video image</label>
-          <input type="file"  name="image">
+          <input type="file"  name="image" accept="image/*">
       </div>
       <div class="form-group">
          <label for="post_image">Video</label>
-          <input type="file"  name="video">
+          <input type="file" name="video" accept="video/*">
       </div>
 
       <div class="form-group">
