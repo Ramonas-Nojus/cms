@@ -40,7 +40,7 @@
                 ?>
 
                 <h2>
-                    <a href="post/<?php echo $video_id; ?>"><?php echo $video_title ?></a>
+                    <a href="/cms/watch/<?php echo $video_id; ?>"><?php echo $video_title ?></a>
                 </h2>
                 <p class="lead">
                     by <a href="author/<?php echo $video_author; ?>"><?php echo $video_author ?></a>
@@ -49,7 +49,7 @@
                 <hr>
                 
                 
-                <a href="/cms/post/<?php echo $video_id; ?>">
+                <a href="/cms/watch/<?php echo $video_id; ?>">
                 <p><?php echo $video_description; ?></p>
                 <img class="img-responsive" src="/cms/images/<?php if($video_image == ""){ echo "y9DpT.jpg"; } else{echo $video_image;}?>" alt="">
                 </a>
@@ -57,7 +57,7 @@
                 
                 
                 <hr>
-           <a class="btn btn-primary" href="post.php?p_id=<?php echo $video_id; ?>">Watch <span class="glyphicon glyphicon-chevron-right"></span></a>
+           <a class="btn btn-primary" href="/cms/watch/<?php echo $video_id; ?>">Watch <span class="glyphicon glyphicon-chevron-right"></span></a>
 
                 <hr>
 

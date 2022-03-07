@@ -168,9 +168,10 @@ if(isset($_POST['unliked'])){
                             <?php 
                             
                         $Likes = new Likes();
-                        $likes = $Likes->getLikes($the_post_id)['likes'];
+                        $likes = $Likes->getLikes($the_post_id);
+                        $lik = $likes['likes'];
                             
-                        echo "</br><p class='pull-right'>Likes: $likes </p>";
+                        echo "</br><p class='pull-right'>Likes: $lik </p>";
                             
                         ?>
 
