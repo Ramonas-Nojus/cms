@@ -13,18 +13,18 @@ $video = new Videos;
 $Likes = new Likes;
 
 if(isset($_POST['liked'])){
-    $post_id = $_POST['post_id'];
+    $video_id = $_POST['video_id'];
     $user_id = $_POST['user_id'];
 
     
-    $Likes->setLikes($post_id,$user_id);
+    $Likes->setLikesVideo($video_id,$user_id);
 } 
 
 if(isset($_POST['unliked'])){
-    $post_id = $_POST['post_id'];
-    $user_id = $_POST['user_id'];
+    echo $post_id = $_POST['video_id'];
+    echo $user_id = $_POST['user_id'];
 
-    $Likes->unlike($post_id,$user_id);
+    $Likes->unlikeVideo($post_id,$user_id);
 
 } 
 
@@ -110,18 +110,15 @@ if(isset($_POST['unliked'])){
 
 
                 <?php   
-// if(UserLikedPost($the_post_id)){ echo "<h1>HAHAHAHA</h1>"; }
-
-
                 if(isLoggedIn()){
                 if(UserLikedVideo($the_video_id)){  ?>
                         <div class="row">
-                            <p class="pull-left"><a href="/cms/post/<?php echo $the_video_id ?>" class="unlike"><span class="glyphicon glyphicon-thumbs-down"></span>Unlike</a></p>
+                            <p class="pull-left"><a href="/cms/watch/<?php echo $the_video_id ?>" class="unlike"><span class="glyphicon glyphicon-thumbs-down"></span>Unlike</a></p>
                         </div>
 
                         <?php } else { ?>
                         <div class="row">
-                            <p class="pull-left"><a href="/cms/post/<?php echo $the_post_id ?>" class="like"><span class="glyphicon glyphicon-thumbs-up"></span>Like</a></p>
+                            <p class="pull-left"><a href="/cms/watch/<?php echo $the_video_id ?>" class="like"><span class="glyphicon glyphicon-thumbs-up"></span>Like</a></p>
                            
                         </div>
                          <?php }  } else { echo "<p class='pull-left'>You need to <a href='/cms/login'>Log In</a> to leave like</p>"; } ?>
@@ -130,10 +127,10 @@ if(isset($_POST['unliked'])){
 
                             <?php 
                             
-                        // $Likes = new Likes();
-                        // $likes = $Likes->getLikes($the_post_id)['likes'];
+                        
+                        $likes = $Likes->getLikesVideo($the_video_id)['video_likes'];
                             
-                        // echo "</br><p class='pull-right'>Likes: $likes </p>";
+                        echo "</br><p class='pull-right'>Likes: $likes </p>";
                             
                         ?>
 
@@ -147,40 +144,31 @@ if(isset($_POST['unliked'])){
 
 <?php 
 
-    // if(isset($_POST['create_comment'])) {
+    if(isset($_POST['create_comment'])) {
 
-    //     $the_post_id = $_GET['p_id'];
-    //     $comment_author = $_SESSION['username'];
-    //     $comment_author_id = $_SESSION['user_id'];
-    //     $comment_email = $_SESSION['user_email'];
-    //     $comment_content = $_POST['comment_content'];
-
-
-    //     if (!empty($comment_author) && !empty($comment_email) && !empty($comment_content)) {
-
-    //         $setComment = new Comments();
-    //         $setComment->setComments($the_post_id, $comment_author,$comment_author_id,$comment_email,$comment_content);
-
-    //     }
+        $the_video_id = $_GET['v_id'];
+        $comment_author = $_SESSION['username'];
+        $comment_author_id = $_SESSION['user_id'];
+        $comment_email = $_SESSION['user_email'];
+        $comment_content = $_POST['comment_content'];
 
 
-    // }
+        if (!empty($comment_author) && !empty($comment_email) && !empty($comment_content)) {
+
+            $setComment = new Comments();
+            $setComment->setCommentsVideo($the_video_id, $comment_author,$comment_author_id,$comment_email,$comment_content);
+
+        }
+
+
+    }
 
 
 
 
 ?> 
-
-
-                <!-- Posted Comments -->
-
-
-
         <!-- Comments Form -->
         <div class="well">
-
-
-
             <h4>Leave a Comment:</h4>
             <?php if(isLoggedIn()){ ?>
             <form action="#" method="post" role="form">
@@ -198,22 +186,17 @@ if(isset($_POST['unliked'])){
                 
                  <?php 
 
-            // $the_post_id = $_GET['p_id'];
+            $the_video_id = $_GET['v_id'];
 
 
-            // $getComments = new Comments();
-            // $comments = $getComments->getCommets($the_post_id);
+            $getComments = new Comments();
+            $comments = $getComments->getCommetsVideo($the_video_id);
 
-            // if(!$comments) {
-
-            //     die('Query Failed' . mysqli_error($connection));
-            //  } else {
-
-            // foreach($comments as $row){
-            //     $comment_date = $row['comment_date']; 
-            //     $comment_content = $row['comment_content'];
-            //     $comment_author = $row['comment_author'];
-            //     $author_id = $row['author_id'];
+            foreach($comments as $row){
+                $comment_date = $row['comment_date']; 
+                $comment_content = $row['comment_content'];
+                $comment_author = $row['comment_author'];
+                $author_id = $row['author_id'];
                 ?>
                 
                 
@@ -222,20 +205,19 @@ if(isset($_POST['unliked'])){
 
             <?php
     
-               // foreach($getComments->authorImage($author_id) as $row) { ?>
+                foreach($getComments->authorImage($author_id) as $row) { ?>
 
- <!--                   <a class="pull-left" href="#">
-<!-- <img class="media-object profilie_image" width="50px" border-radius="50%" src="/cms/images/< ?php// if(empty($row['user_image'])){ echo "person-placeholder.jpg"; } else { echo $row['user_image']; ?> " alt="">--!>
+                    <a class="pull-left" href="#">
+ <img class="media-object profilie_image" width="50px" border-radius="50%" src="/cms/images/<?php if(empty($row['user_image'])){ echo "person-placeholder.jpg"; } else { echo $row['user_image']; ?> " alt="">
                     </a>
-                <?php //} ?>
+                <?php } ?>
                      
                     
                     <div class="media-body">
-                        <h4 class="media-heading"><?php //echo $comment_author;   ?>
-                            <small><?php //echo $comment_date;   ?></small>
+                        <h4 class="media-heading"><?php echo $comment_author;   ?>
+                            <small><?php echo $comment_date;   ?></small>
                         </h4>
-                        
-                        <?php //echo $comment_content;   ?>
+                        <?php echo $comment_content;   ?>
  
                     </div>
                 </div>
@@ -243,13 +225,8 @@ if(isset($_POST['unliked'])){
                 
   
 
-           <?php //} } 
-            }  else {
-
-
+           <?php } } }   else {
             header("Location: /cms/");
-
-
            }
                 ?>
            
@@ -278,18 +255,18 @@ if(isset($_POST['unliked'])){
 
             $(document).ready(function(){
 
-                var post_id = <?php echo $the_post_id; ?>;
+                var video_id = <?php echo $the_video_id; ?>;
                 var user_id = <?php echo $_SESSION['user_id']; ?>;
 
                 // like
 
                 $(".like").click(function(){
                    $.ajax({
-                       url: "/cms/post.php?p_id=<?php echo $the_post_id; ?>",
+                       url: "/cms/watch.php?v_id=<?php echo $the_video_id; ?>",
                        type: "post",
                        data: {
                            'liked': 1,
-                           'post_id': post_id,
+                           'video_id': video_id,
                            'user_id': user_id
                        }
                    });
@@ -299,11 +276,11 @@ if(isset($_POST['unliked'])){
 
                 $(".unlike").click(function(){
                    $.ajax({
-                       url: "/cms/post.php?p_id=<?php echo $the_post_id; ?>",
+                       url: "/cms/watch.php?v_id=<?php echo $the_video_id; ?>",
                        type: "post",
                        data: {
                            'unliked': 1,
-                           'post_id': post_id,
+                           'video_id': video_id,
                            'user_id': user_id
                        }
                    });
