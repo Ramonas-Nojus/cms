@@ -8,7 +8,16 @@
     <?php  include "includes/navigation.php"; ?>
 
     
- 
+ <style>
+
+        .profilie_image {
+            object-fit: cover;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+        }
+
+ </style>
     <!-- Page Content -->
     <div class="container">
 
@@ -38,34 +47,33 @@
                 $video_description = $row['video_description'];
                 
                 ?>
+                <hr>
 
-                <h2>
-                    <a href="/cms/watch/<?php echo $video_id; ?>"><?php echo $video_title ?></a>
-                </h2>
-                <p class="lead">
-                    by <a href="author/<?php echo $video_author; ?>"><?php echo $video_author ?></a>
-                </p>
-                <p><span class="glyphicon glyphicon-time"></span> <?php echo $video_date ?></p>
-                <hr>
-                
-                
-                <a href="/cms/watch/<?php echo $video_id; ?>">
-                <p><?php echo $video_description; ?></p>
-                <img class="img-responsive" src="/cms/images/<?php if($video_image == ""){ echo "y9DpT.jpg"; } else{echo $video_image;}?>" alt="">
-                </a>
-                
-                
-                
-                <hr>
-           <a class="btn btn-primary" href="/cms/watch/<?php echo $video_id; ?>">Watch <span class="glyphicon glyphicon-chevron-right"></span></a>
-
-                <hr>
+                <div class="media">
+         
+         <a class="pull-left" href="/cms/watch/<?php echo $video_id; ?>">
+             <img class="media-object" width="150px" style="border-radius: 5px; " src="/cms/images/<?php if(empty($video_image)){ echo "person-placeholder.jpg"; } else { echo $video_image; }
+             ?>" alt="">
+         </a>
+         <div class="media-body">
+             <h3 class="media-heading"><?php echo $video_title;?>
+             <?php $img = new Comments; ?> 
+             
+            </br><img class=" profilie_image" width="70px" border-radius="50%" src="/cms/images/<?php if(empty($img->authorImage($video_author_id)['user_image'])){ echo "person-placeholder.jpg"; } else {  echo $img->authorImage($video_author_id)['user_image']; } ?>" alt="author_image"> 
+                <small><a><?php echo $video_author; ?></a></small>
+             </h3>
+             </br>
+             </br>
+             <a class="btn btn-primary" href="watch/<?php echo $video_id; ?>">watch<span class="glyphicon glyphicon-chevron-right"></span></a>
+ 
+         </div>
+         </div>
 
              <?php   }
 
             ?>
               
-              </div>
+            </div>            
 
             <!-- Blog Sidebar Widgets Column -->
             

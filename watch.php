@@ -205,10 +205,10 @@ if(isset($_POST['unliked'])){
 
             <?php
     
-                foreach($getComments->authorImage($author_id) as $row) { ?>
+                $img = $getComments->authorImage($author_id)["user_image"]; ?>
 
                     <a class="pull-left" href="#">
- <img class="media-object profilie_image" width="50px" border-radius="50%" src="/cms/images/<?php if(empty($row['user_image'])){ echo "person-placeholder.jpg"; } else { echo $row['user_image']; ?> " alt="">
+ <img class="media-object profilie_image" width="50px" border-radius="50%" src="/cms/images/<?php if(empty($img)){ echo "person-placeholder.jpg"; } else { echo $img; ?> " alt="">
                     </a>
                 <?php } ?>
                      
@@ -225,7 +225,7 @@ if(isset($_POST['unliked'])){
                 
   
 
-           <?php } } }   else {
+           <?php } }      else {
             header("Location: /cms/");
            }
                 ?>

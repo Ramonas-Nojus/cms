@@ -161,8 +161,8 @@ confirmQuery($update_to_delete_status);
 
   <?php 
     
-    $newObj = new GetPosts();
-    $post = $newObj->posts();
+    $newObj = new test\Posts();
+    $post = $newObj->getPosts();
     foreach($post as $row){
             $post_id            = $row['post_id'];
             $post_category_id   = $row['post_category_id'];

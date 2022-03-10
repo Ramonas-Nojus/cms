@@ -14,7 +14,7 @@ class Comments extends Db {
         $sql = "SELECT user_image FROM users WHERE user_id = ? ";
         $stmt = $this->connection()->prepare($sql);
         $stmt->execute([$author_id]);
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
     public function setCommentsPosts($the_post_id,$comment_author,$comment_author_id,$comment_email,$comment_content){

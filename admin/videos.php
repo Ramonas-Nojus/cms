@@ -40,22 +40,17 @@ $source = '';
 switch($source) {
     
     case 'add_video';
-    
-     include "includes/add_video.php";
-    
+    include "includes/add_video.php";
     break; 
     
     
     case 'edit_video';
-    
     include "includes/edit_video.php";
     break;
     
     
     default:
-    
-    // include "includes/view_all_posts.php";
-    
+    include "includes/view_all_videos.php";
     break;
     
     
