@@ -59,8 +59,8 @@
              <h3 class="media-heading"><?php echo $video_title;?>
              <?php $img = new Comments; ?> 
              
-            </br><img class=" profilie_image" width="70px" border-radius="50%" src="/cms/images/<?php if(empty($img->authorImage($video_author_id)['user_image'])){ echo "person-placeholder.jpg"; } else {  echo $img->authorImage($video_author_id)['user_image']; } ?>" alt="author_image"> 
-                <small><a><?php echo $video_author; ?></a></small>
+            </br><a href="/cms/user_profile/<?php echo $video_author; ?>"><img class=" profilie_image" width="70px" border-radius="50%" src="/cms/images/<?php if(empty($img->authorImage($video_author_id)['user_image'])){ echo "person-placeholder.jpg"; } else {  echo $img->authorImage($video_author_id)['user_image']; } ?>" alt="author_image"></a>
+                <small><a href="/cms/user_profile/<?php echo $video_author; ?>"><?php echo $video_author; ?></a></small>
              </h3>
              </br>
              </br>
