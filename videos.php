@@ -64,7 +64,7 @@
              </h3>
              </br>
              </br>
-             <a class="btn btn-primary" href="watch/<?php echo $video_id; ?>">watch<span class="glyphicon glyphicon-chevron-right"></span></a>
+             <a class="btn btn-primary" href="/cms/watch/<?php echo $video_id; ?>">watch<span class="glyphicon glyphicon-chevron-right"></span></a>
  
          </div>
          </div>
