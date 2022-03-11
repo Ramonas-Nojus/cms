@@ -92,7 +92,7 @@ if(isset($_POST['unliked'])){
 
         
 
-        <video width="750px" controls poster="/cms/images/<?php echo $video_image; ?>">
+        <video width="100%" controls poster="/cms/images/<?php echo $video_image; ?>">
             <source src="/cms/all_videos/<?php echo $video_resources; ?>" type="video/mp4">
             <source src="/cms/all_videos/<?php echo $video_resources; ?>" type="video/ogg">
             Your browser does not support the video tag.
