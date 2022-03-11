@@ -52,20 +52,19 @@
                 <div class="media">
          
          <a class="pull-left" href="/cms/watch/<?php echo $video_id; ?>">
-             <img class="media-object" width="150px" style="border-radius: 5px; " src="/cms/images/<?php if(empty($video_image)){ echo "person-placeholder.jpg"; } else { echo $video_image; }
+             <img class="media-object" width="350px"  height="200px" style="border-radius: 5px; " src="/cms/images/<?php if(empty($video_image)){ echo "person-placeholder.jpg"; } else { echo $video_image; }
              ?>" alt="">
          </a>
          <div class="media-body">
              <h3 class="media-heading"><?php echo $video_title;?>
              <?php $img = new Comments; ?> 
-             
-            </br><a href="/cms/user_profile/<?php echo $video_author; ?>"><img class=" profilie_image" width="70px" border-radius="50%" src="/cms/images/<?php if(empty($img->authorImage($video_author_id)['user_image'])){ echo "person-placeholder.jpg"; } else {  echo $img->authorImage($video_author_id)['user_image']; } ?>" alt="author_image"></a>
+             </br>
+            </br><a href="/cms/user_profile/<?php echo $video_author; ?>"><img class="profilie_image" border-radius="50%" src="/cms/images/<?php if(empty($img->authorImage($video_author_id)['user_image'])){ echo "person-placeholder.jpg"; } else {  echo $img->authorImage($video_author_id)['user_image']; } ?>" alt="author_image"></a>
                 <small><a href="/cms/user_profile/<?php echo $video_author; ?>"><?php echo $video_author; ?></a></small>
              </h3>
              </br>
-             </br>
-             <a class="btn btn-primary" href="/cms/watch/<?php echo $video_id; ?>">watch<span class="glyphicon glyphicon-chevron-right"></span></a>
- 
+             <p><?php echo $video_description; ?></p>
+              
          </div>
          </div>
 

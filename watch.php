@@ -32,6 +32,10 @@ if(isset($_POST['unliked'])){
 
     <style>
 
+    a:link {
+        text-decoration: none;
+    }
+
     .profilie_image{
         object-fit: cover;
         width: 60px;
@@ -87,28 +91,27 @@ if(isset($_POST['unliked'])){
      ?> 
 
         
-        <h2>
-            <?php echo $video_title ?>
-        </h2>
+
         <video width="750px" controls poster="/cms/images/<?php echo $video_image; ?>">
             <source src="/cms/all_videos/<?php echo $video_resources; ?>" type="video/mp4">
             <source src="/cms/all_videos/<?php echo $video_resources; ?>" type="video/ogg">
             Your browser does not support the video tag.
         </video>
-
+        <h2>
+            <?php echo $video_title ?>
+        </h2>
         <p class="lead">
-            by <a href="/cms/author/<?php echo $video_author; ?>"><?php echo $video_author ?></a>
+            <?php $img = new Comments; ?>
+            <a href="/cms/user_profile/<?php echo $video_author; ?>">
+             <img  class="profilie_image" border-radius="50%" src="/cms/images/<?php if(empty($img->authorImage($video_author_id)['user_image'])){ echo "person-placeholder.jpg"; } else {  echo $img->authorImage($video_author_id)['user_image']; } ?>">
+              <?php echo $video_author ?></a>
+              <hr>
         </p>
         <p><span class="glyphicon glyphicon-time"></span> <?php echo $video_date ?></p>
         <hr>
 
         <p><?php echo $video_description ?></p>
-
-
-   <?php  ?>
-
-
-
+        <hr>
                 <?php   
                 if(isLoggedIn()){
                 if(UserLikedVideo($the_video_id)){  ?>
