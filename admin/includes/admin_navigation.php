@@ -126,6 +126,9 @@ if(isset($_SESSION['username'])) {
                     <li>
                         <a href="/cms/admin/my_posts"><i class="fa fa-fw fa-file"></i> My posts</a>
                     <li>
+                    <li>
+                        <a href="/cms/admin/my_videos"><i class="fa fa-fw fa-file"></i> My videos</a>
+                    <li>
                         <a href="/cms/admin/notifications"><i class="fa fa-fw fa-bell"></i> Notifications</a>
                     </li>
                     <li>

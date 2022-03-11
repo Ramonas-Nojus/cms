@@ -20,32 +20,11 @@
                        
                         <h1 class="page-header">
                             Welcome to admin
-                            
-                            
                             <small> <?php 
 
                             if(isset($_SESSION['username'])) {
-
                             echo $_SESSION['username'];
-
-                           
-
-
                             }
-                             // if(is_admin($_SESSION['username'])){
-
-                            //     echo " -- is admin too";
-
-                            // } else {
-
-                            //     echo " ---is not";
-
-                            // }
-
-
-
-
-
                             ?></small>
                         </h1>
 

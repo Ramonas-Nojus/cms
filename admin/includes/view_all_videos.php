@@ -2,6 +2,11 @@
 <?php
 include("delete_modal.php");
 
+
+ if($_SESSION['user_role'] != "admin"){
+    redirect("/cms/admin/my_videos");
+}  
+
 if(isset($_POST['checkBoxArray'])) {
 
     foreach($_POST['checkBoxArray'] as $videoValueId ){

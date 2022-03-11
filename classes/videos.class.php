@@ -9,6 +9,13 @@ class Videos extends Db {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public function getUsersVideos($username){
+        $sql = "SELECT * FROM videos WHERE video_status = ? AND video_author = ?";
+        $stmt = $this->connection()->prepare($sql);
+        $stmt->execute(['publish', $username]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     public function getVideosById($video_id){
         $sql = "SELECT * FROM videos WHERE video_status = ? AND video_id = ?";
         $stmt = $this->connection()->prepare($sql);
