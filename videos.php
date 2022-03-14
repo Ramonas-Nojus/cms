@@ -52,8 +52,11 @@
                 <div class="media">
          
          <a class="pull-left" href="/cms/watch/<?php echo $video_id; ?>">
-             <img class="media-object" width="350px"  height="200px" style="border-radius: 5px; " src="/cms/images/<?php if(empty($video_image)){ echo "person-placeholder.jpg"; } else { echo $video_image; }
-             ?>" alt="">
+         <?php if(!empty($video_image)){ ?>
+             <img class="media-object" width="350px"  height="200px" style="border-radius: 5px; " src="/cms/images/<?php  echo $video_image; ?>" alt="">
+             <?php } else { ?>
+                <video width="350px"  height="200px" style="border-radius: 5px;"  src="/cms/all_videos/<?php echo $video_resources; ?>" ></video>
+                <?php } ?>
          </a>
          <div class="media-body">
              <h3 class="media-heading"><?php echo $video_title;?>

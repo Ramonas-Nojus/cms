@@ -43,5 +43,11 @@ class Videos extends Db {
         move_uploaded_file($video_resources_temp, "../all_videos/$video_resources" );
         move_uploaded_file($video_image_temp, "../images/$video_image" );
     }
+    public function updateVideo($video_title,$video_image,$video_image_temp,$video_tags,$video_description,$username,$user_id,$video_resources,$video_resources_temp){
+        $sql = "UPDATE videos SET video_title='{$video_title}', video_image='{$video_image}', video_tags='{$video_tags}', video_description='{$video_description}', video_author='{$username}',video_author_id='{$user_id}',video_resources='{$video_resources}')";
+        $stmt = $this->connection()->query($sql);
+        move_uploaded_file($video_resources_temp, "../all_videos/$video_resources" );
+        move_uploaded_file($video_image_temp, "../images/$video_image" );
+    }
 
 }
