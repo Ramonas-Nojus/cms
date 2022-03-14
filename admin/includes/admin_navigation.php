@@ -69,7 +69,7 @@ if(isset($_SESSION['username'])) {
                         <a href="/cms/admin/"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
                     </li>
                 
-                     <li>
+                    <li>
                         <a href="javascript:;" data-toggle="collapse" data-target="#posts_dropdown"><i class="fa fa-fw fa-arrows-v"></i>Posts <i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="posts_dropdown" class="collapse">
                             <li>
@@ -80,6 +80,17 @@ if(isset($_SESSION['username'])) {
                             </li>
                             <?php if(is_admin()){ ?>
                         </ul>
+                    </li>
+
+                    <li>
+                            <li>
+                                <a href="/cms/admin/videos.php"><i class="fa fa-play"></i> View All Videos</a>
+                            </li> <?php } ?>
+                            <li>
+                                <a href="/cms/admin/videos.php?source=add_video"><i class="fa fa-stop"></i> Add Video</a>
+                            </li>
+                            <?php if(is_admin()){ ?>
+                        
                     </li>
                     <li>
                         <a href="/cms/admin/categories"><i class="fa fa-fw fa-wrench"></i> Categories</a>
@@ -104,6 +115,7 @@ if(isset($_SESSION['username'])) {
                             </li>
                         </ul>
                     </li>
+                    
                     <li class="">
                         <a href="/cms/admin/reports_table"><i class="glyphicon glyphicon-minus-sign"></i> Reports</a>
                     </li>
@@ -113,6 +125,9 @@ if(isset($_SESSION['username'])) {
                     </li>
                     <li>
                         <a href="/cms/admin/my_posts"><i class="fa fa-fw fa-file"></i> My posts</a>
+                    <li>
+                    <li>
+                        <a href="/cms/admin/my_videos"><i class="fa fa-fw fa-file"></i> My videos</a>
                     <li>
                         <a href="/cms/admin/notifications"><i class="fa fa-fw fa-bell"></i> Notifications</a>
                     </li>

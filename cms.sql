@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 19, 2022 at 07:00 PM
+-- Generation Time: Mar 14, 2022 at 06:34 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.10
 
@@ -56,6 +56,20 @@ CREATE TABLE `chat` (
   `to_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `chat`
+--
+
+INSERT INTO `chat` (`message_id`, `message_content`, `from_username`, `to_username`, `from_id`, `to_id`) VALUES
+(95, 'asdasd', 'greenfor', 'altaras', 4, 13),
+(96, 'g', 'greenfor', 'altaras', 4, 13),
+(97, '', 'greenfor', 'altaras', 4, 13),
+(98, '', 'greenfor', 'altaras', 4, 13),
+(99, '', 'greenfor', 'altaras', 4, 13),
+(100, '', 'greenfor', 'altaras', 4, 13),
+(101, '', 'greenfor', 'altaras', 4, 13),
+(102, '', 'greenfor', 'altaras', 4, 13);
+
 -- --------------------------------------------------------
 
 --
@@ -65,6 +79,7 @@ CREATE TABLE `chat` (
 CREATE TABLE `comments` (
   `comment_id` int(3) NOT NULL,
   `comment_post_id` int(3) NOT NULL,
+  `comment_video_id` int(55) NOT NULL,
   `comment_author` varchar(255) NOT NULL,
   `comment_email` varchar(255) NOT NULL,
   `comment_content` text NOT NULL,
@@ -77,10 +92,18 @@ CREATE TABLE `comments` (
 -- Dumping data for table `comments`
 --
 
-INSERT INTO `comments` (`comment_id`, `comment_post_id`, `comment_author`, `comment_email`, `comment_content`, `comment_status`, `comment_date`, `author_id`) VALUES
-(12, 140, 'kamikadze', 'gralijus@gmail.com', 'hahah\r\n', 'approved', '2022-01-19', 5),
-(13, 140, 'kamikadze', 'gralijus@gmail.com', 'fgjhgjhgjh\r\n', 'approved', '2022-01-20', 5),
-(16, 154, 'greenfor', 'ramonas.nojus@gmail.com', 'sdsd', 'approved', '2022-02-19', 4);
+INSERT INTO `comments` (`comment_id`, `comment_post_id`, `comment_video_id`, `comment_author`, `comment_email`, `comment_content`, `comment_status`, `comment_date`, `author_id`) VALUES
+(17, 155, 0, 'greenfor', 'ramonas.nojus@gmail.com', 'hahahah bad game lol\r\n', 'approved', '2022-02-19', 4),
+(18, 159, 0, 'greenfor', 'ramonas.nojus@gmail.com', 'hahahahahha expensive piece of shit\r\n', 'approved', '2022-02-20', 4),
+(19, 205, 0, 'greenfor', 'ramonas.nojus@gmail.com', 'ffffffffff', 'approved', '2022-03-03', 4),
+(20, 205, 0, 'greenfor', 'ramonas.nojus@gmail.com', 'nice\r\n', 'approved', '2022-03-03', 4),
+(21, 205, 0, 'greenfor', 'ramonas.nojus@gmail.com', 'nice\r\n', 'approved', '2022-03-03', 4),
+(22, 205, 0, 'greenfor', 'ramonas.nojus@gmail.com', 'nice\r\n', 'approved', '2022-03-03', 4),
+(23, 205, 0, 'greenfor', 'ramonas.nojus@gmail.com', 'nice\r\n', 'approved', '2022-03-03', 4),
+(24, 205, 0, 'greenfor', 'ramonas.nojus@gmail.com', 'nice\r\n', 'approved', '2022-03-03', 4),
+(28, 0, 8, 'altaras', 'gralijus@gmail.com', 'nice\r\n', 'approved', '2022-03-08', 13),
+(29, 0, 8, 'greenfor', 'ramonas.nojus@gmail.com', 'hahaha\r\n', 'approved', '2022-03-08', 4),
+(30, 0, 11, 'altaras', 'gralijus@gmail.com', 'nice\r\n', 'approved', '2022-03-11', 13);
 
 -- --------------------------------------------------------
 
@@ -101,8 +124,7 @@ CREATE TABLE `friends` (
 --
 
 INSERT INTO `friends` (`id`, `friend1_id`, `friend2_id`, `friend1_username`, `friend2_username`) VALUES
-(17, 4, 13, 'greenfor', 'altaras'),
-(19, 13, 14, 'altaras', 'Gintaryte');
+(17, 4, 13, 'greenfor', 'altaras');
 
 -- --------------------------------------------------------
 
@@ -113,16 +135,23 @@ INSERT INTO `friends` (`id`, `friend1_id`, `friend2_id`, `friend1_username`, `fr
 CREATE TABLE `likes` (
   `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
-  `post_id` int(11) NOT NULL
+  `post_id` int(11) NOT NULL,
+  `video_id` int(55) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `likes`
 --
 
-INSERT INTO `likes` (`id`, `user_id`, `post_id`) VALUES
-(37, 5, 140),
-(38, 5, 152);
+INSERT INTO `likes` (`id`, `user_id`, `post_id`, `video_id`) VALUES
+(42, 4, 155, 0),
+(49, 13, 475, 0),
+(55, 4, 475, 0),
+(59, 4, 0, 8),
+(61, 4, 205, 0),
+(63, 13, 0, 8),
+(64, 4, 0, 10),
+(65, 13, 0, 11);
 
 -- --------------------------------------------------------
 
@@ -152,11 +181,12 @@ CREATE TABLE `posts` (
 --
 
 INSERT INTO `posts` (`post_id`, `post_category_id`, `post_title`, `post_author`, `post_user`, `post_user_id`, `post_date`, `post_image`, `post_content`, `post_tags`, `post_comment_count`, `post_status`, `post_views_count`, `likes`) VALUES
-(155, 48, 'sea of thieves', '', 'greenfor', 4, '2022-02-19', 'ExRfWcnWQAIH19H.jpg', 'sea of thieves twitch drops gilded phoenixsea of thieves twitch drops gilded phoenixsea of thieves twitch drops gilded phoenix', 'sea of thieves twitch drops gilded phoenix', '', 'published', 0, 0),
+(155, 48, 'sea of thieves', '', 'greenfor', 4, '2022-02-19', 'ExRfWcnWQAIH19H.jpg', 'sea of thieves twitch drops gilded phoenixsea of thieves twitch drops gilded phoenixsea of thieves twitch drops gilded phoenix', 'sea of thieves twitch drops gilded phoenix', '', 'published', 5, 1),
 (156, 53, 'mercedes', '', 'greenfor', 4, '2022-02-19', 'BBG63AMG-Front.jpg', 'The numerous features like the AMG-specific radiator grille and 22-inch wheels lend this legendary figure its extrovert outward appearance.The numerous features like the AMG-specific radiator grille and 22-inch wheels lend this legendary figure its extrovert outward appearance.', 'The numerous features like the AMG-specific radiator grille and 22-inch wheels lend this legendary figure its extrovert outward appearance.', '', 'published', 0, 0),
 (157, 48, 'sea of thieves', '', 'greenfor', 4, '2022-02-19', 'unknown2.png', 'sea of thievessea of thievessea of thievessea of thievessea of thievessea of thieves', 'sea of thieves', '', 'published', 0, 0),
 (158, 48, 'something', '', 'greenfor', 4, '2022-02-19', 'product_SoT_getkraken_shirt_design1.png', 'Sea of Thieves Screenshot 2021.11.16 - 08.10.22.82.pngSea of Thieves Screenshot 2021.11.16 - 08.10.22.82.pngSea of Thieves Screenshot 2021.11.16 - 08.10.22.82.png', 'Sea of Thieves Screenshot 2021.11.16 - 08.10.22.82.png', '', 'published', 0, 0),
-(159, 48, 'NFT', '', 'greenfor', 4, '2022-02-19', '1125.jpg', 'NFT monkey NFT monkey NFT monkey NFT monkey', 'NFT', '', 'published', 0, 0);
+(159, 48, 'NFT', '', 'greenfor', 4, '2022-02-19', '1125.jpg', 'NFT monkey NFT monkey NFT monkey NFT monkey', 'NFT', '', 'published', 18, 1),
+(205, 48, 'Why I like coding', '', 'greenfor', 4, '2022-03-02', 'CYYkum5WwAQ8sMD.png', 'I like coding becouse its just very intresting to me to build web sites or sit few hours to fix bugs and try figure out what is wrong with that piece of code', 'Why I like coding', '', 'published', 68, 1);
 
 -- --------------------------------------------------------
 
@@ -221,7 +251,8 @@ INSERT INTO `users` (`user_id`, `username`, `user_password`, `user_firstname`, `
 (13, 'altaras', '$2y$12$/yy2qK1ihXJJNsfvWvEZd.GR81cHuv9i/Q2TEpeC7xmvqqwqHqEIS', 'Gintaras', 'Ramonas', 'Gintaras Ramonas', 'gralijus@gmail.com', 'unnamed.png', 'subscriber', '$2y$10$iusesomecrazystrings22', '', '2022-02-04'),
 (14, 'Gintaryte', '$2y$12$W1fJDJTswVvJNZktrOMt4OwK/rHNKOKVH4Xvozh38uvYXfVRKf8za', 'Gintare', 'Ramonaite', 'Gintare Ramonaite', 'gintare@gmail.com', 'person-placeholder.jpg', 'subscriber', '$2y$10$iusesomecrazystrings22', '', '2022-02-08'),
 (15, 'asdasd', '$2y$12$LRJNziZ2WLT0a90rFD5veulY5bPZOt3ZrnLxnBEqc8/wgSLap3tmm', 'asdasd', 'asdasd', 'asdasd asdasd', 'asdasd.nojus@gmail.com', 'person-placeholder.jpg', 'banned', '$2y$10$iusesomecrazystrings22', '', '2022-02-19'),
-(16, 'dfgdfg', '$2y$12$0EPdj2dOndF6uWIysS8ZI.t6XsO788zKczZspi7mCIdz/8FsjmWa6', 'dfg', 'dfgdfg', 'dfg dfgdfg', 'dfgdfg.nojus@gmail.com', 'person-placeholder.jpg', 'banned', '$2y$10$iusesomecrazystrings22', '', '2022-02-19');
+(16, 'dfgdfg', '$2y$12$0EPdj2dOndF6uWIysS8ZI.t6XsO788zKczZspi7mCIdz/8FsjmWa6', 'dfg', 'dfgdfg', 'dfg dfgdfg', 'dfgdfg.nojus@gmail.com', 'person-placeholder.jpg', 'banned', '$2y$10$iusesomecrazystrings22', '', '2022-02-19'),
+(17, 'dfgh', '$2y$12$V2TBqEdy5ItLmtDVB7/1XeL3pmV2SgYGEEXJGOsArC5KmyiNUpogS', 'gag', 'gsgs', 'gag gsgs', 'gfd.nojus@gmail.com', 'person-placeholder.jpg', 'banned', '$2y$10$iusesomecrazystrings22', '', '2022-02-20');
 
 -- --------------------------------------------------------
 
@@ -321,7 +352,59 @@ INSERT INTO `users_online` (`id`, `session`, `time`) VALUES
 (122, '2s3jjtmpqmtvn0ee2d89u2a3pi', 1645110229),
 (123, '3ce6knko8fbkg3p9c2ouilpk1h', 1645209495),
 (124, '4974pqmqp050m57810374r1ntb', 1645221167),
-(125, 'd5sfgeo7cidf34dibfk7odcgmt', 1645293631);
+(125, 'd5sfgeo7cidf34dibfk7odcgmt', 1645299285),
+(126, '9qruc7971b601r4ppro83ugqj5', 1645311945),
+(127, 'l9iec88din71emian6j0ndoe56', 1645363652),
+(128, 'so1d3briu84l82b4vd5okrgjh9', 1645380286),
+(129, 'a6fhttfnqla7hahkb1c08tupna', 1645740296),
+(130, 'hc0gl51tsosvvh4alr4dg1dtd6', 1646052028),
+(131, 'do1j66arggeq9frdp0ga2clv4s', 1646075623),
+(132, '69m5gmgg6mf8hcplf9l65936cn', 1646233797),
+(133, 'jjquqgmas6tt80c1muh3v4hm80', 1646307520),
+(134, 'c6om9lg52ksqhl172jiu3f5u05', 1646333550),
+(135, 'kjfk12cjoqe234q6idlq5884vu', 1646399363),
+(136, 'ectndho9c2r217kj6hfeuq895f', 1646417094),
+(137, 'jq4p2idgdt3k8vctqmdvanc4l3', 1646669851),
+(138, 'mn2pp23hsfbnr211elff8lqarr', 1646691882),
+(139, '1cqnlle3u8tf33aiu1lhcst3d2', 1646765933),
+(140, '25hrqda7ojrstqim4g2ek27hfh', 1646856244),
+(141, 'ii54jmegdp8e99tj52tb695f86', 1646945257),
+(142, 'aak3vn2ascfkuihnoij15n0hsk', 1647018643),
+(143, '1nnlsu9no56bv9po41e397a63i', 1647094915),
+(144, '3okve8bjk2tjbdrnl5ppsv7fq6', 1647208527);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `videos`
+--
+
+CREATE TABLE `videos` (
+  `video_id` int(55) NOT NULL,
+  `video_author` varchar(55) NOT NULL,
+  `video_author_id` int(55) NOT NULL,
+  `video_title` varchar(55) NOT NULL,
+  `video_resources` varchar(55) NOT NULL,
+  `video_date` date NOT NULL,
+  `video_tags` text NOT NULL,
+  `video_views` int(55) NOT NULL,
+  `video_status` varchar(55) NOT NULL,
+  `video_likes` int(55) NOT NULL,
+  `video_comments_count` text NOT NULL,
+  `video_image` text NOT NULL,
+  `video_description` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `videos`
+--
+
+INSERT INTO `videos` (`video_id`, `video_author`, `video_author_id`, `video_title`, `video_resources`, `video_date`, `video_tags`, `video_views`, `video_status`, `video_likes`, `video_comments_count`, `video_image`, `video_description`) VALUES
+(8, 'greenfor', 4, 'sea of thieves shots', 'Sea of Thieves 2022.02.08 - 20.34.51.11_Trim.mp4', '2022-03-07', 'sea of thieves shots', 155, 'publish', 2, '', 'unknown1.png', 'sea of thieves shots'),
+(10, 'greenfor', 4, 'sea of thieves shots - 2', 'Sea of Thieves 2022.02.19 - 22.13.17.01_Trim.mp4', '2022-03-09', 'sea of thieves shots 2', 39, 'publish', 1, '', 'unknown5.png', 'this is my second sea of thieves shot'),
+(11, 'altaras', 13, 'sea of thieves shots - 3', 'Sea of Thieves 2022.02.19 - 22.39.28.02_Trim.mp4', '2022-03-11', 'sea of thieves shots - 3', 9, 'publish', 1, '', 'ExRfWcnWQAIH19H.jpg', 'third sea of thieves kill'),
+(12, 'greenfor', 4, 'ssssssssssssssss', 'Sea of Thieves 2022.02.08 - 20.34.51.11_Trim (2).mp4', '2022-03-12', 'ssssssssssssssssssss', 7, 'publish', 0, '', '', 'ssssssssssssssssssssssss'),
+(13, 'greenfor', 4, 'sea of thieves shots - 4', 'Sea of Thieves 2022.02.19 - 22.13.17.01_Trim (2).mp4', '2022-03-13', 'sea of thieves shots - 4', 3, 'publish', 0, '', '', 'sea of thieves shots - 4');
 
 --
 -- Indexes for dumped tables
@@ -389,6 +472,12 @@ ALTER TABLE `users_online`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `videos`
+--
+ALTER TABLE `videos`
+  ADD PRIMARY KEY (`video_id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -402,13 +491,13 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `chat`
 --
 ALTER TABLE `chat`
-  MODIFY `message_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=95;
+  MODIFY `message_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=103;
 
 --
 -- AUTO_INCREMENT for table `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `comment_id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `comment_id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `friends`
@@ -420,19 +509,19 @@ ALTER TABLE `friends`
 -- AUTO_INCREMENT for table `likes`
 --
 ALTER TABLE `likes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
 
 --
 -- AUTO_INCREMENT for table `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `post_id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=165;
+  MODIFY `post_id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=476;
 
 --
 -- AUTO_INCREMENT for table `reports`
 --
 ALTER TABLE `reports`
-  MODIFY `report_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `report_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `requests`
@@ -444,13 +533,19 @@ ALTER TABLE `requests`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `user_id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `users_online`
 --
 ALTER TABLE `users_online`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=126;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=145;
+
+--
+-- AUTO_INCREMENT for table `videos`
+--
+ALTER TABLE `videos`
+  MODIFY `video_id` int(55) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

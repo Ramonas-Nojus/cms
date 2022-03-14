@@ -79,6 +79,11 @@ function UserLikedPost($post_id = ''){
     return mysqli_num_rows($result) >= 1 ? true : false;
 }
 
+function UserLikedVideo($video_id = ''){
+    $result = query("SELECT * FROM likes WHERE user_id = ".$_SESSION['user_id']." AND video_id = '$video_id' ");
+    return mysqli_num_rows($result) >= 1 ? true : false;
+}
+
 
 function checkIfUserIsLoggedInAndRedirect($redirectLocation=null){
 
