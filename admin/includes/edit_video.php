@@ -10,20 +10,14 @@
    if(isset($_POST['update_video'])) {
    
             $video_title          = escape($_POST['video_title']);
-            $video_image          = $_FILES['image']['name'];
-            $video_image_temp     = $_FILES['image']['tmp_name'];
-            $video_resources      = $_FILES['video']['name'];
-            $video_resources_temp = $_FILES['video']['tmp_name'];
+            // $video_image          = $_FILES['image']['name'];
+            // $video_image_temp     = $_FILES['image']['tmp_name'];
             $video_tags           = escape($_POST['video_tags']);
             $video_description    = escape($_POST['video_description']);
-            $video_date           = escape(date('d-m-y'));
-            $username             = $_SESSION['username'];
-            $user_id              = $_SESSION['user_id']; 
 
-            
-            $updateVideo = $Video->updateVideo($video_title,$video_image,$video_image_temp,$video_tags,$video_description,$username,$user_id,$video_resources,$video_resources_temp);
+            $updateVideo = $Video->updateVideo($video_title,$video_tags,$video_description,$the_video_id);
 
-            echo "<p class='bg-success'>video Updated. <a href='../watch/{$the_video_id}'>View Post </a>";
+            echo "<p class='bg-success'>video Updated. <a href='../watch/{$the_video_id}'>View Video </a>";
    }
 
          $vid = $Video->getVideosById($the_video_id);
@@ -39,12 +33,25 @@
     <div class="form-group">
          <label for="post_image">Video image</label>
          </br>
-         <img style="width: 200px; height: 100px; border-radius:5px; margin-bottom:5px;"  src="/cms/images/<?php echo $vid['video_image']; ?>" >
+         <?php if(!empty($vid['video_image'])){ ?>
+            <img style="width: 200px; height: 100px; border-radius:5px; margin-bottom:5px;"  src="/cms/images/<?php echo $vid['video_image']; ?>" >
+         <?php } else { ?>
+            <video style="width: 200px; height: 120px; border-radius:5px; margin-bottom:5px;" src="/cms/all_videos/<?php echo $vid['video_resources']; ?>"></video>
+         <?php } 
+         
+         if(isset($_FILES['image'])){
+            if($_FILES['image']['size'] != 0)  {
+               $video_image      = $_FILES['image']['name'];
+               $video_image_temp = $_FILES['image']['tmp_name'];
+               $Video->updateVideoImage($the_video_id, $video_image, $video_image_temp);
+               }
+            } ?>
           <input type="file"  name="image" value="<?php echo $vid['video_image']; ?>" accept="image/*">
       </div>
       <div class="form-group">
          <label for="post_image">Video</label>
-          <input type="file" name="video" value="<?php echo $vid['video_resources']; ?>" accept="video/*">
+         </br>
+         <video controls width="200px"  src="/cms/all_videos/<?php echo $vid['video_resources']; ?>"></video>
       </div>
 
       <div class="form-group">
@@ -62,7 +69,7 @@
       
 
        <div class="form-group">
-          <input class="btn btn-primary" type="submit" name="create_video" value="Publish Post">
+          <input class="btn btn-primary" type="submit" name="update_video" value="Update Video">
       </div>
 
 
