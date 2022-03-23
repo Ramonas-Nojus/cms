@@ -15,8 +15,8 @@ if(isset($_POST['checkBoxArray'])) {
         
         switch($bulk_options) {
 
-        case 'published':
-            $query = "UPDATE videos SET video_status = '{$bulk_options}' WHERE post_id = {$videoValueId}  ";
+        case 'publish':
+            $query = "UPDATE videos SET video_status = '{$bulk_options}' WHERE video_id = {$videoValueId}  ";
             $update_to_published_status = mysqli_query($connection,$query);       
             confirmQuery($update_to_published_status);          
             break;
@@ -77,7 +77,7 @@ if(isset($_POST['checkBoxArray'])) {
   <?php 
     
     $newObj = new Videos();
-    $post = $newObj->getVideos();
+    $post = $newObj->getAllVideos();
     foreach($post as $row){
             $video_id            = $row['video_id'];
             $video_title         = $row['video_title'];
@@ -85,6 +85,7 @@ if(isset($_POST['checkBoxArray'])) {
             $video_author_id     = $row['video_author_id'];
             $video_date          = $row['video_date'];
             $video_image         = $row['video_image'];
+            $video_resources     = $row['video_resources'];
             $video_description   = $row['video_description'];
             $video_status        = $row['video_status'];
             $video_views         = $row['video_views'];
@@ -110,7 +111,11 @@ if(isset($_POST['checkBoxArray'])) {
         }
         echo "<td>$video_title</td>"; 
         echo "<td>$video_status</td>";
+        if(!empty($video_image)){
         echo "<td><img width='100' src='../images/$video_image' alt='image'></td>";
+        } else {
+            echo  "<td><video width='100' src='/cms/all_videos/$video_resources'></video></td>";
+        }
         echo "<td>$video_tags</td>";
 
         $query = "SELECT * FROM comments WHERE comment_video_id = $video_id";
@@ -146,10 +151,8 @@ if(isset($_POST['checkBoxArray'])) {
 if(isset($_POST['delete'])){
     
     $the_video_id = escape($_POST['video_id']);
-    
-    $query = "DELETE FROM videos WHERE video_id = {$the_video_id} ";
-    $delete_query = mysqli_query($connection, $query);
-    header("Location: /cms/admin/videos.php");   
+    $newObj->deleteVideo($the_video_id);
+    redirect('/cms/admin/videos.php');
 }
 
 if(isset($_GET['reset'])){

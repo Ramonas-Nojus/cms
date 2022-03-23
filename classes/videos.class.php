@@ -9,6 +9,13 @@ class Videos extends Db {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public function getAllVideos(){
+        $sql = "SELECT * FROM videos";
+        $stmt = $this->connection()->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     public function getUsersVideos($username){
         $sql = "SELECT * FROM videos WHERE video_status = ? AND video_author = ?";
         $stmt = $this->connection()->prepare($sql);
@@ -43,11 +50,30 @@ class Videos extends Db {
         move_uploaded_file($video_resources_temp, "../all_videos/$video_resources" );
         move_uploaded_file($video_image_temp, "../images/$video_image" );
     }
-    public function updateVideo($video_title,$video_image,$video_image_temp,$video_tags,$video_description,$username,$user_id,$video_resources,$video_resources_temp){
-        $sql = "UPDATE videos SET video_title='{$video_title}', video_image='{$video_image}', video_tags='{$video_tags}', video_description='{$video_description}', video_author='{$username}',video_author_id='{$user_id}',video_resources='{$video_resources}')";
-        $stmt = $this->connection()->query($sql);
-        move_uploaded_file($video_resources_temp, "../all_videos/$video_resources" );
+    public function updateVideo($video_title,$video_tags,$video_description, $video_id){
+        $sql = "UPDATE videos SET video_title='{$video_title}', video_tags='{$video_tags}', video_description='{$video_description}' WHERE video_id = $video_id ";
+        $this->connection()->query($sql);
+    }
+
+    public function updateVideoImage($video_id, $video_image, $video_image_temp){
+        $sql = "UPDATE videos SET video_image = ? WHERE video_id = ? ";
+        $stmt = $this->connection()->prepare($sql);
+        $stmt->execute([$video_image, $video_id]);
         move_uploaded_file($video_image_temp, "../images/$video_image" );
+    }
+
+    public function deleteVideo($video_id){
+        $sql = "DELETE FROM videos WHERE video_id = ? ";
+        $stmt = $this->connection()->prepare($sql);
+        $stmt->execute([$video_id]);
+    }
+
+    public function searchVideo($search){
+        $pattern = "%".$search."%";
+        $sql = "SELECT * FROM videos WHERE video_tags LIKE ? OR video_title LIKE ? ";
+        $stmt = $this->connection()->prepare($sql);
+        $stmt->execute([$pattern, $pattern]);
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }
 
 }
