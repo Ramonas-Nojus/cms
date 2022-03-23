@@ -16,6 +16,21 @@
             height: 40px;
             border-radius: 50%;
         }
+        .img {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 350px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 5px; 
+        }
+
+        .vid{
+            width: 350px;
+            height: 200px;
+            background-color: black
+        }
 
  </style>
     <!-- Page Content -->
@@ -55,9 +70,9 @@
          
          <a class="pull-left" href="/cms/watch/<?php echo $video_id; ?>">
          <?php if(!empty($video_image)){ ?>
-             <img class="media-object" width="350px"  height="200px" style="border-radius: 5px; " src="/cms/images/<?php  echo $video_image; ?>" alt="">
+             <img class="media-object img" style="; " src="/cms/images/<?php  echo $video_image; ?>" alt="">
              <?php } else { ?>
-                <video width="350px"  height="200px" style="border-radius: 5px;"  src="/cms/all_videos/<?php echo $video_resources; ?>" ></video>
+                <video width="350px" class="media-object vid"  height="200px" style="border-radius: 5px;"  src="/cms/all_videos/<?php echo $video_resources; ?>" ></video>
                 <?php } ?>
          </a>
          <div class="media-body">
