@@ -138,11 +138,6 @@ if(isset($_POST['unliked'])){
             $getComments = new Comments();
             $comments = $getComments->getCommetsPosts($the_post_id);
 
-            if(!$comments) {
-
-                die('Query Failed' . mysqli_error($connection));
-             } else {
-
             foreach($comments as $row){
                 $comment_date = $row['comment_date']; 
                 $comment_content = $row['comment_content'];
@@ -165,7 +160,7 @@ if(isset($_POST['unliked'])){
                         <?php echo $comment_content;   ?>
                     </div>
                 </div>
-           <?php } }  }  else {
+           <?php } }  else {
             header("Location: /cms/");
             }
                 ?>

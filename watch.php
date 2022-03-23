@@ -28,6 +28,11 @@ if(isset($_POST['unliked'])){
         height: 60px;
         border-radius: 50%;
     }
+     .vid {
+        width: 100%;
+        height: 450px;
+        background-color: black;
+    } 
     </style>
     <!-- Page Content -->
     <div class="container">
@@ -51,7 +56,7 @@ if(isset($_POST['unliked'])){
             $video_description = $vid['video_description'];
         
      ?> 
-        <video width="100%" autoplay controls poster="/cms/images/<?php echo $video_image; ?>">
+        <video class="vid" autoplay controls poster="/cms/images/<?php echo $video_image; ?>">
             <source src="/cms/all_videos/<?php echo $video_resources; ?>" type="video/mp4">
             <source src="/cms/all_videos/<?php echo $video_resources; ?>" type="video/ogg">
             Your browser does not support the video tag.

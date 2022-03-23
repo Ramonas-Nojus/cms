@@ -15,12 +15,28 @@ include "includes/db.php"; ?>
  
     <style>
 
-.profilie_image {
-    object-fit: cover;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-}
+        .profilie_image {
+            object-fit: cover;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+        }
+
+        .img {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 350px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 5px; 
+        }
+
+        .vid{
+            width: 350px;
+            height: 200px;
+            background-color: black
+        }
 
 </style>
 
@@ -57,9 +73,7 @@ include "includes/db.php"; ?>
             if(empty($posts)&&empty($videos)){
                 echo "<h1> NO RESULT</h1>";
             } else {
-           
-                if($src){
-    
+               
                     foreach($src as $row){
                         $video_id = $row['video_id'];
                         $video_title = $row['video_title'];
@@ -87,9 +101,9 @@ include "includes/db.php"; ?>
                 
                             <a class="pull-left" href="/cms/watch/<?php echo $video_id; ?>">
                             <?php if(!empty($video_image)){ ?>
-                            <img class="media-object" width="350px"  height="200px" style="border-radius: 5px; " src="/cms/images/<?php  echo $video_image; ?>" alt="">
+                            <img class="media-object img" width="350px"  height="200px" style="border-radius: 5px; " src="/cms/images/<?php  echo $video_image; ?>" alt="">
                             <?php } else { ?>
-                            <video width="350px"  height="200px" style="border-radius: 5px;"  src="/cms/all_videos/<?php echo $video_resources; ?>" ></video>
+                            <video class="media-object vid" style="border-radius: 5px;"  src="/cms/all_videos/<?php echo $video_resources; ?>" ></video>
                             <?php } ?>
                             </a>
                             <div class="media-body">
@@ -116,7 +130,7 @@ include "includes/db.php"; ?>
                             <a href="post/<?php echo $post_id; ?>"><?php echo $post_title ?></a>
                             </h2>
                             <p class="lead">
-                            by <a href="author/<?php echo $post_author; ?>"><?php echo $post_author ?></a>
+                                by <a href="author/<?php echo $post_author; ?>"><?php echo $post_author ?></a>
                             </p>
                             <p><span class="glyphicon glyphicon-time"></span> <?php echo $post_date ?></p>
                             <hr>
@@ -139,7 +153,48 @@ include "includes/db.php"; ?>
                 
                 
                 
-                   <?php } } } else { 
+                   <?php } } 
+
+    if(!$src){
+
+        foreach($videos as $row){ 
+            $video_id = $row['video_id'];
+            $video_title = $row['video_title'];
+            $video_author = $row['video_author'];
+            $video_author_id = $row['video_author_id'];
+            $video_date = $row['video_date'];
+            $video_image = $row['video_image'];
+            $video_resources = $row['video_resources'];
+            $video_status = $row['video_status'];
+            $video_description = $row['video_description'];
+
+            ?>
+            <hr>
+
+            <div class="media">
+                <a class="pull-left" href="/cms/watch/<?php echo $video_id; ?>">
+            <?php if(!empty($video_image)){ ?>
+                <img class="media-object" width="350px"  height="200px" style="border-radius: 5px; " src="/cms/images/<?php  echo $video_image; ?>" alt="">
+            <?php } else { ?>
+                <video width="350px"  height="200px" style="border-radius: 5px;"  src="/cms/all_videos/<?php echo $video_resources; ?>" ></video>
+            <?php } ?>
+            </a>
+            <div class="media-body">
+                <h3 class="media-heading"><?php echo $video_title;?>
+                <?php $img = new Comments; ?> 
+            </br>
+                </br>
+                <a href="/cms/user_profile/<?php echo $video_author; ?>"><img class="profilie_image" border-radius="50%" src="/cms/images/<?php if(empty($img->authorImage($video_author_id)['user_image'])){ echo "person-placeholder.jpg"; } else {  echo $img->authorImage($video_author_id)['user_image']; } ?>" alt="author_image"></a>
+                    <small><a href="/cms/user_profile/<?php echo $video_author; ?>"><?php echo $video_author; ?></a></small>
+                </h3>
+            </br>
+                <p><?php echo $video_description; ?></p>
+
+                </div>
+            </div>
+
+            <?php   }
+
 foreach($posts as $x){
         $post_id = $x['post_id'];
         $post_title = $x['post_title'];
@@ -180,44 +235,7 @@ foreach($posts as $x){
         <hr>
 <?php 
 
-            foreach($videos as $row){ 
-                $video_id = $row['video_id'];
-                $video_title = $row['video_title'];
-                $video_author = $row['video_author'];
-                $video_author_id = $row['video_author_id'];
-                $video_date = $row['video_date'];
-                $video_image = $row['video_image'];
-                $video_resources = $row['video_resources'];
-                $video_status = $row['video_status'];
-                $video_description = $row['video_description'];
-
-                ?>
-                <hr>
-
-                <div class="media">
-
-                    <a class="pull-left" href="/cms/watch/<?php echo $video_id; ?>">
-                <?php if(!empty($video_image)){ ?>
-                    <img class="media-object" width="350px"  height="200px" style="border-radius: 5px; " src="/cms/images/<?php  echo $video_image; ?>" alt="">
-                <?php } else { ?>
-                    <video width="350px"  height="200px" style="border-radius: 5px;"  src="/cms/all_videos/<?php echo $video_resources; ?>" ></video>
-                <?php } ?>
-                </a>
-                <div class="media-body">
-                    <h3 class="media-heading"><?php echo $video_title;?>
-                    <?php $img = new Comments; ?> 
-                </br>
-                    </br>
-                    <a href="/cms/user_profile/<?php echo $video_author; ?>"><img class="profilie_image" border-radius="50%" src="/cms/images/<?php if(empty($img->authorImage($video_author_id)['user_image'])){ echo "person-placeholder.jpg"; } else {  echo $img->authorImage($video_author_id)['user_image']; } ?>" alt="author_image"></a>
-                        <small><a href="/cms/user_profile/<?php echo $video_author; ?>"><?php echo $video_author; ?></a></small>
-                    </h3>
-                </br>
-                    <p><?php echo $video_description; ?></p>
-
-                    </div>
-                </div>
-
-                <?php   }
+ }
 
         
         
@@ -232,7 +250,7 @@ foreach($posts as $x){
                 
 
            <?php }
-            }
+            
 
 ?>
 
