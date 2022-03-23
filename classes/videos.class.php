@@ -68,4 +68,12 @@ class Videos extends Db {
         $stmt->execute([$video_id]);
     }
 
+    public function searchVideo($search){
+        $pattern = "%".$search."%";
+        $sql = "SELECT * FROM videos WHERE video_tags LIKE ? OR video_title LIKE ? ";
+        $stmt = $this->connection()->prepare($sql);
+        $stmt->execute([$pattern, $pattern]);
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
 }

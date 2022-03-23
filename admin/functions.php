@@ -316,16 +316,6 @@ if(isset($_GET['unapprove'])){
 
 
 function is_admin() {
-
-    // global $connection; 
-
-    // $query = "SELECT user_role FROM users WHERE username = '$username' ";
-    // $result = mysqli_query($connection, $query);
-    // confirmQuery($result);
-
-    // $row = mysqli_fetch_array($result);
-
-
     if($_SESSION['user_role'] == 'admin'){
 
         return true;
