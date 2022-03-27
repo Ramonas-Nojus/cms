@@ -146,13 +146,10 @@ if(isset($_POST['unliked'])){
                 ?>
                 <!-- Comment -->
                 <div class="media">
-            <?php
-                foreach($getComments->authorImage($author_id) as $row) { ?>
                     <a class="pull-left" href="#">
-                        <img class="media-object profilie_image" width="50px" border-radius="50%" src="/cms/images/<?php if(empty($row['user_image'])){ echo "person-placeholder.jpg"; } else { echo $row['user_image']; }
+                        <img class="media-object profilie_image" width="50px" border-radius="50%" src="/cms/images/<?php if(empty($getComments->authorImage($author_id)['user_image'])){ echo "person-placeholder.jpg"; } else { echo $getComments->authorImage($author_id)['user_image']; }
                         ?>" alt="">
                     </a>
-                <?php } ?>
                     <div class="media-body">
                         <h4 class="media-heading"><?php echo $comment_author;   ?>
                             <small><?php echo $comment_date;   ?></small>
