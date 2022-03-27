@@ -9,54 +9,75 @@
 
 <style> 
 
-.img {
-  border-radius: 50%;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 300px;
-  height: 300px;
-  object-fit: cover;
-}
+            .profile-img {
+                border-radius: 50%;
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+                width: 300px;
+                height: 300px;
+                object-fit: cover;
+            }
 
-.input {
-    width: 40%;
-}
+            .input {
+                width: 40%;
+            }
 
-.del-btn{
-    margin-top: 18px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 300px;
-    object-fit: cover;
-}
+            .del-btn{
+                margin-top: 18px;
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+                width: 300px;
+                object-fit: cover;
+            }
 
-.add_friend {
-    object-fit: cover;
-    margin-top: 5px;
-}
+            .add_friend {
+                object-fit: cover;
+                margin-top: 5px;
+            }
 
-.remove_friend {
-    object-fit: cover;
-    margin-top: 30px;
-}
+            .remove_friend {
+                object-fit: cover;
+                margin-top: 130px;
+            }
 
-.center {
-    display: flex;
-  justify-content: center;
-  align-items: center;
-  
-}
+            .center {
+                display: flex;
+            justify-content: center;
+            align-items: center;
+            
+            }
 
 
-.report_a {
-    color: hotpink;
-    /* text-decoration: none; */
-}
-.report  {
-    margin-top: 45px;
-}
+            .report_a {
+                color: hotpink;
+            }
+            .report  {
+                margin-top: 145px;
+            }
+            .profilie_image {
+                object-fit: cover;
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+            }
+
+            .img {
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+                width: 350px;
+                height: 200px;
+                object-fit: cover;
+                border-radius: 5px; 
+            }
+
+            .vid{
+                width: 350px;
+                height: 200px;
+                background-color: black
+            }
 
 
 
@@ -133,7 +154,7 @@
 
             
 
-                <img class="img" src="/cms/images/<?php 
+                <img class="profile-img" src="/cms/images/<?php 
 
                 if(empty($db_user_image)){
                     echo "person-placeholder.jpg";
@@ -182,8 +203,6 @@
 
                 $slect_specific_request_query = query("SELECT * FROM requests WHERE from_username = '$db_username' AND to_username = '$signed_in_user' ");
 
-            
-
                 
                 if($user_role == 'banned'){ ?>
 
@@ -191,8 +210,10 @@
                         <div class="center">
                             <button class="add_friend btn btn-danger">This user was banned</button>
                         </div>
+
                     </form>
                     </div>
+
 
                 <?php 
                 } else {
@@ -368,40 +389,83 @@
 
 <?php 
 
-            $getPosts = new test\Posts();
-            $usersPosts = $getPosts->usersPosts($db_username);
+            $getPosts = new Users();
+            $usersPosts = $getPosts->usersActivity($db_username);
 
             if(empty($usersPosts)){
                 echo "<h2>NO ACTIVITY</h2>";
             } else {
 
-            foreach($usersPosts as $row){
-                $the_post_id = $row['post_id'];
-                $post_title = $row['post_title'];
-                $post_author = $row['post_user'];
-                $post_date = $row['post_date'];
-                $post_image = $row['post_image'];
-                $post_content = $row['post_content'];            
+                foreach($usersPosts as $row){
+                    $post_id = $row['post_id'];
+                    $post_title = $row['post_title'];
+                    $post_author = $row['post_user'];
+                    $post_user = $row['post_author'];
+                    $post_author_id = $row['post_user_id'];
+                    $post_date = $row['post_date'];
+                    $post_image = $row['post_image'];
+                    $post_content = $row['post_content'];
+                    $post_status = $row['post_status'];
             
-        
-        ?>
-                <!-- First Blog Post -->
-                <h2>
-                    <a href="/cms/post/<?php echo $the_post_id ?>"><?php echo $post_title ?></a>
-                </h2>
-                <p class="lead">
-                    Post by <?php echo $post_author ?>
-                </p>
-                <p><span class="glyphicon glyphicon-time"></span> <?php echo $post_date ?></p>
-                <hr>
-                <img class="img-responsive" src="/cms/images/<?php if($post_image == ""){ echo "y9DpT.jpg"; } else{echo $post_image;}?>" alt="">
-                <hr>
-                <p><?php echo $post_content ?></p>
+                    if(!empty($post_user)){ ?>
+            
+            
+            <div class="media">
+            
+                        <a class="pull-left" href="/cms/watch/<?php echo $post_id; ?>">
+                        <?php if(!empty($video_image)){ ?>
+                        <img class="media-object img" width="350px"  height="200px" style="border-radius: 5px; " src="/cms/images/<?php  echo $post_image; ?>" alt="">
+                        <?php } else { ?>
+                        <video class="media-object vid" style="border-radius: 5px;"  src="/cms/all_videos/<?php echo $post_user; ?>" ></video>
+                        <?php } ?>
+                        </a>
+                        <div class="media-body">
+                        <h3 class="media-heading"><?php echo $post_title;?>
+                        <?php $img = new Comments; ?> 
+                        </br>
+                        </br><a href="/cms/user_profile/<?php echo $post_author; ?>"><img class="profilie_image" border-radius="50%" src="/cms/images/<?php if(empty($img->authorImage($post_author_id)['user_image'])){ echo "person-placeholder.jpg"; } else {  echo $img->authorImage($post_author_id)['user_image']; } ?>" alt="author_image"></a>
+                        <small><a href="/cms/user_profile/<?php echo $post_author; ?>"><?php echo $post_author; ?></a></small>
+                        </h3>
+                        </br>
+                        <p><?php echo $post_content; ?></p>
+                        </br>
+                        </div>
+                        </div>
+                        
 
-
-                <hr>
+                        
+            
+                   <?php } else {?>
+            
+                        <div class="media">
+                        </br>
+                        <h2>
+                        <a href="post/<?php echo $post_id; ?>"><?php echo $post_title ?></a>
+                        </h2>
+                        <p class="lead">
+                            by <a href="author/<?php echo $post_author; ?>"><?php echo $post_author ?></a>
+                        </p>
+                        <p><span class="glyphicon glyphicon-time"></span> <?php echo $post_date ?></p>
+                        <hr>
+            
+                        <a href="/cms/post/<?php echo $post_id; ?>">
+                        <img class="img-responsive" src="/cms/images/<?php if($post_image == ""){ echo "y9DpT.jpg"; } else{echo $post_image;}?>" alt="">
+                        </a>
+            
+                        <hr>
+                        <p><?php echo $post_content ?></p>
+                        <a class="btn btn-primary" href="post.php?p_id=<?php echo $post_id; ?>">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
+            
+                        <hr>
+                </div>
                 
-   <?php } } ?>
+
+
+
+            
+            
+            
+               <?php } } } ?>
 
 </div>
 
