@@ -1,12 +1,6 @@
 
-
-
-
-
 <!-- Blog Sidebar Widgets Column -->
-            <div class="col-md-4">
-                 
-
+            <div class="col-md-4">    
                 <!-- Blog Search Well -->
                 <div class="well">
                     <h4>Blog Search</h4>
@@ -22,9 +16,6 @@
                     </form><!--search form-->
                     <!-- /.input-group -->
                 </div>
-
-                
-
                 <div class="well">
                     <h4>Users Search</h4>
                     <form action="/cms/users_search" method="post">
@@ -40,60 +31,40 @@
                     <!-- /.input-group -->
                 </div>
                 
-                
-                
   <!--Login -->
     <div class="well">
 
         <?php if(isset($_SESSION['user_role'])): ?>
 
              <h4>Welcome, <?php
-                
                 $query = "SELECT username FROM users WHERE user_id = ".$_SESSION['user_id'];
                 $user_query = mysqli_query($connection,$query);
                 $row = mysqli_fetch_array($user_query);
                 $username = $row['username'];
-
                 echo $username; ?></h4>
-
              <a href="/cms/includes/logout.php" class="btn btn-primary">Logout</a>
-
         <?php else: ?>
-
              <h4>Login</h4>
 
              <?php
 
-
         if(ifItIsMethod('post')){
-
 
                 if(isset($_POST['login'])){
 
-
                     if(isset($_POST['username']) && isset($_POST['password'])){
-
                         login_user($_POST['username'], $_POST['password']);
 
-
-                    }else {
-
-
+                    } else {
                         redirect('index');
                     }
-
-
                 }
-
-        }
-
+            }
 ?>
-
                 <form method="post">
                 <div class="form-group">
                     <input name="username" type="text" class="form-control" placeholder="Enter Username">
                 </div>
-
                   <div class="input-group">
                     <input name="password" type="password" class="form-control" placeholder="Enter Password">
                     <span class="input-group-btn">
@@ -101,34 +72,15 @@
                        </button>
                     </span>
                    </div>
-
                     <div class="form-group">
-
                         <a href="/cms/forgot/<?php echo uniqid(true); ?>">Forgot Password</a>
-
-
                     </div>
-
                 </form><!--search form-->
                 <!-- /.input-group -->
-
-
-
         <?php endif; ?>
-
-
-       
     </div>
-                
-                
-                
-                
-
                 <!-- Blog Categories Well -->
-                <div class="well">
-                  
-                  
-                  
+                <div class="well"> 
         <?php 
         $query = "SELECT * FROM categories";
         $select_categories_sidebar = mysqli_query($connection,$query);         
@@ -136,30 +88,20 @@
                  <h4>Blog Categories</h4>
                     <div class="row">
                         <div class="col-lg-12">
-                            <ul class="list-unstyled">
-                              
+                            <ul class="list-unstyled">             
                               <?php 
-
         while($row = mysqli_fetch_assoc($select_categories_sidebar )) {
         $cat_title = $row['cat_title'];
         $cat_id = $row['cat_id'];
 
         echo "<li><a href='/cms/category/$cat_title/$cat_id'>{$cat_title}</a></li>";
-
-
-        }
-   
-                            ?>
-                              
+        } ?>    
                             </ul>
                         </div>
-                        
                     </div>
                     <!-- /.row -->
                 </div>
-                
                 <!-- Side Widget Well -->
                  <?php //include "widget.php"; ?>
-
             </div>
             

@@ -44,8 +44,6 @@
                
              <?php
 
-             
-
             $video = new Videos;
 
             if(empty($video->getVideos())){
@@ -87,30 +85,20 @@
               
          </div>
          </div>
-
              <?php   }
-
             ?>
               
             </div>            
 
             <!-- Blog Sidebar Widgets Column -->
             
-            
             <?php include "includes/sidebar.php";?>
              
-
         </div>
         <!-- /.row -->
-
         <hr>
-
 
         <ul class="pager">
 
-
         </ul>
-
-   
-
 <?php include "includes/footer.php";?>

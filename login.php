@@ -1,19 +1,10 @@
 <?php  include "includes/db.php"; ?>
 <?php  include "includes/header.php"; ?>
-
-
-
-
-
-
 <!-- Navigation -->
 
 <?php  include "includes/navigation.php"; ?>
-
-
 <!-- Page Content -->
 <div class="container">
-
 	<div class="form-gap"></div>
 	<div class="container">
 		<div class="row">
@@ -21,42 +12,19 @@
 				<div class="panel panel-default">
 					<div class="panel-body">
 						<div class="text-center">
-
-
 							<h3><i class="fa fa-user fa-4x"></i></h3>
 							<h2 class="text-center">Login</h2>
 							<div class="panel-body">
-
-
-
-
 <?php
-
 		checkIfUserIsLoggedInAndRedirect('/cms/profile');
-
-
 		if(ifItIsMethod('post')){
-
 			if(isset($_POST['username']) && isset($_POST['password'])){
-
 				login_user($_POST['username'], $_POST['password']);
-
-
 			}else {
-
-
 				redirect('/cms/login');
 			}
-
 		}
-
-
-
-        
-        
-    
 ?>
-
 								<form id="login-form" role="form" autocomplete="off" class="form" method="post">
 
 									<div class="form-group">

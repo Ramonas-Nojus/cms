@@ -12,7 +12,6 @@ include "includes/db.php"; ?>
     
     <?php  include "includes/navigation.php"; ?>
     
- 
     <style>
 
         .profilie_image {
@@ -37,24 +36,18 @@ include "includes/db.php"; ?>
             height: 200px;
             background-color: black
         }
-
 </style>
 
     <!-- Page Content -->
     <div class="container">
 
         <div class="row">
-        
-
-
+    
             <!-- Blog Entries Column -->
             
             <div class="col-md-8">
                
                <?php
-
-             
-
             if(isset($_POST['submit'])){
                 
             $search = $_POST['search'];
@@ -79,8 +72,7 @@ include "includes/db.php"; ?>
                         $post_content = $row['post_content'];
                         $post_status = $row['post_status'];
                 
-                        if(!empty($post_user)){ ?>
-                
+                        if(!empty($post_user)){ ?> 
                 
                 <div class="media">
                 
@@ -104,9 +96,6 @@ include "includes/db.php"; ?>
                             </div>
                             </div>
                             
-
-                            
-                
                        <?php } else {?>
                 
                             <div class="media">
@@ -131,12 +120,6 @@ include "includes/db.php"; ?>
                             <hr>
                     </div>
                     
-
-
-
-                
-                
-                
                    <?php } }  }} ?>
                    </div>
             <!-- Blog Sidebar Widgets Column -->

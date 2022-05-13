@@ -2,14 +2,12 @@
 
 class Users extends Db {
 
-
     public function getUser($username){
 
         $sql = "SELECT * FROM users WHERE username = ? ";
         $stmt = $this->connection()->prepare($sql);
         $stmt->execute([$username]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
-
     }
 
     public function searchUsers($search){

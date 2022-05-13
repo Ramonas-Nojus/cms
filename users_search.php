@@ -1,34 +1,21 @@
 <?php  include "includes/db.php"; ?>
  <?php  include "includes/header.php"; ?>
  <?php include "includes/class.autoload.php"; ?>
-
-
     <!-- Navigation -->
-    
     <?php  include "includes/navigation.php"; ?>
-    
     <style>
-
         img {
             object-fit: cover;
             width: 150px;
             height: 150px;
             border-radius: 50%;
         }
-
-
     </style>
-
-
     <!-- Page Content -->
     <div class="container">
-
         <div class="row">
-
             <!-- Blog Entries Column -->
-            
             <div class="col-md-8">
-               
                <?php
 
             if(isset($_POST['submit'])){
@@ -77,36 +64,12 @@
    <?php        }
             }
         }
-    }
-
+    } 
 ?>
-
-    
-
-                
-                
-                
-                
-                
-
-              
-    
-
             </div>
-            
-              
-
             <!-- Blog Sidebar Widgets Column -->
-            
-            
             <?php include "includes/sidebar.php";?>
-             
-
         </div>
         <!-- /.row -->
-
         <hr>
-
-   
-
 <?php include "includes/footer.php";?>
