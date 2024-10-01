@@ -16,8 +16,6 @@
         width: 500px;
     }
 
-
-
  </style>
     <!-- Navigation -->
     
@@ -27,16 +25,12 @@
 
     <?php 
 
-
 if(isset($_GET['username'])){
     $reported_username = $_GET['username'];
 } else {
-    redirect("/cms/");
+    redirect("/");
 }
-
     if(isLoggedIn()){
-    
-        
     
     ?>
 
@@ -63,13 +57,11 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
                 $error['comment'] = "Comment canot be empty";
             }
 
-
             foreach($error as $key=>$value){
                 if(empty($value)){
                     unset($error[$key]);
                 }
             }
-
 
             if(empty($error)){
 
@@ -77,20 +69,16 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
             while($row = mysqli_fetch_array($get_user_info)){
                 $reported_user_id = $row["user_id"];
                 $reported_user = $row["username"];
-
-
             }
         
             $add_report_query = query("INSERT INTO  reports(user_id,username,reported_user,reported_user_id,reason,comment) VALUES('{$user_id}','{$username}','{$reported_user}','{$reported_user_id}','{$reason}','{$comment}') ");
-            redirect('/cms/');
+            redirect('/');
         }
         }
-
-
 ?>
 
 
-<form action="/cms/report_user.php?username=<?php echo $reported_username; ?>" method="post">
+<form action="/report_user.php?username=<?php echo $reported_username; ?>" method="post">
     <div class="report-window" >
         <h1>
             Report user (<?php echo $reported_username; ?>)
@@ -122,11 +110,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
     <?php } else {
         echo "<h1>You need to log in to report <<<strong>$reported_username</strong> >></h1>";
     } ?>
-
-
-   
         </div>
         <hr>
-
 
 <?php include "includes/footer.php";?>

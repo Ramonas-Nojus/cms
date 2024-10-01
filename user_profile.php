@@ -39,8 +39,8 @@
 
             .center {
                 display: flex;
-            justify-content: center;
-            align-items: center;
+                justify-content: center;
+                align-items: center;
             
             }
 
@@ -72,6 +72,13 @@
                 width: 350px;
                 height: 200px;
                 background-color: black
+            }
+
+            .videos {
+                display: none;
+            }
+            .posts {
+                display: block;
             }
 
 </style>
@@ -114,10 +121,9 @@
         }
     }
  ?>
-
-                
+      
             <div class="form-group img">
-                <img class="profile-img" src="/cms/images/<?php 
+                <img class="profile-img" src="/images/<?php 
 
                 if(empty($db_user_image)){
                     echo "person-placeholder.jpg";
@@ -136,22 +142,21 @@
 
             $query = "INSERT INTO requests(from_id, to_id, from_username, to_username) VALUES('{$user_id}' ,'{$friends_id}' ,'{$the_username}' ,'{$db_username}')";
             $add_friend_request_query = mysqli_query($connection, $query);  
-            redirect("/cms/user_profile/$db_username");  
+            redirect("/user_profile/$db_username");  
         }
 
         if(isset($_POST['remove_friend'])){
                 $friends_id = $_POST['remove_friend'];
 
             $remove_friend_query = query("DELETE FROM friends WHERE friend1_id = $friends_id AND friend2_id =  $user_id OR  friend2_id = $friends_id AND friend1_id =  $user_id");
-            redirect("/cms/user_profile/$db_username");  
+            redirect("/user_profile/$db_username");  
         }
         $query = "SELECT * FROM requests WHERE from_id = '{$user_id}' AND to_username = '$db_username' ";
         $get_request_query = mysqli_query($connection, $query);   
 
         $row = mysqli_fetch_array($get_request_query);
 
-        $signed_in_user = $_SESSION['username'];    //users username who is signed in right now
-                                                    //db_username users username whose profile this is 
+        $signed_in_user = $_SESSION['username'];  
         $select_friends_query = query("SELECT * FROM friends WHERE friend1_username = '$db_username' AND friend2_username = '$signed_in_user' OR friend2_username = '$db_username' AND friend1_username = '$signed_in_user'");
 
         $slect_specific_request_query = query("SELECT * FROM requests WHERE from_username = '$db_username' AND to_username = '$signed_in_user' "); 
@@ -169,7 +174,7 @@
 
                  if($db_username == $_SESSION['username']){ ?>
 
-                <form action="/cms/admin/profile" method="post">
+                <form action="/admin/profile" method="post">
                         <div class="center">
                             <button class="add_friend btn btn-primary">Profile</button>
                         </div>
@@ -207,7 +212,7 @@
                 </form>
                     <?php } else if(mysqli_num_rows($slect_specific_request_query) > 0){ ?> 
                     
-                        <form action="/cms/admin/notifications.php" method="post">
+                        <form action="/admin/notifications.php" method="post">
                <div class="center">
                 <button class="add_friend btn btn-primary" type="submit"  ?>
                   see request
@@ -229,7 +234,7 @@
                 </div>
 <?php 
                 } }  }  else { ?>  
-                    <form action="/cms/login" method="post">
+                    <form action="/login" method="post">
                <div class="center">
                 <button class="add_friend btn btn-primary" type="submit"?>
                    you need to log in to add friends
@@ -249,7 +254,7 @@
                 
                 if($_SESSION['username'] == $username ||  $user_role == 'banned'){} else{ ?>
                 <center class=" <?php if(mysqli_num_rows($select_friends_query) > 0){ echo ""; } else{ echo "report"; } ?>">
-                <a class="report_a" href="/cms/report/<?php echo $username; ?>" >Report</a>
+                <a class="report_a" href="/report/<?php echo $username; ?>" >Report</a>
                 </center>
                     <?php } } ?>
 
@@ -282,7 +287,7 @@
 
 </div>
 
-<h2><?php echo $db_username."'s"; ?> activity</h2>
+            <h2><?php echo $db_username."'s"; ?> activity</h2>
 
             </div>   
             </div>
@@ -293,81 +298,129 @@
         <div class="row">
             <!-- Blog Entries Column -->
             <div class="col-md-8">
-<?php 
-            $getPosts = new Users();
-            $usersPosts = $getPosts->usersActivity($db_username);
 
-            if(empty($usersPosts)){
-                echo "<h2>NO ACTIVITY</h2>";
-            } else {
+            <button type="button" onclick="showPosts();" id="posts-btn" class="btn btn-primary">Posts</button>
+            <button type="button" onclick="showVideos();" id="videos-btn" class="btn btn-outline-secondary">Videos</button>
+            <div style="height: 25px;"></div>
 
-                foreach($usersPosts as $row){
+        <?php 
+            $getPosts = new Posts();
+            $getVideos = new Videos();
+
+            $usersPosts = $getPosts->usersPosts($db_username);
+            $userVideos = $getVideos->getUsersVideos($db_username);
+        ?>
+
+        <div class="videos" id="videos">
+        <?php  foreach($userVideos as $row){
+            
+            $video_id = $row['video_id'];
+            $video_title = $row['video_title'];
+            $video_author = $row['video_author'];
+            $video_resources = $row['video_resources'];
+
+            $video_author_id = $row['video_author_id'];
+            $video_date = $row['video_date'];
+            $video_image = $row['video_image'];
+            $video_description = $row['video_description'];
+            $video_status = $row['video_status'];
+            ?>
+            
+            <div class="media">
+
+                <a class="pull-left" href="/watch/<?php echo $video_id; ?>">
+                    <?php if(!empty($video_image)){ ?>
+                        <img class="media-object img" width="350px"  height="200px" style="border-radius: 5px; " src="/images/<?php  echo $video_image; ?>" alt="">
+                    <?php } else { ?>
+                        <video class="media-object vid" style="border-radius: 5px;"  src="/all_videos/<?php echo $video_resources; ?>" ></video>
+                    <?php } ?>
+                </a>
+                <div class="media-body">
+                    <h3 class="media-heading"><?php echo $video_title;?>
+                    <?php $img = new Comments; ?> 
+                        </br>
+                    </br><a href="/user_profile/<?php echo $video_author; ?>"><img class="profilie_image" border-radius="50%" src="/images/<?php if(empty($img->authorImage($video_author_id)['user_image'])){ echo "person-placeholder.jpg"; } else {  echo $img->authorImage($video_author_id)['user_image']; } ?>" alt="author_image"></a>
+                    <small><a href="/user_profile/<?php echo $video_author; ?>"><?php echo $video_author; ?></a></small>
+                </h3>
+                    </br>
+                <p>
+                    <?php echo $video_description; ?>
+                </p>
+                </br>
+                </div>
+            </div>
+            <?php } ?>
+
+        </div>
+        <div class="posts" id="posts">
+
+                  <?php  foreach($usersPosts as $row){
+
                     $post_id = $row['post_id'];
                     $post_title = $row['post_title'];
                     $post_author = $row['post_user'];
-                    $post_user = $row['post_author'];
                     $post_author_id = $row['post_user_id'];
                     $post_date = $row['post_date'];
                     $post_image = $row['post_image'];
                     $post_content = $row['post_content'];
                     $post_status = $row['post_status'];
+
+                    ?>
             
-                    if(!empty($post_user)){ ?>
-            
-            <div class="media">
-            
-                        <a class="pull-left" href="/cms/watch/<?php echo $post_id; ?>">
-                        <?php if(!empty($video_image)){ ?>
-                        <img class="media-object img" width="350px"  height="200px" style="border-radius: 5px; " src="/cms/images/<?php  echo $post_image; ?>" alt="">
-                        <?php } else { ?>
-                        <video class="media-object vid" style="border-radius: 5px;"  src="/cms/all_videos/<?php echo $post_user; ?>" ></video>
-                        <?php } ?>
-                        </a>
-                        <div class="media-body">
-                        <h3 class="media-heading"><?php echo $post_title;?>
-                        <?php $img = new Comments; ?> 
-                        </br>
-                        </br><a href="/cms/user_profile/<?php echo $post_author; ?>"><img class="profilie_image" border-radius="50%" src="/cms/images/<?php if(empty($img->authorImage($post_author_id)['user_image'])){ echo "person-placeholder.jpg"; } else {  echo $img->authorImage($post_author_id)['user_image']; } ?>" alt="author_image"></a>
-                        <small><a href="/cms/user_profile/<?php echo $post_author; ?>"><?php echo $post_author; ?></a></small>
-                        </h3>
-                        </br>
-                        <p><?php echo $post_content; ?></p>
-                        </br>
-                        </div>
-                        </div>
-                
-                   <?php } else {?>
-            
-                        <div class="media">
-                        </br>
-                        <h2>
-                        <a href="post/<?php echo $post_id; ?>"><?php echo $post_title ?></a>
-                        </h2>
-                        <p class="lead">
-                            by <a href="author/<?php echo $post_author; ?>"><?php echo $post_author ?></a>
-                        </p>
-                        <p><span class="glyphicon glyphicon-time"></span> <?php echo $post_date ?></p>
+                <div class="media posts" id="posts">
+                    
+                    </br>
+                    <h2>
+                        <a href="/post/<?php echo $post_id; ?>"><?php echo $post_title ?></a>
+                    </h2>
+                    <p class="lead">
+                        by <a href="/author/<?php echo $post_author; ?>"><?php echo $post_author ?></a>
+                    </p>
+                    <p><span class="glyphicon glyphicon-time"></span> <?php echo $post_date ?></p>
                         <hr>
-            
-                        <a href="/cms/post/<?php echo $post_id; ?>">
-                        <img class="img-responsive" src="/cms/images/<?php if($post_image == ""){ echo "y9DpT.jpg"; } else{echo $post_image;}?>" alt="">
-                        </a>
-            
+                    <a href="/post/<?php echo $post_id; ?>">
+                        <img class="img-responsive" src="/images/<?php if($post_image == ""){ echo "y9DpT.jpg"; } else{echo $post_image;}?>" alt="">
+                    </a>
+        
                         <hr>
-                        <p><?php echo $post_content ?></p>
-                        <a class="btn btn-primary" href="post.php?p_id=<?php echo $post_id; ?>">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
-            
-                        <hr>
+                    <p><?php echo $post_content ?></p>
+                    <a class="btn btn-primary" href="post.php?p_id=<?php echo $post_id; ?>">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
+        
+                    <hr>
                 </div>
             
-               <?php } } } ?>
-
+               <?php } ?>
+            </div>
 </div>
 
 </div>
 
 </div>
+<script>
 
-        <!-- /#page-wrapper -->
+var posts = document.getElementById("posts");
+var postsBtn = document.getElementById("posts-btn");
+var videosBtn = document.getElementById("videos-btn");
+var videos = document.getElementById("videos");
+
+function showPosts() {
+  posts.style.display = "block";
+  postsBtn.classList.add("btn-primary")
+  postsBtn.classList.remove("btn-outline-secondary")
+  videos.style.display = "none";
+  videosBtn.classList.add("btn-outline-secondary")
+  videosBtn.classList.remove("btn-primary")
+}
+
+function showVideos() {
+  videos.style.display = "block";
+  posts.style.display = "none";
+  videosBtn.classList.add("btn-primary")
+  videosBtn.classList.remove("btn-outline-secondary")
+  postsBtn.classList.add("btn-outline-secondary")
+  postsBtn.classList.remove("btn-primary")
+}
+</script>
+<!-- /#page-wrapper -->
         
-    <?php include "includes/footer.php" ?>
+<?php include "includes/footer.php" ?>

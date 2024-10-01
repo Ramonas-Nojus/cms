@@ -94,7 +94,6 @@ confirmQuery($update_to_delete_status);
             $post_title         = $row['post_title'];
             $post_category_id   = $row['post_category_id'];
             $post_date          = $row['post_date']; 
-            $post_author        = $row['post_author'];
             $post_status        = $row['post_status'];
             $post_image         = $row['post_image'] ; 
             $post_tags          = $row['post_tags']; 
@@ -199,7 +198,6 @@ if(mysqli_num_rows($select_posts) > 0){
 
     while($row = mysqli_fetch_assoc($select_posts )) {
         $post_id            = $row['post_id'];
-        $post_author        = $row['post_author'];
         $post_user          = $row['post_user'];
         $post_title         = $row['post_title'];
         $post_category_id   = $row['post_category_id'];
@@ -345,7 +343,7 @@ if(isset($_POST['delete'])){
     
     $query = "DELETE FROM posts WHERE post_id = {$the_post_id} ";
     $delete_query = mysqli_query($connection, $query);
-    // header("Location: /cms/admin/posts.php");
+    // header("Location: /admin/posts.php");
     
     
 }

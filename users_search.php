@@ -47,7 +47,7 @@
                 <div class="media">
          
         <a class="pull-left" href="user_profile/<?php echo $username; ?>">
-            <img class="media-object profilie_image" width="150px" border-radius="50%" src="/cms/images/<?php if(empty($user_image)){ echo "person-placeholder.jpg"; } else { echo $user_image; }
+            <img class="media-object profilie_image" width="150px" border-radius="50%" src="/images/<?php if(empty($user_image)){ echo "person-placeholder.jpg"; } else { echo $user_image; }
             ?>" alt="">
         </a>
         <div class="media-body">

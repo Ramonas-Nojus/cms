@@ -1,7 +1,5 @@
 <?php 
 
-namespace test;
-
 class Posts extends \DB {
 
     public function getPosts(){

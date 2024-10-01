@@ -40,8 +40,9 @@
 
         $count  = ceil($count /$per_page);
         
-        $newObj = new test\Posts();
+        $newObj = new Posts();
         $post = $newObj->getPosts();
+        
         foreach($post as $x){
                 $post_id = $x['post_id'];
                 $post_title = $x['post_title'];
@@ -63,8 +64,8 @@
                 <hr>
                 
                 
-                <a href="/cms/post/<?php echo $post_id; ?>">
-                <img class="img-responsive" src="/cms/images/<?php if($post_image == ""){ echo "y9DpT.jpg"; } else{echo $post_image;}?>" alt="">
+                <a href="/post/<?php echo $post_id; ?>">
+                <img class="img-responsive" src="/images/<?php if($post_image == ""){ echo "y9DpT.jpg"; } else{echo $post_image;}?>" alt="">
                 </a>    
                 <hr>
                 <p><?php echo $post_content ?></p>

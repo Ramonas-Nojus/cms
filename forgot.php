@@ -2,15 +2,12 @@
 <?php  include "includes/header.php"; ?>
 
 
-
 <?php
 
 require './vendor/autoload.php';
 
     if(!isset($_GET['forgot'])){
-
         redirect('index');
-
     }
 
 
@@ -24,17 +21,13 @@ require './vendor/autoload.php';
 
             $token = bin2hex(openssl_random_pseudo_bytes($length));
 
-
             if(email_exists($email)){
-
 
                 if($stmt = mysqli_prepare($connection, "UPDATE users SET token='{$token}' WHERE user_email= ?")){
 
                     mysqli_stmt_bind_param($stmt, "s", $email);
                     mysqli_stmt_execute($stmt);
                     mysqli_stmt_close($stmt);
-
-
 
                     /**
                      *
@@ -55,54 +48,22 @@ require './vendor/autoload.php';
                     $mail->isHTML(true);
                     $mail->CharSet = 'UTF-8';
 
-
-                    $mail->setFrom('edwin@codingfaculty.com', 'Nojus Ramonas');
+                    $mail->setFrom('suport@cms.local', 'Nojus Ramonas');
                     $mail->addAddress($email);
-
                     $mail->Subject = 'This is a test email';
-
-                    $mail->Body = '<p>Please click <a href="http://localhost/cms/reset.php?email='.$email.'&token='.$token.' ">here</a> to reset your password</p>';
+                    $mail->Body = '<p>Please click <a href="http:/.local/reset.php?email='.$email.'&token='.$token.' ">here</a> to reset your password</p>';
 
 
                     if($mail->send()){
-
                         $emailSent = true;
-
                     } else{
-
                         echo "NOT SENT";
-
                     }
-
-
-
-
-
                 }
-
-
-
-
             }
-
-
-
-
         }
-
-
      }
-
-
-
-
-
 ?>
-
-
-
-
-
 
 <!-- Page Content -->
 <div class="container">
@@ -115,18 +76,11 @@ require './vendor/autoload.php';
                     <div class="panel-body">
                         <div class="text-center">
 
-
                         <?php if(!isset( $emailSent)): ?>
-
-
                                 <h3><i class="fa fa-lock fa-4x"></i></h3>
                                 <h2 class="text-center">Forgot Password?</h2>
                                 <p>You can reset your password here.</p>
                                 <div class="panel-body">
-
-
-
-
                                     <form id="register-form" role="form" autocomplete="off" class="form" method="post">
 
                                         <div class="form-group">
@@ -143,16 +97,9 @@ require './vendor/autoload.php';
                                     </form>
 
                                 </div><!-- Body-->
-
-                            <?php else: ?>
-
-
+                                <?php else: ?>
                                 <h2>Please check your email</h2>
-
-
                             <?php endif; ?>
-
-
                         </div>
                     </div>
                 </div>

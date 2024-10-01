@@ -42,7 +42,7 @@
             
             <div class="col-md-8">
                
-             <?php
+            <?php
 
             $video = new Videos;
 
@@ -62,31 +62,31 @@
                 $video_description = $row['video_description'];
                 
                 ?>
+
                 <hr>
 
                 <div class="media">
          
-         <a class="pull-left" href="/cms/watch/<?php echo $video_id; ?>">
+         <a class="pull-left" href="/watch/<?php echo $video_id; ?>">
          <?php if(!empty($video_image)){ ?>
-             <img class="media-object img" style="; " src="/cms/images/<?php  echo $video_image; ?>" alt="">
+             <img class="media-object img" style="; " src="/images/<?php  echo $video_image; ?>" alt="">
              <?php } else { ?>
-                <video width="350px" class="media-object vid"  height="200px" style="border-radius: 5px;"  src="/cms/all_videos/<?php echo $video_resources; ?>" ></video>
+                <video width="350px" class="media-object vid"  height="200px" style="border-radius: 5px;"  src="/all_videos/<?php echo $video_resources; ?>" ></video>
                 <?php } ?>
          </a>
          <div class="media-body">
              <h3 class="media-heading"><?php echo $video_title;?>
              <?php $img = new Comments; ?> 
              </br>
-            </br><a href="/cms/user_profile/<?php echo $video_author; ?>"><img class="profilie_image" border-radius="50%" src="/cms/images/<?php if(empty($img->authorImage($video_author_id)['user_image'])){ echo "person-placeholder.jpg"; } else {  echo $img->authorImage($video_author_id)['user_image']; } ?>" alt="author_image"></a>
-                <small><a href="/cms/user_profile/<?php echo $video_author; ?>"><?php echo $video_author; ?></a></small>
+            </br><a href="/user_profile/<?php echo $video_author; ?>"><img class="profilie_image" border-radius="50%" src="/images/<?php if(empty($img->authorImage($video_author_id)['user_image'])){ echo "person-placeholder.jpg"; } else {  echo $img->authorImage($video_author_id)['user_image']; } ?>" alt="author_image"></a>
+                <small><a href="/user_profile/<?php echo $video_author; ?>"><?php echo $video_author; ?></a></small>
              </h3>
              </br>
              <p><?php echo $video_description; ?></p>
               
          </div>
          </div>
-             <?php   }
-            ?>
+             <?php   } ?>
               
             </div>            
 

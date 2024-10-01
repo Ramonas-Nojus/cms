@@ -17,12 +17,4 @@ class Users extends Db {
         $stmt->execute([$pattern,$pattern,$pattern,$pattern]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
-
-    public function usersActivity($username){
-        $sql = "SELECT * FROM posts WHERE post_user = ? UNION ALL  SELECT * FROM videos  WHERE video_author = ? ORDER BY post_date DESC";
-        $stmt = $this->connection()->prepare($sql);
-        $stmt->execute([$username,$username]);
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
-    }
-
 }

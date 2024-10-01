@@ -56,9 +56,9 @@ if(isset($_POST['unliked'])){
             $video_description = $vid['video_description'];
         
      ?> 
-        <video class="vid" autoplay controls poster="/cms/images/<?php echo $video_image; ?>">
-            <source src="/cms/all_videos/<?php echo $video_resources; ?>" type="video/mp4">
-            <source src="/cms/all_videos/<?php echo $video_resources; ?>" type="video/ogg">
+        <video class="vid" autoplay controls poster="/images/<?php echo $video_image; ?>">
+            <source src="/all_videos/<?php echo $video_resources; ?>" type="video/mp4">
+            <source src="/all_videos/<?php echo $video_resources; ?>" type="video/ogg">
             Your browser does not support the video tag.
         </video>
         <h2>
@@ -66,8 +66,8 @@ if(isset($_POST['unliked'])){
         </h2>
         <p class="lead">
             <?php $img = new Comments; ?>
-            <a href="/cms/user_profile/<?php echo $video_author; ?>">
-             <img  class="profilie_image" border-radius="50%" src="/cms/images/<?php if(empty($img->authorImage($video_author_id)['user_image'])){ echo "person-placeholder.jpg"; } else {  echo $img->authorImage($video_author_id)['user_image']; } ?>">
+            <a href="/user_profile/<?php echo $video_author; ?>">
+             <img  class="profilie_image" border-radius="50%" src="/images/<?php if(empty($img->authorImage($video_author_id)['user_image'])){ echo "person-placeholder.jpg"; } else {  echo $img->authorImage($video_author_id)['user_image']; } ?>">
               <?php echo $video_author ?></a>
               <hr>
         </p>
@@ -79,13 +79,13 @@ if(isset($_POST['unliked'])){
                 if(isLoggedIn()){
                 if(UserLikedVideo($the_video_id)){  ?>
                         <div class="row">
-                            <p class="pull-left"><a href="/cms/watch/<?php echo $the_video_id ?>" class="unlike"><span class="glyphicon glyphicon-thumbs-down"></span>Unlike</a></p>
+                            <p class="pull-left"><a href="/watch/<?php echo $the_video_id ?>" class="unlike"><span class="glyphicon glyphicon-thumbs-down"></span>Unlike</a></p>
                         </div>
                         <?php } else { ?>
                         <div class="row">
-                            <p class="pull-left"><a href="/cms/watch/<?php echo $the_video_id ?>" class="like"><span class="glyphicon glyphicon-thumbs-up"></span>Like</a></p>
+                            <p class="pull-left"><a href="/watch/<?php echo $the_video_id ?>" class="like"><span class="glyphicon glyphicon-thumbs-up"></span>Like</a></p>
                         </div>
-                         <?php }  } else { echo "<p class='pull-left'>You need to <a href='/cms/login'>Log In</a> to leave like</p>"; } ?>
+                         <?php }  } else { echo "<p class='pull-left'>You need to <a href='/login'>Log In</a> to leave like</p>"; } ?>
                         <div class="row ">
                         <?php 
                         $likes = $Likes->getLikesVideo($the_video_id)['video_likes'];
@@ -119,7 +119,7 @@ if(isset($_POST['unliked'])){
                 </div>
                 <button type="submit" name="create_comment" class="btn btn-primary">Submit</button>
             </form>
-            <?php } else { echo "you need to <a href='/cms/login'>log in</a> to leave comment"; }  ?>
+            <?php } else { echo "you need to <a href='/login'>log in</a> to leave comment"; }  ?>
         </div>
         <hr>
         <?php 
@@ -139,7 +139,7 @@ if(isset($_POST['unliked'])){
             <?php
                 $img = $getComments->authorImage($author_id)["user_image"]; ?>
                     <a class="pull-left" href="#">
- <img class="media-object profilie_image" width="50px" border-radius="50%" src="/cms/images/<?php if(empty($img)){ echo "person-placeholder.jpg"; } else { echo $img; ?> " alt="">
+ <img class="media-object profilie_image" width="50px" border-radius="50%" src="/images/<?php if(empty($img)){ echo "person-placeholder.jpg"; } else { echo $img; ?> " alt="">
                     </a>
                 <?php } ?>
                     <div class="media-body">
@@ -150,7 +150,7 @@ if(isset($_POST['unliked'])){
                     </div>
                 </div>
            <?php } }      else {
-            header("Location: /cms/");
+            header("Location: /");
            }
                 ?>
             </div>
@@ -167,7 +167,7 @@ if(isset($_POST['unliked'])){
                 // like
                 $(".like").click(function(){
                    $.ajax({
-                       url: "/cms/watch.php?v_id=<?php echo $the_video_id; ?>",
+                       url: "/watch.php?v_id=<?php echo $the_video_id; ?>",
                        type: "post",
                        data: {
                            'liked': 1,
@@ -179,7 +179,7 @@ if(isset($_POST['unliked'])){
                 // unlike
                 $(".unlike").click(function(){
                    $.ajax({
-                       url: "/cms/watch.php?v_id=<?php echo $the_video_id; ?>",
+                       url: "/watch.php?v_id=<?php echo $the_video_id; ?>",
                        type: "post",
                        data: {
                            'unliked': 1,

@@ -116,7 +116,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
 
 
 
-    } // foreach
+    }
 
     if(empty($error)){
 
@@ -128,22 +128,14 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
 
         login_user($username, $password);
 
-
     }
-
-    
-
 } 
 
-
-?>
- 
+?> 
 
     <!-- Navigation -->
     
     <?php  include "includes/navigation.php"; ?>
-    
-    
  
     <!-- Page Content -->
     <div class="container">

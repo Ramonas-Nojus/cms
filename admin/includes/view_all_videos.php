@@ -4,7 +4,7 @@ include("delete_modal.php");
 
 
  if($_SESSION['user_role'] != "admin"){
-    redirect("/cms/admin/my_videos");
+    redirect("/admin/my_videos");
 }  
 
 if(isset($_POST['checkBoxArray'])) {
@@ -114,7 +114,7 @@ if(isset($_POST['checkBoxArray'])) {
         if(!empty($video_image)){
         echo "<td><img width='100' src='../images/$video_image' alt='image'></td>";
         } else {
-            echo  "<td><video width='100' src='/cms/all_videos/$video_resources'></video></td>";
+            echo  "<td><video width='100' src='/all_videos/$video_resources'></video></td>";
         }
         echo "<td>$video_tags</td>";
 
@@ -152,7 +152,7 @@ if(isset($_POST['delete'])){
     
     $the_video_id = escape($_POST['video_id']);
     $newObj->deleteVideo($the_video_id);
-    redirect('/cms/admin/videos.php');
+    redirect('/admin/videos.php');
 }
 
 if(isset($_GET['reset'])){
@@ -161,7 +161,7 @@ if(isset($_GET['reset'])){
     
     $query = "UPDATE videos SET video_views = 0 WHERE video_id = $the_video_id  ";
     $reset_query = mysqli_query($connection, $query);
-    header("Location: /cms/admin/videos.php");
+    header("Location: /admin/videos.php");
 
 }
 ?> 

@@ -161,7 +161,7 @@ confirmQuery($update_to_delete_status);
 
   <?php 
     
-    $newObj = new test\Posts();
+    $newObj = new Posts();
     $post = $newObj->getPosts();
     foreach($post as $row){
             $post_id            = $row['post_id'];
@@ -307,7 +307,7 @@ if(isset($_POST['delete'])){
     
     $query = "DELETE FROM posts WHERE post_id = {$the_post_id} ";
     $delete_query = mysqli_query($connection, $query);
-    header("Location: /cms/admin/posts.php");
+    header("Location: /admin/posts.php");
     
     
 }

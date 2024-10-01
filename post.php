@@ -74,24 +74,24 @@ if(isset($_POST['unliked'])){
                     <?php echo $post_title ?>
                 </h2>
                 <p class="lead">
-                    by <a href="/cms/author/<?php echo $post_author; ?>"><?php echo $post_author ?></a>
+                    by <a href="/author/<?php echo $post_author; ?>"><?php echo $post_author ?></a>
                 </p>
                 <p><span class="glyphicon glyphicon-time"></span> <?php echo $post_date ?></p>
                 <hr>
-                <img class="img-responsive" src="/cms/images/<?php if($post_image == ""){ echo "y9DpT.jpg"; } else{echo $post_image;}?>" alt="">
+                <img class="img-responsive" src="/images/<?php if($post_image == ""){ echo "y9DpT.jpg"; } else{echo $post_image;}?>" alt="">
                 <hr>
                 <p><?php echo $post_content ?></p>          
         <?php }         
                 if(isLoggedIn()){
                 if(UserLikedPost($the_post_id)){  ?>
                         <div class="row">
-                            <p class="pull-left"><a href="/cms/post/<?php echo $the_post_id ?>" class="unlike"><span class="glyphicon glyphicon-thumbs-down"></span>Unlike</a></p>
+                            <p class="pull-left"><a href="/post/<?php echo $the_post_id ?>" class="unlike"><span class="glyphicon glyphicon-thumbs-down"></span>Unlike</a></p>
                         </div>
                         <?php } else { ?>
                         <div class="row">
-                            <p class="pull-left"><a href="/cms/post/<?php echo $the_post_id ?>" class="like"><span class="glyphicon glyphicon-thumbs-up"></span>Like</a></p>
+                            <p class="pull-left"><a href="/post/<?php echo $the_post_id ?>" class="like"><span class="glyphicon glyphicon-thumbs-up"></span>Like</a></p>
                         </div>
-                         <?php }  } else { echo "<p class='pull-left'>You need to <a href='/cms/login'>Log In</a> to leave like</p>"; } ?>
+                         <?php }  } else { echo "<p class='pull-left'>You need to <a href='/login'>Log In</a> to leave like</p>"; } ?>
                         <div class="row">
                         <?php 
                         $Likes = new Likes();
@@ -128,7 +128,7 @@ if(isset($_POST['unliked'])){
                 </div>
                 <button type="submit" name="create_comment" class="btn btn-primary">Submit</button>
             </form>
-            <?php } else { echo "you need to <a href='/cms/login'>log in</a> to leave comment"; }  ?>
+            <?php } else { echo "you need to <a href='/login'>log in</a> to leave comment"; }  ?>
         </div>
         <hr>
                  <?php 
@@ -147,7 +147,7 @@ if(isset($_POST['unliked'])){
                 <!-- Comment -->
                 <div class="media">
                     <a class="pull-left" href="#">
-                        <img class="media-object profilie_image" width="50px" border-radius="50%" src="/cms/images/<?php if(empty($getComments->authorImage($author_id)['user_image'])){ echo "person-placeholder.jpg"; } else { echo $getComments->authorImage($author_id)['user_image']; }
+                        <img class="media-object profilie_image" width="50px" border-radius="50%" src="/images/<?php if(empty($getComments->authorImage($author_id)['user_image'])){ echo "person-placeholder.jpg"; } else { echo $getComments->authorImage($author_id)['user_image']; }
                         ?>" alt="">
                     </a>
                     <div class="media-body">
@@ -158,7 +158,7 @@ if(isset($_POST['unliked'])){
                     </div>
                 </div>
            <?php } }  else {
-            header("Location: /cms/");
+            header("Location: /");
             }
                 ?>
             </div>
@@ -175,7 +175,7 @@ if(isset($_POST['unliked'])){
                 // like
                 $(".like").click(function(){
                    $.ajax({
-                       url: "/cms/post.php?p_id=<?php echo $the_post_id; ?>",
+                       url: "/post.php?p_id=<?php echo $the_post_id; ?>",
                        type: "post",
                        data: {
                            'liked': 1,
@@ -187,7 +187,7 @@ if(isset($_POST['unliked'])){
                 // unlike
                 $(".unlike").click(function(){
                    $.ajax({
-                       url: "/cms/post.php?p_id=<?php echo $the_post_id; ?>",
+                       url: "/post.php?p_id=<?php echo $the_post_id; ?>",
                        type: "post",
                        data: {
                            'unliked': 1,

@@ -1,4 +1,6 @@
-<?php  include "includes/db.php"; ?>
+<?php
+
+  include "includes/db.php"; ?>
  <?php  include "includes/header.php"; ?>
  <?php include "includes/class.autoload.php"; ?>
 
@@ -28,7 +30,7 @@
 
       echo "<h1>All posts with <<<b>$category</b>>>> categorie</h1>";
 
-      $postsByCat = new GetPosts();
+      $postsByCat = new Posts();
 
 
 if(isset($_SESSION['username']) && is_admin($_SESSION['username'])){
@@ -50,7 +52,7 @@ if(isset($_SESSION['username']) && is_admin($_SESSION['username'])){
         $post_status = $row['post_status'];
         ?>
         <h2>
-                    <a href="/cms/post/<?php echo $post_id; ?>"><?php echo $post_title ?></a>
+                    <a href="/post/<?php echo $post_id; ?>"><?php echo $post_title ?></a>
                 </h2>
                 <p class="lead">
                     by <a href="author/<?php echo $post_author; ?>"><?php echo $post_author ?></a>
@@ -58,7 +60,7 @@ if(isset($_SESSION['username']) && is_admin($_SESSION['username'])){
                 <p><span class="glyphicon glyphicon-time"></span> <?php echo $post_date ?></p>
                 <hr>
                 
-                <img class="img-responsive" src="/cms/images/<?php if($post_image == ""){ echo "y9DpT.jpg"; } else{echo $post_image;}?>" alt="">
+                <img class="img-responsive" src="/images/<?php if($post_image == ""){ echo "y9DpT.jpg"; } else{echo $post_image;}?>" alt="">
                 <hr>
                 <p><?php echo $post_content ?></p>
                 <a class="btn btn-primary" href="#">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
@@ -87,7 +89,7 @@ if(isset($_SESSION['username']) && is_admin($_SESSION['username'])){
             $post_status = $row['post_status'];
             ?>
             <h2>
-                        <a href="/cms/post/<?php echo $post_id; ?>"><?php echo $post_title ?></a>
+                        <a href="/post/<?php echo $post_id; ?>"><?php echo $post_title ?></a>
                     </h2>
                     <p class="lead">
                         by <a href="author/<?php echo $post_author; ?>"><?php echo $post_author ?></a>
@@ -95,7 +97,7 @@ if(isset($_SESSION['username']) && is_admin($_SESSION['username'])){
                     <p><span class="glyphicon glyphicon-time"></span> <?php echo $post_date ?></p>
                     <hr>
                     
-                    <img class="img-responsive" src="/cms/images/<?php if($post_image == ""){ echo "y9DpT.jpg"; } else{echo $post_image;}?>" alt="">
+                    <img class="img-responsive" src="/images/<?php if($post_image == ""){ echo "y9DpT.jpg"; } else{echo $post_image;}?>" alt="">
                     <hr>
                     <p><?php echo $post_content ?></p>
                     <a class="btn btn-primary" href="#">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
@@ -108,7 +110,7 @@ if(isset($_SESSION['username']) && is_admin($_SESSION['username'])){
 
     } else {
 
-    redirect('/cms/');
+    redirect('/');
     
     }
 
