@@ -29,19 +29,12 @@ require './vendor/autoload.php';
                     mysqli_stmt_execute($stmt);
                     mysqli_stmt_close($stmt);
 
-                    /**
-                     *
-                     * configure PHPMailer
-                     *
-                     *
-                     */
-
                     $mail = new PHPMailer();
 
                     $mail->isSMTP();
                     $mail->Host = 'smtp.mailtrap.io';
-                    $mail->Username = 'ac262cb8efecc5';
-                    $mail->Password = 'cb5075e3de80aa';
+                    $mail->Username = $_ENV['SMTP_USERNAME'];
+                    $mail->Password = $_ENV['SMTP_PASSWORD'];
                     $mail->Port = 2525;
                     $mail->SMTPSecure = 'tls';
                     $mail->SMTPAuth = true;
