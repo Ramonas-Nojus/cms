@@ -1,10 +1,12 @@
 <?php  include "includes/db.php"; ?>
 <?php  include "includes/header.php"; ?>
 
-
 <?php
 
 require './vendor/autoload.php';
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
 
     if(!isset($_GET['forgot'])){
         redirect('index');
@@ -29,28 +31,35 @@ require './vendor/autoload.php';
                     mysqli_stmt_execute($stmt);
                     mysqli_stmt_close($stmt);
 
-                    $mail = new PHPMailer();
+                    $subject = "Užsakymo Patvirtinimas";
 
-                    $mail->isSMTP();
-                    $mail->Host = 'smtp.mailtrap.io';
-                    $mail->Username = $_ENV['SMTP_USERNAME'];
-                    $mail->Password = $_ENV['SMTP_PASSWORD'];
-                    $mail->Port = 2525;
-                    $mail->SMTPSecure = 'tls';
-                    $mail->SMTPAuth = true;
-                    $mail->isHTML(true);
-                    $mail->CharSet = 'UTF-8';
+                    try {
+                        $mail = new PHPMailer(true);
 
-                    $mail->setFrom('suport@cms.local', 'Nojus Ramonas');
-                    $mail->addAddress($email);
-                    $mail->Subject = 'This is a test email';
-                    $mail->Body = '<p>Please click <a href="http:/.local/reset.php?email='.$email.'&token='.$token.' ">here</a> to reset your password</p>';
+                        // Server settings
+                        $mail->isSMTP();
+                        $mail->Host       = 'smtp.gmail.com';
+                        $mail->Port       = 587;
+                        $mail->CharSet    = 'UTF-8';
+                        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+                        $mail->SMTPAuth   = true;
+                        $mail->Username   = 'keyon.customs@gmail.com';
+                        $mail->Password   = getenv('GMAIL_APP_PASSWORD');
 
+                        // Recipients
+                        $mail->setFrom('keyon.customs@gmail.com', 'KeyON');
+                        $mail->addAddress($email);
 
-                    if($mail->send()){
-                        $emailSent = true;
-                    } else{
-                        echo "NOT SENT";
+                        // Content
+                        $mail->isHTML(true);
+                        $mail->Subject = 'This is a test email';
+                        $mail->Body = '<p>Please click <a href="http:/.local/reset.php?email='.$email.'&token='.$token.' ">here</a> to reset your password</p>';
+
+                        $mail->send();
+
+                        header('Location: index.php');
+                    } catch (Exception $e) {
+                        echo "Error sending email: {$mail->ErrorInfo}";
                     }
                 }
             }
