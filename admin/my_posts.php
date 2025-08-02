@@ -257,7 +257,7 @@ if(mysqli_num_rows($select_posts) > 0){
     
         
         echo "<td>$post_status</td>";
-echo "<td><img width='100' src='../images/$post_image' alt='image'></td>";
+echo "<td><img width='100' src='".BASE_URL."/images/$post_image' alt='image'></td>";
         echo "<td>$post_tags</td>";
 
 
@@ -277,7 +277,7 @@ echo "<td><img width='100' src='../images/$post_image' alt='image'></td>";
 
 
         echo "<td>$post_date </td>";
-        echo "<td><a class='btn btn-primary' href='../post.php?p_id={$post_id}'>View Post</a></td>";
+        echo "<td><a class='btn btn-primary' href='".BASE_URL."/post.php?p_id={$post_id}'>View Post</a></td>";
         echo "<td><a class='btn btn-info' href='posts.php?source=edit_post&p_id={$post_id}'>Edit</a></td>";
 
 

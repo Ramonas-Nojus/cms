@@ -1,6 +1,6 @@
 <?php ob_start();
 
-include '../config.php';
+include BASE_URL.'/config.php';
 
 $db['db_host'] = "localhost";
 $db['db_user'] = "root";

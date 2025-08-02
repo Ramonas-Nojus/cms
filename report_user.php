@@ -78,7 +78,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
 ?>
 
 
-<form action="./report_user.php?username=<?php echo $reported_username; ?>" method="post">
+<form action="<?php echo BASE_URL; ?>/report_user.php?username=<?php echo $reported_username; ?>" method="post">
     <div class="report-window" >
         <h1>
             Report user (<?php echo $reported_username; ?>)

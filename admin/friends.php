@@ -85,16 +85,16 @@
         
         <div class="media">
          
-         <a class="pull-left" href="../user_profile/<?php echo $friend;?>">
-             <img class="media-object profilie_image" width="150px" border-radius="50%" src="../images/<?php if(empty($user_image)){ echo "person-placeholder.jpg"; } else { echo $user_image; }
+         <a class="pull-left" href="<?php echo BASE_URL; ?>/user_profile/<?php echo $friend;?>">
+             <img class="media-object profilie_image" width="150px" border-radius="50%" src="<?php echo BASE_URL; ?>/images/<?php if(empty($user_image)){ echo "person-placeholder.jpg"; } else { echo $user_image; }
              ?>" alt="">
          </a>
          <div class="media-body">
              <h4 class="media-heading"><?php echo $friend; ?>
                 <small><?php echo "</br>".$user_firstname." ".$user_lastname; ?></small>
              </h4>
-             <a class="btn btn-primary" href="../user_profile/<?php echo $friend; ?>">See Profile</span></a>
-             <a class="btn btn-primary" href="../admin/chat.php?username=<?php echo $friend; ?>">Send Message<span class="glyphicon glyphicon-chevron-right"></span></a>
+             <a class="btn btn-primary" href="<?php echo BASE_URL; ?>/user_profile/<?php echo $friend; ?>">See Profile</span></a>
+             <a class="btn btn-primary" href=".<?php echo BASE_URL; ?>/admin/chat.php?username=<?php echo $friend; ?>">Send Message<span class="glyphicon glyphicon-chevron-right"></span></a>
              
           
  
@@ -125,15 +125,15 @@
         
         <div class="media">
          
-         <a class="pull-left" href="../user_profile/<?php echo $friend; ?>">
-             <img class="media-object profilie_image" width="150px" border-radius="50%" src="../images/<?php if(empty($user_image)){ echo "person-placeholder.jpg"; } else { echo $user_image; }
+         <a class="pull-left" href="<?php echo BASE_URL; ?>/user_profile/<?php echo $friend; ?>">
+             <img class="media-object profilie_image" width="150px" border-radius="50%" src="<?php echo BASE_URL; ?>/images/<?php if(empty($user_image)){ echo "person-placeholder.jpg"; } else { echo $user_image; }
              ?>" alt="">
          </a>
          <div class="media-body">
              <h4 class="media-heading"><?php echo $friend;   ?>
                 <small><?php echo "</br>".$user_firstname." ".$user_lastname; ?></small>
              </h4>
-             <a class="btn btn-primary" href="../user_profile/<?php echo $friend; ?>">See Profile</span></a>
+             <a class="btn btn-primary" href="<?php echo BASE_URL; ?>/user_profile/<?php echo $friend; ?>">See Profile</span></a>
              
           
  

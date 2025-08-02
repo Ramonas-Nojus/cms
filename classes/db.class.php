@@ -1,6 +1,6 @@
 <?php 
 
-include '../config.php';
+include BASE_URL.'/config.php';
 
 class Db {
     private $host = DB_HOST;

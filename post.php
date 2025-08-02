@@ -74,11 +74,11 @@ if(isset($_POST['unliked'])){
                     <?php echo $post_title ?>
                 </h2>
                 <p class="lead">
-                    by <a href="./author/<?php echo $post_author; ?>"><?php echo $post_author ?></a>
+                    by <a href="<?php echo BASE_URL; ?>/author/<?php echo $post_author; ?>"><?php echo $post_author ?></a>
                 </p>
                 <p><span class="glyphicon glyphicon-time"></span> <?php echo $post_date ?></p>
                 <hr>
-                <img class="img-responsive" src="./images/<?php if($post_image == ""){ echo "y9DpT.jpg"; } else{echo $post_image;}?>" alt="">
+                <img class="img-responsive" src="<?php echo BASE_URL; ?>/images/<?php if($post_image == ""){ echo "y9DpT.jpg"; } else{echo $post_image;}?>" alt="">
                 <hr>
                 <p><?php echo $post_content ?></p>          
         <?php }         
@@ -147,7 +147,7 @@ if(isset($_POST['unliked'])){
                 <!-- Comment -->
                 <div class="media">
                     <a class="pull-left" href="#">
-                        <img class="media-object profilie_image" width="50px" border-radius="50%" src="./images/<?php if(empty($getComments->authorImage($author_id)['user_image'])){ echo "person-placeholder.jpg"; } else { echo $getComments->authorImage($author_id)['user_image']; }
+                        <img class="media-object profilie_image" width="50px" border-radius="50%" src="<?php echo BASE_URL; ?>/images/<?php if(empty($getComments->authorImage($author_id)['user_image'])){ echo "person-placeholder.jpg"; } else { echo $getComments->authorImage($author_id)['user_image']; }
                         ?>" alt="">
                     </a>
                     <div class="media-body">
@@ -158,7 +158,7 @@ if(isset($_POST['unliked'])){
                     </div>
                 </div>
            <?php } }  else {
-            header("Location: ./");
+            header("Location: ".BASE_URL."/");
             }
                 ?>
             </div>
@@ -175,7 +175,7 @@ if(isset($_POST['unliked'])){
                 // like
                 $(".like").click(function(){
                    $.ajax({
-                       url: "./post.php?p_id=<?php echo $the_post_id; ?>",
+                       url: "<?php echo BASE_URL; ?>/post.php?p_id=<?php echo $the_post_id; ?>",
                        type: "post",
                        data: {
                            'liked': 1,
@@ -187,7 +187,7 @@ if(isset($_POST['unliked'])){
                 // unlike
                 $(".unlike").click(function(){
                    $.ajax({
-                       url: "./post.php?p_id=<?php echo $the_post_id; ?>",
+                       url: "/post.php?p_id=<?php echo $the_post_id; ?>",
                        type: "post",
                        data: {
                            'unliked': 1,

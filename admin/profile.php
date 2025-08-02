@@ -41,7 +41,7 @@
         $user_role= $row['user_role'];
 
 if($user_role == 'banned'){
-    redirect('../includes/logout.php');
+    redirect(BASE_URL.'/includes/logout.php');
         } 
     }
 }
@@ -83,14 +83,14 @@ if(isset($_POST['edit_user'])) {
                     $user_image = $_FILES['user_image']['name'];
                     $user_image_temp = $_FILES['user_image']['tmp_name'];
 
-                    move_uploaded_file($user_image_temp, "../images/$user_image" );
+                    move_uploaded_file($user_image_temp, BASE_URL."/images/$user_image" );
 
                     $query = "UPDATE users SET user_image = '{$user_image}' WHERE user_id = '{$user_id}' ";
                     $image_query = mysqli_query($connection,$query);
                         redirect("profile");
                 } }
             ?>
-                <img class="img" src="../images/<?php
+                <img class="img" src="<?php echo BASE_URL; ?>/images/<?php
                 if(empty($db_user_image)){
                     echo "person-placeholder.jpg";
                 } else {
@@ -146,8 +146,8 @@ if(isset($_POST['edit_user'])) {
          }
         }
          if(isset($_GET['change_email'])){
-            echo "<input type='text' class='form-control' name='change_email'><a href='../admin/profile.php'>cancel</a> ";
-         } else { echo "<a href='../admin/profile.php?change_email'>change email</a>"; } ?>
+            echo "<input type='text' class='form-control' name='change_email'><a href='".BASE_URL."/admin/profile.php'>cancel</a> ";
+         } else { echo "<a href='".BASE_URL."/admin/profile.php?change_email'>change email</a>"; } ?>
       </div>
       <div class="form-group ">
          <label for="password">Password</label>
@@ -165,8 +165,8 @@ if(isset($_POST['edit_user'])) {
          }
         }
          if(isset($_GET['change_password'])){
-            echo "<input type='text' class='form-control' name='change_password'><a href='../admin/profile.php'>cancel</a> ";
-         } else { echo "<a href='../admin/profile.php?change_password'>change password</a>"; } ?>
+            echo "<input type='text' class='form-control' name='change_password'><a href='".BASE_URL."/admin/profile.php'>cancel</a> ";
+         } else { echo "<a href='".BASE_URL."/admin/profile.php?change_password'>change password</a>"; } ?>
       </div>
        <div class="form-group">
           <input class="btn btn-primary" type="submit" name="edit_user" value="Update Profile">

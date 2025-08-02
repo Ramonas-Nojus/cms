@@ -37,7 +37,7 @@
         $post_content        =  escape($_POST['post_content']);
         $post_tags           =  escape($_POST['post_tags']);
         
-        move_uploaded_file($post_image_temp, "../images/$post_image"); 
+        move_uploaded_file($post_image_temp, BASE_URL."/images/$post_image"); 
         
         if(empty($post_image)) {
         
@@ -70,7 +70,7 @@
         
         confirmQuery($update_post);
         
-        echo "<p class='bg-success'>Post Updated. <a href='../post/{$the_post_id}'>View Post </a>"; if(is_admin()){ " or <a href='posts.php'>Edit More Posts</a></p>"; };
+        echo "<p class='bg-success'>Post Updated. <a href='".BASE_URL."/post/{$the_post_id}'>View Post </a>"; if(is_admin()){ " or <a href='posts.php'>Edit More Posts</a></p>"; };
         
 
     
@@ -212,7 +212,7 @@
       
     <div class="form-group">
 
-       <img width="100" src="../images/<?php echo $post_image; ?>" alt="">
+       <img width="100" src="<?php echo BASE_URL; ?>/images/<?php echo $post_image; ?>" alt="">
        <input  type="file" name="image">
       </div>
 

@@ -58,8 +58,8 @@ class Videos extends Db {
         $stmt->bindValue("user_id", $user_id);
         $stmt->bindValue("video_resources", $video_resources);
 
-        move_uploaded_file($video_resources_temp, "../all_videos/$video_resources" );
-        move_uploaded_file($video_image_temp, "../images/$video_image" );
+        move_uploaded_file($video_resources_temp, BASE_URL."/all_videos/$video_resources" );
+        move_uploaded_file($video_image_temp, BASE_URL."/images/$video_image" );
     }
     public function updateVideo($video_title,$video_tags,$video_description, $video_id){
         $sql = "UPDATE videos SET video_title = :video_title, video_tags = :video_tags, video_description = :video_description WHERE video_id = :video_id ";
@@ -76,7 +76,7 @@ class Videos extends Db {
         $stmt->bindValue("video_image", $video_image);
         $stmt->bindValue("video_id", $video_id);
         $stmt->execute();
-        move_uploaded_file($video_image_temp, "../images/$video_image" );
+        move_uploaded_file($video_image_temp, BASE_URL."/images/$video_image" );
     }
 
     public function deleteVideo($video_id){

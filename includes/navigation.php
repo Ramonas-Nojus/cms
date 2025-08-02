@@ -25,7 +25,7 @@
 
 
                         <li>
-                            <a href="./admin/profile">Profile</a>
+                            <a href="<?php echo BASE_URL; ?>/admin/profile">Profile</a>
                         </li>
 
                         <li>
@@ -69,7 +69,7 @@
 
                 if($post_user_id == $the_user_id){
         
-                echo "<li><a href='./admin/posts.php?source=edit_post&p_id={$the_post_id}'>Edit Post</a></li>";
+                echo "<li><a href='".BASE_URL."/admin/posts.php?source=edit_post&p_id={$the_post_id}'>Edit Post</a></li>";
             }
         
         }

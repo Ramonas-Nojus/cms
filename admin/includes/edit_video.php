@@ -1,4 +1,4 @@
-<?php include "../includes/class.autoload.php"; ?>
+<?php include BASE_URL."/includes/class.autoload.php"; ?>
 <?php
    
 
@@ -17,7 +17,7 @@
 
             $updateVideo = $Video->updateVideo($video_title,$video_tags,$video_description,$the_video_id);
 
-            echo "<p class='bg-success'>video Updated. <a href='../watch/{$the_video_id}'>View Video </a>";
+            echo "<p class='bg-success'>video Updated. <a href='".BASE_URL."/watch/{$the_video_id}'>View Video </a>";
    }
 
          $vid = $Video->getVideosById($the_video_id);
@@ -34,9 +34,9 @@
          <label for="post_image">Video image</label>
          </br>
          <?php if(!empty($vid['video_image'])){ ?>
-            <img style="width: 200px; height: 100px; border-radius:5px; margin-bottom:5px;"  src="../images/<?php echo $vid['video_image']; ?>" >
+            <img style="width: 200px; height: 100px; border-radius:5px; margin-bottom:5px;"  src="<?php echo BASE_URL; ?>/images/<?php echo $vid['video_image']; ?>" >
          <?php } else { ?>
-            <video style="width: 200px; height: 120px; border-radius:5px; margin-bottom:5px;" src="../all_videos/<?php echo $vid['video_resources']; ?>"></video>
+            <video style="width: 200px; height: 120px; border-radius:5px; margin-bottom:5px;" src="<?php echo BASE_URL; ?>/all_videos/<?php echo $vid['video_resources']; ?>"></video>
          <?php } 
          
          if(isset($_FILES['image'])){
@@ -51,7 +51,7 @@
       <div class="form-group">
          <label for="post_image">Video</label>
          </br>
-         <video controls width="200px"  src="../all_videos/<?php echo $vid['video_resources']; ?>"></video>
+         <video controls width="200px"  src="<?php echo BASE_URL; ?>/all_videos/<?php echo $vid['video_resources']; ?>"></video>
       </div>
 
       <div class="form-group">

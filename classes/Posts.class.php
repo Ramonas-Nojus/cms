@@ -40,7 +40,7 @@ class Posts extends \DB {
         $sql = "INSERT INTO posts(post_category_id, post_title, post_user, post_user_id,post_image,post_content,post_tags,post_status,post_date) ";
         $sql .= " VALUES('{$post_category_id}','{$post_title}','{$username}','{$user_id}','{$post_image}','{$post_content}', '{$post_tags}', 'published', now() ) "; 
         $stmt = $this->connection()->query($sql);
-        move_uploaded_file($post_image_temp, "../images/$post_image" );
+        move_uploaded_file($post_image_temp, "<?php echo BASE_URL; ?>/images/$post_image" );
         return $stmt->fetch(\PDO::FETCH_ASSOC);
     }
 

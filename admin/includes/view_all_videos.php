@@ -1,10 +1,10 @@
-<?php include "../includes/class.autoload.php"; ?>
+<?php include BASE_URL."/includes/class.autoload.php"; ?>
 <?php
 include("delete_modal.php");
 
 
  if($_SESSION['user_role'] != "admin"){
-    redirect("../admin/my_videos");
+    redirect(BASE_URL."/admin/my_videos");
 }  
 
 if(isset($_POST['checkBoxArray'])) {
@@ -112,9 +112,9 @@ if(isset($_POST['checkBoxArray'])) {
         echo "<td>$video_title</td>"; 
         echo "<td>$video_status</td>";
         if(!empty($video_image)){
-        echo "<td><img width='100' src='../images/$video_image' alt='image'></td>";
+        echo "<td><img width='100' src='".BASE_URL."/images/$video_image' alt='image'></td>";
         } else {
-            echo  "<td><video width='100' src='../all_videos/$video_resources'></video></td>";
+            echo  "<td><video width='100' src='".BASE_URL."/all_videos/$video_resources'></video></td>";
         }
         echo "<td>$video_tags</td>";
 
@@ -129,7 +129,7 @@ if(isset($_POST['checkBoxArray'])) {
         
         echo "<td><a href='post_comments.php?v_id=$video_id'>$count_comments</a></td>";
         echo "<td>$video_date </td>";
-        echo "<td><a class='btn btn-primary' href='../watch/{$video_id}'>Watch</a></td>";
+        echo "<td><a class='btn btn-primary' href='".BASE_URL."/watch/{$video_id}'>Watch</a></td>";
         echo "<td><a class='btn btn-info' href='videos.php?source=edit_video&v_id={$video_id}'>Edit</a></td>";
         ?>
         <form method="post">
@@ -152,7 +152,7 @@ if(isset($_POST['delete'])){
     
     $the_video_id = escape($_POST['video_id']);
     $newObj->deleteVideo($the_video_id);
-    redirect('../admin/videos.php');
+    redirect(BASE_URL.'/admin/videos.php');
 }
 
 if(isset($_GET['reset'])){
@@ -161,7 +161,7 @@ if(isset($_GET['reset'])){
     
     $query = "UPDATE videos SET video_views = 0 WHERE video_id = $the_video_id  ";
     $reset_query = mysqli_query($connection, $query);
-    header("Location: ../admin/videos.php");
+    header("Location: ".BASE_URL."/admin/videos.php");
 
 }
 ?> 

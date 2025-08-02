@@ -1,4 +1,4 @@
-<?php include "../includes/class.autoload.php"; ?>
+<?php include BASE_URL."/includes/class.autoload.php"; ?>
 <?php
    
 
@@ -23,7 +23,7 @@
             $addPost = $setPost->setVideo($video_title,$video_image,$video_image_temp,$video_tags,$video_description,$username,$user_id,$video_resources,$video_resources_temp);
 
              $the_post_id = mysqli_insert_id($connection );
-             echo "<p class='bg-success'>Post Created. <a href='../post/{$the_post_id}'>View Post </a>"; if(is_admin()){ " or <a href='posts.php'>Edit More Posts</a></p>"; };
+             echo "<p class='bg-success'>Post Created. <a href='".BASE_URL."/post/{$the_post_id}'>View Post </a>"; if(is_admin()){ " or <a href='posts.php'>Edit More Posts</a></p>"; };
        
 
 

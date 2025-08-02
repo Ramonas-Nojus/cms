@@ -173,7 +173,7 @@ if(isset($_POST['checkBoxArray'])) {
         $post_id = $row['post_id'];
         $post_title = $row['post_title'];
             
-            echo "<td><a href='../post.php?p_id=$post_id'>$post_title</a></td>";
+            echo "<td><a href='".BASE_URL."/post.php?p_id=$post_id'>$post_title</a></td>";
         
         
         }

@@ -94,20 +94,20 @@ include "includes/db.php"; ?>
                 
                 <div class="media">
                 
-                    <a class="pull-left" href="./watch/<?php echo $video_id; ?>">
+                    <a class="pull-left" href="<?php echo BASE_URL; ?>/watch/<?php echo $video_id; ?>">
                         <?php if(!empty($video_image)){ ?>
-                            <img class="media-object img" width="350px"  height="200px" style="border-radius: 5px; " src="./images/<?php  echo $video_image; ?>" alt="">
+                            <img class="media-object img" width="350px"  height="200px" style="border-radius: 5px; " src="<?php echo BASE_URL; ?>/images/<?php  echo $video_image; ?>" alt="">
                         <?php } else { ?>
-                            <video class="media-object vid" style="border-radius: 5px;"  src="./all_videos/<?php echo $video_resources; ?>" ></video>
+                            <video class="media-object vid" style="border-radius: 5px;"  src="<?php echo BASE_URL; ?>/all_videos/<?php echo $video_resources; ?>" ></video>
                         <?php } ?>
                     </a>
                     <div class="media-body">
                         <h3 class="media-heading"><?php echo $video_title;?>
                             <?php $img = new Comments; ?> 
                             </br>
-                            </br><a href="./user_profile/<?php echo $video_author; ?>"><img class="profilie_image" border-radius="50%" src="./images/<?php echo $img->authorImage($video_author_id)['user_image'] ?>" alt="author_image"></a>
+                            </br><a href="<?php echo BASE_URL; ?>/user_profile/<?php echo $video_author; ?>"><img class="profilie_image" border-radius="50%" src="<?php echo BASE_URL; ?>/images/<?php echo $img->authorImage($video_author_id)['user_image'] ?>" alt="author_image"></a>
                             <small>
-                                <a href="./user_profile/<?php echo $video_author; ?>"><?php echo $video_author; ?></a>
+                                <a href="<?php echo BASE_URL; ?>/user_profile/<?php echo $video_author; ?>"><?php echo $video_author; ?></a>
                             </small>    
                         </h3>
                         </br>
@@ -145,7 +145,7 @@ include "includes/db.php"; ?>
                     </p>
                     <hr>
         
-                    <a href="./post/<?php echo $post_id; ?>">
+                    <a href="<?php echo BASE_URL; ?>/post/<?php echo $post_id; ?>">
                         <img class="img-responsive" src="/images/<?php if($post_image == ""){ echo "y9DpT.jpg"; } else{echo $post_image;}?>" alt="">
                     </a>
         

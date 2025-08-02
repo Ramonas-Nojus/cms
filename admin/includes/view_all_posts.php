@@ -1,4 +1,4 @@
-<?php include "../includes/class.autoload.php"; ?>
+<?php include BASE_URL."/includes/class.autoload.php"; ?>
 
 
 <?php
@@ -225,7 +225,7 @@ confirmQuery($update_to_delete_status);
     
         
         echo "<td>$post_status</td>";
-echo "<td><img width='100' src='../images/$post_image' alt='image'></td>";
+echo "<td><img width='100' src='".BASE_URL."/images/$post_image' alt='image'></td>";
         echo "<td>$post_tags</td>";
 
 
@@ -245,7 +245,7 @@ echo "<td><img width='100' src='../images/$post_image' alt='image'></td>";
 
 
         echo "<td>$post_date </td>";
-        echo "<td><a class='btn btn-primary' href='../post/{$post_id}'>View Post</a></td>";
+        echo "<td><a class='btn btn-primary' href='".BASE_URL."/post/{$post_id}'>View Post</a></td>";
         echo "<td><a class='btn btn-info' href='posts/edit_post/{$post_id}'>Edit</a></td>";
 
 
@@ -307,7 +307,7 @@ if(isset($_POST['delete'])){
     
     $query = "DELETE FROM posts WHERE post_id = {$the_post_id} ";
     $delete_query = mysqli_query($connection, $query);
-    header("Location: ../admin/posts.php");
+    header("Location: ".BASE_URL."/admin/posts.php");
     
     
 }

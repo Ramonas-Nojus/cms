@@ -152,7 +152,7 @@ function users_online() {
 
         session_start();
 
-        include("../includes/db.php");
+        include(BASE_URL."/includes/db.php");
 
         $session = session_id();
         $time = time();
@@ -455,7 +455,7 @@ function register_user($firstname, $lastname, $username, $email, $password){
 
 
 
-             redirect("../admin/profile");
+             redirect(BASE_URL."/admin/profile");
 
 
          }  else {
