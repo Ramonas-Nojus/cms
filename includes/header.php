@@ -1,5 +1,7 @@
 <?php session_start(); ?>
 <?php include "admin/functions.php"; ?>
+<?php include "./config.php"; ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
