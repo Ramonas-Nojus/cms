@@ -137,8 +137,8 @@ if(isset($_POST['checkBoxArray'])) {
         
         echo "<td><a href='post_comments.php?id=$video_id'>$count_comments</a></td>";
         echo "<td>$video_date </td>";
-        echo "<td><a class='btn btn-primary' href='/watch/{$video_id}'>watch</a></td>";
-        echo "<td><a class='btn btn-info' href='/admin/videos.php?source=edit_video&v_id={$video_id}'>Edit</a></td>";
+        echo "<td><a class='btn btn-primary' href='../watch/{$video_id}'>watch</a></td>";
+        echo "<td><a class='btn btn-info' href='../admin/videos.php?source=edit_video&v_id={$video_id}'>Edit</a></td>";
         ?>
         <form method="post">
             <input type="hidden" name="post_id" value="<?php echo $post_id ?>">

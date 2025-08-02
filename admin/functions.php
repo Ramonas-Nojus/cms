@@ -455,7 +455,7 @@ function register_user($firstname, $lastname, $username, $email, $password){
 
 
 
-             redirect("/admin/profile");
+             redirect("../admin/profile");
 
 
          }  else {

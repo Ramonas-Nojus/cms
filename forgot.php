@@ -31,7 +31,7 @@ use PHPMailer\PHPMailer\Exception;
                     mysqli_stmt_execute($stmt);
                     mysqli_stmt_close($stmt);
 
-                    $subject = "Užsakymo Patvirtinimas";
+                    $subject = "Password reset";
 
                     try {
                         $mail = new PHPMailer(true);
@@ -53,7 +53,7 @@ use PHPMailer\PHPMailer\Exception;
                         // Content
                         $mail->isHTML(true);
                         $mail->Subject = 'This is a test email';
-                        $mail->Body = '<p>Please click <a href="http:/.local/reset.php?email='.$email.'&token='.$token.' ">here</a> to reset your password</p>';
+                        $mail->Body = '<p>Please click <a href="https://powderblue-trout-708578.hostingersite.com/reset.php?email='.$email.'&token='.$token.' ">here</a> to reset your password</p>';
 
                         $mail->send();
 

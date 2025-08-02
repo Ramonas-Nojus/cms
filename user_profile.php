@@ -123,7 +123,7 @@
  ?>
       
             <div class="form-group img">
-                <img class="profile-img" src="/images/<?php 
+                <img class="profile-img" src="./images/<?php 
 
                 if(empty($db_user_image)){
                     echo "person-placeholder.jpg";
@@ -142,14 +142,14 @@
 
             $query = "INSERT INTO requests(from_id, to_id, from_username, to_username) VALUES('{$user_id}' ,'{$friends_id}' ,'{$the_username}' ,'{$db_username}')";
             $add_friend_request_query = mysqli_query($connection, $query);  
-            redirect("/user_profile/$db_username");  
+            redirect("./user_profile/$db_username");  
         }
 
         if(isset($_POST['remove_friend'])){
                 $friends_id = $_POST['remove_friend'];
 
             $remove_friend_query = query("DELETE FROM friends WHERE friend1_id = $friends_id AND friend2_id =  $user_id OR  friend2_id = $friends_id AND friend1_id =  $user_id");
-            redirect("/user_profile/$db_username");  
+            redirect("./user_profile/$db_username");  
         }
         $query = "SELECT * FROM requests WHERE from_id = '{$user_id}' AND to_username = '$db_username' ";
         $get_request_query = mysqli_query($connection, $query);   
@@ -174,7 +174,7 @@
 
                  if($db_username == $_SESSION['username']){ ?>
 
-                <form action="/admin/profile" method="post">
+                <form action="./admin/profile" method="post">
                         <div class="center">
                             <button class="add_friend btn btn-primary">Profile</button>
                         </div>
@@ -212,7 +212,7 @@
                 </form>
                     <?php } else if(mysqli_num_rows($slect_specific_request_query) > 0){ ?> 
                     
-                        <form action="/admin/notifications.php" method="post">
+                        <form action="./admin/notifications.php" method="post">
                <div class="center">
                 <button class="add_friend btn btn-primary" type="submit"  ?>
                   see request
@@ -234,7 +234,7 @@
                 </div>
 <?php 
                 } }  }  else { ?>  
-                    <form action="/login" method="post">
+                    <form action="./login" method="post">
                <div class="center">
                 <button class="add_friend btn btn-primary" type="submit"?>
                    you need to log in to add friends
@@ -254,7 +254,7 @@
                 
                 if($_SESSION['username'] == $username ||  $user_role == 'banned'){} else{ ?>
                 <center class=" <?php if(mysqli_num_rows($select_friends_query) > 0){ echo ""; } else{ echo "report"; } ?>">
-                <a class="report_a" href="/report/<?php echo $username; ?>" >Report</a>
+                <a class="report_a" href="./report/<?php echo $username; ?>" >Report</a>
                 </center>
                     <?php } } ?>
 
@@ -330,17 +330,17 @@
 
                 <a class="pull-left" href="/watch/<?php echo $video_id; ?>">
                     <?php if(!empty($video_image)){ ?>
-                        <img class="media-object img" width="350px"  height="200px" style="border-radius: 5px; " src="/images/<?php  echo $video_image; ?>" alt="">
+                        <img class="media-object img" width="350px"  height="200px" style="border-radius: 5px; " src="./images/<?php  echo $video_image; ?>" alt="">
                     <?php } else { ?>
-                        <video class="media-object vid" style="border-radius: 5px;"  src="/all_videos/<?php echo $video_resources; ?>" ></video>
+                        <video class="media-object vid" style="border-radius: 5px;"  src="./all_videos/<?php echo $video_resources; ?>" ></video>
                     <?php } ?>
                 </a>
                 <div class="media-body">
                     <h3 class="media-heading"><?php echo $video_title;?>
                     <?php $img = new Comments; ?> 
                         </br>
-                    </br><a href="/user_profile/<?php echo $video_author; ?>"><img class="profilie_image" border-radius="50%" src="/images/<?php if(empty($img->authorImage($video_author_id)['user_image'])){ echo "person-placeholder.jpg"; } else {  echo $img->authorImage($video_author_id)['user_image']; } ?>" alt="author_image"></a>
-                    <small><a href="/user_profile/<?php echo $video_author; ?>"><?php echo $video_author; ?></a></small>
+                    </br><a href="./user_profile/<?php echo $video_author; ?>"><img class="profilie_image" border-radius="50%" src="./images/<?php if(empty($img->authorImage($video_author_id)['user_image'])){ echo "person-placeholder.jpg"; } else {  echo $img->authorImage($video_author_id)['user_image']; } ?>" alt="author_image"></a>
+                    <small><a href="./user_profile/<?php echo $video_author; ?>"><?php echo $video_author; ?></a></small>
                 </h3>
                     </br>
                 <p>
@@ -371,15 +371,15 @@
                     
                     </br>
                     <h2>
-                        <a href="/post/<?php echo $post_id; ?>"><?php echo $post_title ?></a>
+                        <a href="./post/<?php echo $post_id; ?>"><?php echo $post_title ?></a>
                     </h2>
                     <p class="lead">
-                        by <a href="/author/<?php echo $post_author; ?>"><?php echo $post_author ?></a>
+                        by <a href="./author/<?php echo $post_author; ?>"><?php echo $post_author ?></a>
                     </p>
                     <p><span class="glyphicon glyphicon-time"></span> <?php echo $post_date ?></p>
                         <hr>
-                    <a href="/post/<?php echo $post_id; ?>">
-                        <img class="img-responsive" src="/images/<?php if($post_image == ""){ echo "y9DpT.jpg"; } else{echo $post_image;}?>" alt="">
+                    <a href="./post/<?php echo $post_id; ?>">
+                        <img class="img-responsive" src="./images/<?php if($post_image == ""){ echo "y9DpT.jpg"; } else{echo $post_image;}?>" alt="">
                     </a>
         
                         <hr>

@@ -4,7 +4,7 @@
                 <!-- Blog Search Well -->
                 <div class="well">
                     <h4>Blog Search</h4>
-                    <form action="/search" method="get">
+                    <form action="./search" method="get">
                     <div class="input-group">
                         <input name="search" type="text" class="form-control">
                         <span class="input-group-btn">
@@ -18,7 +18,7 @@
                 </div>
                 <div class="well">
                     <h4>Users Search</h4>
-                    <form action="/users_search" method="post">
+                    <form action="./users_search" method="post">
                     <div class="input-group">
                         <input name="user_search" type="text" class="form-control">
                         <span class="input-group-btn">
@@ -42,7 +42,7 @@
                 $row = mysqli_fetch_array($user_query);
                 $username = $row['username'];
                 echo $username; ?></h4>
-             <a href="/includes/logout.php" class="btn btn-primary">Logout</a>
+             <a href="./includes/logout.php" class="btn btn-primary">Logout</a>
         <?php else: ?>
              <h4>Login</h4>
 
@@ -73,7 +73,7 @@
                     </span>
                    </div>
                     <div class="form-group">
-                        <a href="/forgot/<?php echo uniqid(true); ?>">Forgot Password</a>
+                        <a href="./forgot/<?php echo uniqid(true); ?>">Forgot Password</a>
                     </div>
                 </form><!--search form-->
                 <!-- /.input-group -->
@@ -94,7 +94,7 @@
         $cat_title = $row['cat_title'];
         $cat_id = $row['cat_id'];
 
-        echo "<li><a href='/category/$cat_title/$cat_id'>{$cat_title}</a></li>";
+        echo "<li><a href='./category/$cat_title/$cat_id'>{$cat_title}</a></li>";
         } ?>    
                             </ul>
                         </div>

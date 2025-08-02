@@ -65,7 +65,7 @@
                 
                 
                 <a href="/post/<?php echo $post_id; ?>">
-                <img class="img-responsive" src="/images/<?php if($post_image == ""){ echo "y9DpT.jpg"; } else{echo $post_image;}?>" alt="">
+                <img class="img-responsive" src="./images/<?php if($post_image == ""){ echo "y9DpT.jpg"; } else{echo $post_image;}?>" alt="">
                 </a>    
                 <hr>
                 <p><?php echo $post_content ?></p>

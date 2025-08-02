@@ -175,10 +175,6 @@
 
 
 
-    <!--   <div class="form-group">
-         <label for="title">Post Author</label>
-          <input value="<?php// echo $post_user; ?>" type="text" class="form-control" name="post_user">
-      </div> -->
       
        <div class="form-group">
       <select name="post_status" id="">

@@ -41,7 +41,7 @@
         $user_role= $row['user_role'];
 
 if($user_role == 'banned'){
-    redirect('/includes/logout.php');
+    redirect('../includes/logout.php');
         } 
     }
 }
@@ -90,7 +90,7 @@ if(isset($_POST['edit_user'])) {
                         redirect("profile");
                 } }
             ?>
-                <img class="img" src="/images/<?php
+                <img class="img" src="../images/<?php
                 if(empty($db_user_image)){
                     echo "person-placeholder.jpg";
                 } else {
@@ -146,8 +146,8 @@ if(isset($_POST['edit_user'])) {
          }
         }
          if(isset($_GET['change_email'])){
-            echo "<input type='text' class='form-control' name='change_email'><a href='/admin/profile.php'>cancel</a> ";
-         } else { echo "<a href='/admin/profile.php?change_email'>change email</a>"; } ?>
+            echo "<input type='text' class='form-control' name='change_email'><a href='../admin/profile.php'>cancel</a> ";
+         } else { echo "<a href='../admin/profile.php?change_email'>change email</a>"; } ?>
       </div>
       <div class="form-group ">
          <label for="password">Password</label>
@@ -165,8 +165,8 @@ if(isset($_POST['edit_user'])) {
          }
         }
          if(isset($_GET['change_password'])){
-            echo "<input type='text' class='form-control' name='change_password'><a href='/admin/profile.php'>cancel</a> ";
-         } else { echo "<a href='/admin/profile.php?change_password'>change password</a>"; } ?>
+            echo "<input type='text' class='form-control' name='change_password'><a href='../admin/profile.php'>cancel</a> ";
+         } else { echo "<a href='../admin/profile.php?change_password'>change password</a>"; } ?>
       </div>
        <div class="form-group">
           <input class="btn btn-primary" type="submit" name="edit_user" value="Update Profile">

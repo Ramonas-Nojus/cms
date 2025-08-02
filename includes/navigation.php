@@ -18,18 +18,18 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                         <li>
-                            <a href="/videos/">videos</a>
+                            <a href="./videos/">videos</a>
                         </li>
 
                     <?php if(isLoggedIn()): ?>
 
 
                         <li>
-                            <a href="/admin/profile">Profile</a>
+                            <a href="./admin/profile">Profile</a>
                         </li>
 
                         <li>
-                            <a href="/includes/logout.php">Logout</a>
+                            <a href="./includes/logout.php">Logout</a>
                         </li>
 
 
@@ -37,10 +37,10 @@
 
 
                         <li>
-                            <a href="/login">Login</a>
+                            <a href="./login">Login</a>
                         </li>
                         <li>
-                        <a href="/registration">Registration</a>
+                        <a href="./registration">Registration</a>
                         </li>
 
 
@@ -69,7 +69,7 @@
 
                 if($post_user_id == $the_user_id){
         
-                echo "<li><a href='/admin/posts.php?source=edit_post&p_id={$the_post_id}'>Edit Post</a></li>";
+                echo "<li><a href='./admin/posts.php?source=edit_post&p_id={$the_post_id}'>Edit Post</a></li>";
             }
         
         }
